@@ -1,15 +1,52 @@
-import React, { useEffect } from 'react';
-import { Form, Input, Button, InputNumber, Select } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Button, InputNumber, Select, DatePicker } from 'antd';
+// import CurrencyFormat from 'react-currency-format'
+
 import { Col, Row } from 'react-bootstrap';
+
 const layout = {
 	labelCol: { span: 12 },
 	wrapperCol: { span: 16 }
 };
-
 const Form3 = (props) => {
-	console.log(props);
 	const [ form ] = Form.useForm();
 	const { next, prev } = props;
+	const payDates = [
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9,
+		10,
+		11,
+		12,
+		13,
+		14,
+		15,
+		16,
+		17,
+		18,
+		19,
+		20,
+		21,
+		22,
+		23,
+		24,
+		25,
+		26,
+		27,
+		28,
+		29,
+		30,
+		31
+	];
+
+	// const [lr, setLr]= useState('')
+	// const [formattedLr,setFormattedLr] = useState('')
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
@@ -33,12 +70,16 @@ const Form3 = (props) => {
 				referee_relationship: data.referee_relationship
 			});
 		}
-	}, []);
+	}, [form]);
 
-	const onFinish = (values) => {
-		console.log('Received values of form: ', values);
+	const onFinish = (fielValues) => {
+		console.log('Received values of form: ', fielValues);
+		fielValues.dob = fielValues.dob.format();
+		const values = {
+			...fielValues
+		};
 		const data = JSON.stringify(values);
-		localStorage.setItem('referee', data);
+		localStorage.setItem('personal', data);
 		next();
 	};
 
@@ -52,55 +93,45 @@ const Form3 = (props) => {
 			validateMessages={validateMessages}
 			layout="vertical"
 		>
+		
+			<Form.Item
+				name={[ 'salary_accnum' ]}
+				label="Salary bank account number"
+				rules={[ { type: 'number', required: true } ]}
+			>
+				<InputNumber style={{ width: '100%' }} />
+			</Form.Item>
+
+			<Form.Item name={[ 'bank_name' ]} label="Bank name" rules={[ { required: true } ]}>
+				<Select>
+					<Select.Option value="Single">Access bank</Select.Option>
+					<Select.Option value="Married">Zenith bank</Select.Option>
+				</Select>
+			</Form.Item>
+
 			<Row>
 				<Col md="6">
-					<Form.Item name={[ 'referee_firstname' ]} label="Referee Fistname" rules={[ { required: true } ]}>
-						<Input />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'referee_lastname' ]} label="Referee Lastname" rules={[ { required: true } ]}>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-			</Row>
-			<Row>
-				<Col md="6">
-					<Form.Item name={[ 'referee_address' ]} label="Referee Address" rules={[ { required: true } ]}>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item
-						name={[ 'referee_phone' ]}
-						label="Referee Phone"
-						rules={[ { type: 'number', required: true } ]}
-					>
+					<Form.Item name={[ 'bvn' ]} label="BVN" rules={[ { required: true } ]}>
 						<InputNumber style={{ width: '100%' }} />
 					</Form.Item>
 				</Col>
-			</Row>
-			<Row>
 				<Col md="6">
-					<Form.Item
-						name={[ 'referee_email' ]}
-						label="Referee Email"
-						rules={[ { type: 'email', required: true } ]}
-					>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'referee_relationship' ]} label="Relationship?" rules={[ { required: true } ]}>
-						<Select>
-							<Select.Option value="Colleague">Colleague</Select.Option>
-							<Select.Option value="Cousin">Cousin</Select.Option>
-							<Select.Option value="Friend">Friend</Select.Option>
-							<Select.Option value="Sibling">Sibling</Select.Option>
-						</Select>
+					<Form.Item name={[ 'dob' ]} label="Date of Birth" rules={[ { required: true } ]}>
+						<DatePicker format="DD/MM/YYYY" />
+						{/* <Datetime dateFormat="DD/MM/YYYY" timeFormat={false} /> */}
 					</Form.Item>
 				</Col>
 			</Row>
+
+			<Form.Item name={[ 'pay_date' ]} label="What day do you get paid?" rules={[ { required: true } ]}>
+				<Select>
+					{payDates.map((e, i) => (
+						<Select.Option key={i} value={e}>
+							{e}
+						</Select.Option>
+					))}
+				</Select>
+			</Form.Item>
 			<div className="steps-action">
 				<Button htmlType="submit" type="primary" className="btn-form">
 					Next

@@ -1,26 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Col, Row, ProgressBar, InputGroup, FormControl } from 'react-bootstrap';
+import { Container, Col, InputGroup, FormControl } from 'react-bootstrap';
 import { Radio, Button } from 'antd';
-import { Heading } from './Header';
+
 import styled from 'styled-components';
-const Form1 = ({ next }) => {
-	const [ accStat, setAcc ] = useState(1);
-	// const [ form ] = Form.useForm();
-	console.log(next);
-
-	const StyledRadio = styled.button`
-		background: ${(props) => (props.switch == accStat ? '#e7f7ff' : 0)};
-
-		border: ${(props) => (props.switch == accStat ? '1px solid #5b55ff' : 0)};
-
-		border-radius: 5px;
-		font-family: Rubik, 'sans-serif';
-		color: #878787;
-		opacity: 1;
-		padding: 9px 0px 8px 15px;
-	`;
-
-	const StyledSwitch = styled.button`
+const StyledSwitch = styled.button`
 		width: 80px;
 		height: 79px;
 		background: #e7f7ff 0% 0% no-repeat padding-box;
@@ -29,14 +12,31 @@ const Form1 = ({ next }) => {
 		opacity: 1;
 	`;
 
-	const onFinish = (values) => {
-		console.log('Received values of form: ', values);
-	};
+
+	const StyledRadio = styled.button`
+		background: ${(props) => (props.switch === props.stat ? '#e7f7ff' : 0)};
+
+		border: ${(props) => (props.switch === props.stat ? '1px solid #5b55ff' : 0)};
+
+		border-radius: 5px;
+		font-family: Rubik, 'sans-serif';
+		color: #878787;
+		opacity: 1;
+		padding: 9px 0px 8px 15px;
+	`;
+
+const Form1 = ({ next }) => {
+	const [ accStat, setAcc ] = useState(1);
+	// const [ form ] = Form.useForm();
+
+	// const onFinish = (values) => {
+	// 	console.log('Received values of form: ', values);
+	// };
 
 	return (
 		<div style={{ maxWidth: '782px' }}>
 			<Container>
-				<Heading step={1} progress={20} title="Payment Option" sub="Tell us a bit about what you do" />
+				
 				{/* <small>Step 1</small>
 				<Head className="mb-2">Payment Option</Head>
 
@@ -50,17 +50,17 @@ const Form1 = ({ next }) => {
 					name="radiogroup"
 					defaultValue={1}
 				>
-					<StyledRadio className="mr-3 fg" switch={1}>
+					<StyledRadio className="mr-3 fg" switch={1} stat={accStat}>
 						<Radio className="fg" value={1}>
 							Looking to renew my rent
 						</Radio>
 					</StyledRadio>
 
-					<StyledRadio className="mr-3" switch={2}>
+					<StyledRadio className="mr-3" switch={2} stat={accStat}>
 						<Radio value={2}>Want to pay for a new place</Radio>
 					</StyledRadio>
 
-					<StyledRadio switch={3}>
+					<StyledRadio switch={3} stat={accStat}>
 						<Radio value={3}>I'm still searching</Radio>
 					</StyledRadio>
 				</Radio.Group>

@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Nav, NavDropdown, Container } from "react-bootstrap";
+import Form1 from './forms/Form1';
+import Form2 from './forms/Form2';
+import Form3 from './forms/Form3';
+import Form4 from './forms/Form4';
+import { Progress } from 'antd';
 const Wrapper = styled.div`
   top: 80px;
   left: 52px;
@@ -36,45 +41,45 @@ const MenuItem = styled.p`
   padding-top: 10px;
 `;
 
-const AppSidebar = () => {
+const AppSidebar = ({current, progress, goto}) => {
   return (
     <div>
       <Wrapper>
         {/* <MenuItem>Payment Option</MenuItem> */}
-
+        <Progress  type="circle" percent={progress} format={percent => (<div>{percent} %</div>)} />
         <Nav
           style={{ paddingRight: "50px", paddingLeft: "10px" }}
           variant="pills"
-          activeKey="3"
+          activeKey={current}
           className="flex-column"
         >
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="1" href="#/home">
+            <Nav.Link onClick={()=> goto(0)}  className="text-muted" eventKey="0">
               Payment Option
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="2" title="Item">
+            <Nav.Link onClick={()=> goto(1)} className="text-muted" eventKey="1" title="Item">
               Employment Details
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="3">
+            <Nav.Link onClick={()=> goto(2)} className="text-muted" eventKey="2">
               Financial Information
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="4">
+            <Nav.Link onClick={()=> goto(3)} className="text-muted" eventKey="3">
               Rent Information
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="5">
+            <Nav.Link className="text-muted" eventKey="4">
               Landlord Details
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="6">
+            <Nav.Link className="text-muted" eventKey="5">
               Referee Details
             </Nav.Link>
           </Nav.Item>

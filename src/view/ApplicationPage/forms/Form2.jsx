@@ -3,7 +3,7 @@ import { Form, Input, Button, InputNumber, Select, DatePicker } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
 
 import { Col, Row } from 'react-bootstrap';
-import { Heading } from './Header';
+
 const layout = {
 	labelCol: { span: 12 },
 	wrapperCol: { span: 16 }
@@ -86,11 +86,11 @@ const Form2 = (props) => {
 				setJustFound(true);
 			}
 		}
-		for (let i = 1; i < 32; i++) {
-			payDates.push(i);
-			console.log(i);
-		}
-	}, []);
+		// for (let i = 1; i < 32; i++) {
+		// 	payDates.push(i);
+		// 	console.log(i);
+		// }
+	}, [form]);
 
 	// const getCity = () => {
 	//   try{
@@ -292,8 +292,7 @@ const Form2 = (props) => {
 			validateMessages={validateMessages}
 			layout="vertical"
 		>
-			<Heading step={2} progress={40} title="Employment Details" sub="Tell us a bit about what you do" />
-
+		
 			<Form.Item
 				name={[ 'salary_accnum' ]}
 				label="Salary bank account number"

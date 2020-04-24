@@ -1,30 +1,64 @@
-import React, { useEffect } from 'react';
-import { Form, Input, Button, InputNumber, Select, DatePicker } from 'antd';
-import { Col, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Form, Input, InputNumber, Select, Radio } from 'antd';
+import { Col, Row, Container } from 'react-bootstrap';
+
+
+import styled from 'styled-components';
+const StyledSwitch = styled.button`
+		width: 80px;
+		height: 79px;
+		background: #e7f7ff 0% 0% no-repeat padding-box;
+		border: 1px solid #5b55ff;
+		border-radius: 5px;
+		opacity: 1;
+	`;
+
+	const Box = styled.div`
+top: 920px;
+left: 650px;
+width: 546px;
+height: 320px;
+background: #EDF3F8 0% 0% no-repeat padding-box;
+border: 1px solid #51A4FB;
+border-radius: 15px;
+opacity: 1;
+`
+const StyledRadio = styled.button`
+background: ${(props) => (props.switch === props.stat ? '#e7f7ff' : 0)};
+
+border: ${(props) => (props.switch === props.stat ? '1px solid #5b55ff' : 0)};
+
+border-radius: 5px;
+font-family: Rubik, 'sans-serif';
+color: #878787;
+opacity: 1;
+padding: 9px 0px 8px 15px;
+`;
 const layout = {
 	labelCol: { span: 12 },
 	wrapperCol: { span: 16 }
 };
 
 const Form4 = (props) => {
-	console.log(props);
-
+	// console.log(props);
+	const [ accStat, setAcc ] = useState(1);
 	const [ form ] = Form.useForm();
-	const { prev } = props;
+	const { prev, next } = props;
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
 			email: 'Not a validate email!',
 			number: 'Not a validate number!'
 		},
-		number: {
-			range: 'Must be between ${min} and ${max}'
-		}
+		// number: {
+		// 	range: `Must be between ${min} and ${max}`
+		// }
 	};
 
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem('employer'));
 		if (data) {
+			
 			form.setFieldsValue({
 				employer_name: data.employer_name,
 				employer_address: data.employer_address,
@@ -37,7 +71,7 @@ const Form4 = (props) => {
 				salary_acct_type: data.salary_acct_type
 			});
 		}
-	}, []);
+	}, [form]);
 
 	const onFinish = (values) => {
 		values.employment_date = values.employment_date.format();
@@ -52,98 +86,129 @@ const Form4 = (props) => {
 	return (
 		<Form
 			form={form}
-			className="mt-3 "
+			className="mt-2 "
 			{...layout}
 			name="nest-messages"
 			onFinish={onFinish}
 			validateMessages={validateMessages}
 			layout="vertical"
 		>
-			<Row>
-				<Col md="6">
+		
 					<Form.Item
 						name={[ 'employer_name' ]}
-						label="Employer or Business name"
+						label="What's your current home address?"
 						rules={[ { required: true } ]}
 					>
 						<Input />
 					</Form.Item>
-				</Col>
-				<Col md="6">
+					<Form.Item label="How long have you lived here?" name="layout">
+          <Radio.Group  buttonStyle="solid">
+            <Radio.Button value={1}><p><strong>1</strong></p><p>Year</p></Radio.Button>
+            <Radio.Button value={2}><p>2</p><p>Years</p> </Radio.Button>
+            <Radio.Button value={3}><p>3</p><p>Years</p>  </Radio.Button>
+			<Radio.Button value={4}><p>4</p><p>Years</p> </Radio.Button>
+            <Radio.Button value={5}><p>5</p><p>Years</p>  </Radio.Button>
+          </Radio.Group>
+        </Form.Item>
+
+		<Form.Item name={[ 'acc_status' ]} label="What's your accomodation status?" rules={[ { required: true } ]} >
+				<Select size='large' value='Looking to renew my rent' style={{width: '65%'}} disabled>
+					
+						<Select.Option  value='Looking to renew my rent'>
+						Looking to renew my rent
+						</Select.Option>
+					
+				</Select> <a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a>
+			</Form.Item>
+
+<Box>	
+	<Container className='mt-3 ml-3'>	<Form.Item
+						name={[ 'last_rent_amount' ]}
+						label="How much was your last rent?"
+						rules={[ { required: true } ]}
+					>
+						<Input addonBefore='₦' />
+					</Form.Item>
+					
 					<Form.Item
+						name={[ 'rent_colector' ]}
+						label="Who did you pay to??"
+						rules={[ { required: true } ]}
+					>
+							<Radio.Group
+					onChange={(e) => {
+						setAcc(e.target.value);
+					}}
+			
+					initialValues={1}
+				>
+					
+					<StyledRadio className="" switch={1} stat={accStat}>
+						<Radio className="fg" value={1}>
+							Landlord
+						</Radio>
+					</StyledRadio>
+
+					<StyledRadio className="mr-3" switch={2} stat={accStat}>
+						<Radio value={2}>Caretaker</Radio>
+					</StyledRadio>
+
+					<StyledRadio switch={3} stat={accStat}>
+						<Radio value={3}>Agent</Radio>
+					</StyledRadio>
+				</Radio.Group>
+
+					</Form.Item>
+
+					<Form.Item name={[ 'pay_type' ]} label="How did you pay?" rules={[ { required: true } ]} >
+				<Select size='large'  style={{width: '96%'}} placeholder='Select how you paid'>
+					
+						<Select.Option  value='card'>
+						Card
+						</Select.Option>
+						<Select.Option  value='bank'>
+						Bank Transfer
+						</Select.Option>
+					
+				</Select> 
+			</Form.Item>
+					</Container>
+	
+</Box>
+
+				{/* <StyledSwitch className="mr-4">
+					<Col>
+						<strong className="switch-text">1</strong>
+					</Col>
+					<Col>
+						<p className="switch-text">Year</p>
+					</Col>{' '}
+				</StyledSwitch>
+				<StyledSwitch className="mr-4">
+					<Col>
+						<strong className="switch-text">3</strong>
+					</Col>
+					<Col>
+						<p className="switch-text">Months</p>
+					</Col>{' '}
+				</StyledSwitch>
+				<StyledSwitch>
+					<Col>
+						<strong className="switch-text">6</strong>
+					</Col>
+					<Col>
+						<p className="switch-text">Months</p>
+					</Col>{' '}
+				</StyledSwitch> */}
+					{/* <Form.Item
 						name={[ 'employer_address' ]}
 						label="Employer or Business address"
 						rules={[ { required: true } ]}
 					>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-			</Row>
-			<Row>
-				<Col md="6">
-					<Form.Item
-						name={[ 'employer_phone' ]}
-						label="Employer or Business phone"
-						rules={[ { type: 'number', required: true } ]}
-					>
-						<InputNumber style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item
-						name={[ 'employer_email' ]}
-						label="Employer or Business email"
-						rules={[ { type: 'email', required: true } ]}
-					>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-			</Row>
-			<Row>
-				<Col md="6">
-					<Form.Item name={[ 'employment_date' ]} label="Date of Employment" rules={[ { required: true } ]}>
-						<DatePicker format="DD/MM/YYYY" />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'job_role' ]} label="Job Role" rules={[ { required: true } ]}>
-						<Input style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'salary_bank_name' ]} label="Salary Bank Name" rules={[ { required: true } ]}>
-						<Select>
-							<Select.Option value="Access">Access Bank</Select.Option>
-						</Select>
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item
-						name={[ 'salary_acctnum' ]}
-						label="Salary Account Number"
-						rules={[ { type: 'number', required: true } ]}
-					>
-						<InputNumber style={{ width: '100%' }} />
-					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'salary_acct_type' ]} label="Salary Account Type" rules={[ { required: true } ]}>
-						<Select>
-							<Select.Option value="Current">Current Account</Select.Option>
-							<Select.Option value="Savings">Savings Account</Select.Option>
-						</Select>
-					</Form.Item>
-				</Col>
-			</Row>
-			<div className="steps-action">
-				<Button htmlType="submit" type="primary" className="btn-form">
-					Done
-				</Button>
-
-				<Button style={{ margin: 8 }} onClick={() => prev()} className="btn-form">
-					Previous
-				</Button>
-			</div>
+						<Input  />
+					</Form.Item> */}
+				
+		
 		</Form>
 	);
 };
