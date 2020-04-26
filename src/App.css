@@ -123,16 +123,17 @@ opacity: 1;
 /* top: 598px;
 left: 650px; */
 height: 38px;
+
 }
 
 .ant-input-number-input {
-width: 65%;
+width: 79% !important;
 height: 36px;
 
 }
 
 .ant-input {
-	width: 65%;
+	width: 58%;
 height: 36px;
 
 }
@@ -184,3 +185,13 @@ height: 36px;
 	background-color: 0;
 	border-color: 0;
 }
+
+.steps-action {
+	margin-top: 4px;
+
+  }
+
+  /* .btn-form{
+	min-width: 15%;
+	height: 100% !important;
+  } */

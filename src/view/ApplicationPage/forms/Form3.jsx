@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Button, InputNumber, Select, DatePicker } from 'antd';
+import React, {  useEffect } from 'react';
+import { Form, Input,  Select, DatePicker } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
-
+import {BottomNav} from '../BottomNav'
 import { Col, Row } from 'react-bootstrap';
 
 const layout = {
@@ -86,7 +86,7 @@ const Form3 = (props) => {
 	return (
 		<Form
 			form={form}
-			className="mt-3 "
+			
 			{...layout}
 			name="nest-messages"
 			onFinish={onFinish}
@@ -97,34 +97,35 @@ const Form3 = (props) => {
 			<Form.Item
 				name={[ 'salary_accnum' ]}
 				label="Salary bank account number"
-				rules={[ { type: 'number', required: true } ]}
+				rules={[ { required: true } ]}
+				
 			>
-				<InputNumber style={{ width: '100%' }} />
+				<Input style={{ width: '58%' }} placeholder='Enter bank account number'/>
 			</Form.Item>
 
 			<Form.Item name={[ 'bank_name' ]} label="Bank name" rules={[ { required: true } ]}>
-				<Select>
+				<Select size='large' style={{ width: '58%' }} placeholder='Select your bank'>
 					<Select.Option value="Single">Access bank</Select.Option>
 					<Select.Option value="Married">Zenith bank</Select.Option>
 				</Select>
 			</Form.Item>
 
 			<Row>
-				<Col md="6">
+				<Col>
 					<Form.Item name={[ 'bvn' ]} label="BVN" rules={[ { required: true } ]}>
-						<InputNumber style={{ width: '100%' }} />
+						<Input style={{ width: '58%' }} placeholder='Enter your bvn'/>
 					</Form.Item>
+					
 				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'dob' ]} label="Date of Birth" rules={[ { required: true } ]}>
+				<Col><Form.Item name={[ 'dob' ]} label="Date of Birth" rules={[ { required: true } ]}>
 						<DatePicker format="DD/MM/YYYY" />
-						{/* <Datetime dateFormat="DD/MM/YYYY" timeFormat={false} /> */}
-					</Form.Item>
-				</Col>
+						
+					</Form.Item></Col>
+				
 			</Row>
 
 			<Form.Item name={[ 'pay_date' ]} label="What day do you get paid?" rules={[ { required: true } ]}>
-				<Select>
+				<Select size='large' style={{ width: '58%' }} placeholder='What day do you get paid?'>
 					{payDates.map((e, i) => (
 						<Select.Option key={i} value={e}>
 							{e}
@@ -132,15 +133,7 @@ const Form3 = (props) => {
 					))}
 				</Select>
 			</Form.Item>
-			<div className="steps-action">
-				<Button htmlType="submit" type="primary" className="btn-form">
-					Next
-				</Button>
-
-				<Button style={{ margin: 8 }} onClick={() => prev()} className="btn-form">
-					Previous
-				</Button>
-			</div>
+		<BottomNav prev={prev}/>
 		</Form>
 	);
 };

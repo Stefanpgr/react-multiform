@@ -46,7 +46,8 @@ const AppSidebar = ({current, progress, goto}) => {
     <div>
       <Wrapper>
         {/* <MenuItem>Payment Option</MenuItem> */}
-        <Progress  type="circle" percent={progress} format={percent => (<div>{percent} %</div>)} />
+        <Progress strokeColor='#21AD26'  type="circle" percent={progress} format={percent => (<div>{percent} %</div>)} />
+        <h4>Account Setup</h4>
         <Nav
           style={{ paddingRight: "50px", paddingLeft: "10px" }}
           variant="pills"
@@ -74,12 +75,12 @@ const AppSidebar = ({current, progress, goto}) => {
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="4">
+            <Nav.Link onClick={()=> goto(4)} className="text-muted" eventKey="4">
               Landlord Details
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-muted" eventKey="5">
+            <Nav.Link onClick={()=> goto(5)} className="text-muted" eventKey="5">
               Referee Details
             </Nav.Link>
           </Nav.Item>

@@ -23,7 +23,7 @@ class ViewLayout extends React.Component {
 	render() {
 		return (
 			<Layout style={{ minHeight: '100vh' }}>
-				<Sider
+				{/* <Sider
 					className="site-layout-background"
 					collapsible
 					collapsed={this.state.collapsed}
@@ -47,19 +47,6 @@ class ViewLayout extends React.Component {
 							<UserOutlined />
 							<span>Profile</span>
 						</Menu.Item>
-						{/* <SubMenu
-							key="sub1"
-							title={
-								<span>
-									<UserOutlined />
-									<span>Profile</span>
-								</span>
-							}
-						>
-							<Menu.Item key="3">Tom</Menu.Item>
-							<Menu.Item key="4">Bill</Menu.Item>
-							<Menu.Item key="5">Alex</Menu.Item>
-						</SubMenu> */}
 						<SubMenu
 							key="sub2"
 							title={
@@ -76,7 +63,7 @@ class ViewLayout extends React.Component {
 							<SettingFilled /> <span>Settings</span>
 						</Menu.Item>
 					</Menu>
-				</Sider>
+				</Sider> */}
 				<Layout className="site-layout">
 					<Header className="site-layout-background" style={{ padding: 0 }} />
 					<Content style={{ margin: '0 16px', height: '100%' }}>

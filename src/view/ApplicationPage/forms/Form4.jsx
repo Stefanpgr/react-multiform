@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, InputNumber, Select, Radio } from 'antd';
 import { Col, Row, Container } from 'react-bootstrap';
-
+import {BottomNav }from '../BottomNav'
 
 import styled from 'styled-components';
 const StyledSwitch = styled.button`
@@ -208,7 +208,7 @@ const Form4 = (props) => {
 						<Input  />
 					</Form.Item> */}
 				
-		
+				<BottomNav prev={prev}/>
 		</Form>
 	);
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, InputNumber, Select, DatePicker } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
+import {BottomNav }from '../BottomNav'
 
 import { Col, Row } from 'react-bootstrap';
 
@@ -292,45 +293,42 @@ const Form2 = (props) => {
 			validateMessages={validateMessages}
 			layout="vertical"
 		>
-		
-			<Form.Item
-				name={[ 'salary_accnum' ]}
-				label="Salary bank account number"
-				rules={[ { type: 'number', required: true } ]}
-			>
-				<InputNumber style={{ width: '100%' }} />
-			</Form.Item>
 
-			<Form.Item name={[ 'bank_name' ]} label="Bank name" rules={[ { required: true } ]}>
-				<Select>
-					<Select.Option value="Single">Access bank</Select.Option>
-					<Select.Option value="Married">Zenith bank</Select.Option>
+			<Form.Item name={[ 'employment_type' ]} label="What's your employment type?" rules={[ { required: true } ]}>
+				<Select size='large'  style={{width: '58%'}}  placeholder='Select your employment type'>
+					<Select.Option value="Single">Salaried employment</Select.Option>
+					<Select.Option value="Married">Business Ownerk</Select.Option>
 				</Select>
 			</Form.Item>
 
-			<Row>
-				<Col md="6">
-					<Form.Item name={[ 'bvn' ]} label="BVN" rules={[ { required: true } ]}>
-						<InputNumber style={{ width: '100%' }} />
+			
+					<Form.Item name={[ 'company_name' ]} label="What’s the name of the company you work for?" rules={[ { required: true } ]}>
+						<Input style={{ width: '58%' }} placeholder='Enter the company name' />
 					</Form.Item>
-				</Col>
-				<Col md="6">
-					<Form.Item name={[ 'dob' ]} label="Date of Birth" rules={[ { required: true } ]}>
-						<DatePicker format="DD/MM/YYYY" />
+				
+					<Form.Item name={[ 'company_address' ]} label="Address of the company" rules={[ { required: true } ]}>
+						<Input style={{ width: '58%' }} placeholder='Enter the company address' />
+					</Form.Item>
+					
+					<Form.Item name={[ 'employer_phone' ]} label="HR or employer’s work phone number" rules={[ { required: true } ]}>
+						<Input  style={{ width: '58%' }} placeholder='Enter phone number' />
+					</Form.Item>
+					
+					<Form.Item name={[ 'employer_email' ]} label="HR or employer’s email address" rules={[ { required: true, type: 'email' } ]}>
+						<Input  style={{ width: '58%' }} placeholder='Enter email address' />
+					</Form.Item>
+					<Form.Item name={[ 'work_email' ]} label="Your work email" rules={[ { required: true, type: 'email' } ]}>
+						<Input  style={{ width: '58%' }} placeholder='Enter email address' />
+					</Form.Item>
+					<Form.Item name={[ 'employment_date' ]} label="Date of employment" rules={[ { required: true } ]}>
+						<DatePicker format="DD/MM/YYYY" style={{ width: '58%' }}/>
 						{/* <Datetime dateFormat="DD/MM/YYYY" timeFormat={false} /> */}
 					</Form.Item>
-				</Col>
-			</Row>
 
-			<Form.Item name={[ 'pay_date' ]} label="What day do you get paid?" rules={[ { required: true } ]}>
-				<Select>
-					{payDates.map((e, i) => (
-						<Select.Option key={i} value={e}>
-							{e}
-						</Select.Option>
-					))}
-				</Select>
-			</Form.Item>
+					<Form.Item name={[ 'job_role' ]} label="Job role" rules={[ { required: true, type: 'email' } ]}>
+						<Input  style={{ width: '58%' }} placeholder='Enter your job role' />
+					</Form.Item>
+			
 			{/* <Row>
 				<Col md="6">
 					<Form.Item name={[ 'home_address' ]} label="Home Address" rules={[ { required: true } ]}>
@@ -380,15 +378,7 @@ const Form2 = (props) => {
 				<Xdetails />
 			</Row> */}
 
-			<div className="steps-action">
-				<Button htmlType="submit" type="primary" className="btn-form">
-					Next
-				</Button>
-
-				<Button style={{ margin: 8 }} onClick={() => prev()} className="btn-form">
-					Previous
-				</Button>
-			</div>
+			<BottomNav prev={prev}/>
 		</Form>
 	);
 };

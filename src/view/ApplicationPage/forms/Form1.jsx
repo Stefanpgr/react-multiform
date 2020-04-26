@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Col, InputGroup, FormControl } from 'react-bootstrap';
-import { Radio, Button } from 'antd';
-
+import { Radio } from 'antd';
+import {BottomNav} from '../BottomNav'
 import styled from 'styled-components';
 const StyledSwitch = styled.button`
 		width: 80px;
@@ -25,7 +25,7 @@ const StyledSwitch = styled.button`
 		padding: 9px 0px 8px 15px;
 	`;
 
-const Form1 = ({ next }) => {
+const Form1 = ({ next, current }) => {
 	const [ accStat, setAcc ] = useState(1);
 	// const [ form ] = Form.useForm();
 
@@ -35,7 +35,7 @@ const Form1 = ({ next }) => {
 
 	return (
 		<div style={{ maxWidth: '782px' }}>
-			<Container>
+	
 				
 				{/* <small>Step 1</small>
 				<Head className="mb-2">Payment Option</Head>
@@ -134,8 +134,8 @@ const Form1 = ({ next }) => {
 						<Input addonBefore="http://" placeholder="Enter Amount" />
 					</Form.Item>
 				</Form> */}
-				<Button onClick={() => next()}>Next</Button>
-			</Container>
+			<BottomNav current={current} />
+	
 		</div>
 	);
 };

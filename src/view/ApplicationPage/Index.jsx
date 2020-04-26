@@ -1,11 +1,17 @@
 import React,{useState} from 'react';
 import AppSidebar from './AppSidebar';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import {Heading }from './forms/Header'
+import {Layout} from 'antd'
 import Form1 from './forms/Form1';
 import Form2 from './forms/Form2';
 import Form3 from './forms/Form3';
 import Form4 from './forms/Form4';
+import Form5 from './forms/Form5';
+import Form6 from './forms/Form6';
+
+
+const {Content} = Layout
 const Application = () => {
 	const [ current, setCurrent ] = useState(0);
 
@@ -48,6 +54,16 @@ const Application = () => {
 			title: 'Rent Information',
 			content: <Form4 next={next} prev={prev} current={current} />,
 			sub: 'We will like to know about your rent'
+		},
+		{
+			title: 'Landlord details',
+			content: <Form5 next={next} prev={prev} current={current} />,
+			sub: 'Give us details about your landord'
+		},
+		{
+			title: 'Referee details',
+			content: <Form6 next={next} prev={prev} current={current} />,
+			sub: 'Give us information about your finance'
 		}
 	];
 	const getProgress = () =>{
@@ -59,15 +75,23 @@ const Application = () => {
 	}
 	return (
 		<div className="">
-			<Row>
-				<Col md={4}>
-					<AppSidebar goto={goto} current={current} progress={getProgress()} />
+				{/* <Layout className="site-layout"> */}
+					
+					<Content style={{ margin: '0 14px ', height: '100%' }}>
+						<Row>
+				<Col md={4} >
+					<AppSidebar goto={goto} current={current} progress={getProgress()} className=''/>
 				</Col>
 				<Col md={8}>
 				<Heading step={current + 1} progress={getProgress()} title={steps[current].title} sub={steps[current].sub} />
 				<div className="steps-action">{steps[current].content}</div>
 				</Col>
 			</Row>
+				
+					</Content>
+					
+				{/* </Layout> */}
+			
 		</div>
 	);
 };
