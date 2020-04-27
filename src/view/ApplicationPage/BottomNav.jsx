@@ -21,8 +21,8 @@ useEffect(()=>{
                     <Button style={{width: '15%'}} className="btn-form" size='large' onClick={() => prev()} disabled={curr}>
                             Back
                         </Button>
-                        <Button size='large' style={{   marginLeft: '300px', width: '15%' }} htmlType="submit" type="primary" className="btn-form">
-                            Next
+                        <Button size='large' style={{   marginLeft: '300px', width: '20%' }} htmlType="submit" type="primary" className="btn-form">
+                            Save & Continue
                         </Button>
         
                         

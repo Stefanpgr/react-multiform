@@ -77,18 +77,20 @@ const Application = () => {
 		<div className="">
 				{/* <Layout className="site-layout"> */}
 					
-					<Content style={{ margin: '0 14px ', height: '100%' }}>
+					
 						<Row>
 				<Col md={4} >
 					<AppSidebar goto={goto} current={current} progress={getProgress()} className=''/>
 				</Col>
 				<Col md={8}>
+				<Content style={{ margin: '0 14px ', height: '100%' }}>
 				<Heading step={current + 1} progress={getProgress()} title={steps[current].title} sub={steps[current].sub} />
 				<div className="steps-action">{steps[current].content}</div>
+				</Content>
 				</Col>
 			</Row>
 				
-					</Content>
+					
 					
 				{/* </Layout> */}
 			

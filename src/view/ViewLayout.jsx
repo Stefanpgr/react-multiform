@@ -5,9 +5,9 @@ import { FormOutlined, PieChartOutlined, FileOutlined, SettingFilled, UserOutlin
 // import DefaultLayout from './DefaultLayout';
 // import routes from '../routes';
 import Navigation from '../Navigation';
-
+import AppSidebar from './ApplicationPage/AppSidebar'
 const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 
 class ViewLayout extends React.Component {
 	state = {
@@ -66,6 +66,7 @@ class ViewLayout extends React.Component {
 				</Sider> */}
 				<Layout className="site-layout">
 					<Header className="site-layout-background" style={{ padding: 0 }} />
+					{/* <AppSidebar/> */}
 					<Content style={{ margin: '0 16px', height: '100%' }}>
 						<Breadcrumb style={{ margin: '16px 0' }}>
 							{/* <Breadcrumb.Item>User</Breadcrumb.Item>

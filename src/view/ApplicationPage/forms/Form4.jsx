@@ -56,19 +56,20 @@ const Form4 = (props) => {
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('employer'));
+	
+		const data = JSON.parse(localStorage.getItem('rent'));
+		const test = JSON.parse(localStorage.getItem('payment'))
+		form.setFieldsValue({	acct_stat_show: test.payment.acct_stat})
+		setAcc( test.payment.acct_stat)
 		if (data) {
 			
 			form.setFieldsValue({
-				employer_name: data.employer_name,
-				employer_address: data.employer_address,
-				employer_phone: data.employer_phone,
-				employer_email: data.employer_email,
-				// employment_date: data.employment_date,
-				job_role: data.job_role,
-				salary_bank_name: data.salary_bank_name,
-				salary_acctnum: data.salary_acctnum,
-				salary_acct_type: data.salary_acct_type
+				acct_stat_show: test.payment.acct_stat,
+				referee_lastname: data.referee_lastname,
+				referee_address: data.referee_address,
+				referee_phone: data.referee_phone,
+				referee_email: data.referee_email,
+				referee_relationship: data.referee_relationship
 			});
 		}
 	}, [form]);
@@ -78,7 +79,7 @@ const Form4 = (props) => {
 		console.log('Received values of form: ', values);
 
 		const data = JSON.stringify(values);
-		localStorage.setItem('employer', data);
+		localStorage.setItem('rent', data);
 		alert('Done!');
 		// message.success("Processing complete!")
 	};
@@ -95,13 +96,15 @@ const Form4 = (props) => {
 		>
 		
 					<Form.Item
-						name={[ 'employer_name' ]}
+						name={[ 'home_address' ]}
 						label="What's your current home address?"
 						rules={[ { required: true } ]}
 					>
 						<Input />
 					</Form.Item>
-					<Form.Item label="How long have you lived here?" name="layout">
+
+
+					<Form.Item label="How long have you lived here?" name={[ 'duration' ]}>
           <Radio.Group  buttonStyle="solid">
             <Radio.Button value={1}><p><strong>1</strong></p><p>Year</p></Radio.Button>
             <Radio.Button value={2}><p>2</p><p>Years</p> </Radio.Button>
@@ -110,19 +113,30 @@ const Form4 = (props) => {
             <Radio.Button value={5}><p>5</p><p>Years</p>  </Radio.Button>
           </Radio.Group>
         </Form.Item>
-
-		<Form.Item name={[ 'acc_status' ]} label="What's your accomodation status?" rules={[ { required: true } ]} >
-				<Select size='large' value='Looking to renew my rent' style={{width: '65%'}} disabled>
+		{/* <Form.Item
+						name={[ 'acc_status_show' ]}
+						label="What's your accomodation status?"
+						rules={[ { required: true } ]}
+					>
+				<Select size='large' value='Looking to renew my rent' style={{width: '65%'}} disabled placeholder='Looking to renew my rent'>
 					
-						<Select.Option  value='Looking to renew my rent'>
-						Looking to renew my rent
-						</Select.Option>
+					<Select.Option  value='Looking to renew my rent'>
+					Looking to renew my rent
+					</Select.Option>
+				
+			</Select> 
+		
+					</Form.Item>	<a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a> */}
+		<Form.Item  label="What's your accomodation status?" name={[ 'acc_stat_show' ]} rules={[ { required: true } ]} >
+				<Select size='large' value={accStat} style={{width: '65%'}} disabled>
+					
 					
 				</Select> <a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a>
 			</Form.Item>
 
 <Box>	
-	<Container className='mt-3 ml-3'>	<Form.Item
+	<Container className='mt-3 ml-3'>
+		<Form.Item
 						name={[ 'last_rent_amount' ]}
 						label="How much was your last rent?"
 						rules={[ { required: true } ]}
@@ -140,20 +154,20 @@ const Form4 = (props) => {
 						setAcc(e.target.value);
 					}}
 			
-					initialValues={1}
+					initialValues={2}
 				>
 					
-					<StyledRadio className="" switch={1} stat={accStat}>
+					<StyledRadio type='button' className="" switch={1} stat={accStat}>
 						<Radio className="fg" value={1}>
 							Landlord
 						</Radio>
 					</StyledRadio>
 
-					<StyledRadio className="mr-3" switch={2} stat={accStat}>
+					<StyledRadio type='button' className="mr-3" switch={2} stat={accStat}>
 						<Radio value={2}>Caretaker</Radio>
 					</StyledRadio>
 
-					<StyledRadio switch={3} stat={accStat}>
+					<StyledRadio type='button' switch={3} stat={accStat}>
 						<Radio value={3}>Agent</Radio>
 					</StyledRadio>
 				</Radio.Group>

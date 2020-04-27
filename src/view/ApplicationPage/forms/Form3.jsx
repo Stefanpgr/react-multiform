@@ -1,6 +1,7 @@
 import React, {  useEffect } from 'react';
 import { Form, Input,  Select, DatePicker } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
+import moment from "moment";
 import {BottomNav} from '../BottomNav'
 import { Col, Row } from 'react-bootstrap';
 
@@ -9,6 +10,7 @@ const layout = {
 	wrapperCol: { span: 16 }
 };
 const Form3 = (props) => {
+	const dateFormat = "DD/MM/YYYY";
 	const [ form ] = Form.useForm();
 	const { next, prev } = props;
 	const payDates = [
@@ -59,27 +61,26 @@ const Form3 = (props) => {
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('referee'));
+		const data = JSON.parse(localStorage.getItem('finance'));
 		if (data) {
+			const {finance} = data
 			form.setFieldsValue({
-				referee_firstname: data.referee_firstname,
-				referee_lastname: data.referee_lastname,
-				referee_address: data.referee_address,
-				referee_phone: data.referee_phone,
-				referee_email: data.referee_email,
-				referee_relationship: data.referee_relationship
+				salary_accnum: finance.salary_accnum,
+				bank_name: finance.bank_name,
+				bvn: finance.bvn,
+				pay_date: finance.pay_date,
+				dob:  moment(finance.dob)
 			});
 		}
 	}, [form]);
 
 	const onFinish = (fielValues) => {
 		console.log('Received values of form: ', fielValues);
-		fielValues.dob = fielValues.dob.format();
 		const values = {
-			...fielValues
+			finance:{...fielValues}
 		};
 		const data = JSON.stringify(values);
-		localStorage.setItem('personal', data);
+		localStorage.setItem('finance', data);
 		next();
 	};
 
@@ -118,7 +119,7 @@ const Form3 = (props) => {
 					
 				</Col>
 				<Col><Form.Item name={[ 'dob' ]} label="Date of Birth" rules={[ { required: true } ]}>
-						<DatePicker format="DD/MM/YYYY" />
+						<DatePicker format={dateFormat}  />
 						
 					</Form.Item></Col>
 				
