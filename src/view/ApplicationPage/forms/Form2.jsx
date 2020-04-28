@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
+import {useDispatch, connect} from 'react-redux'
 import moment from "moment";
 // import CurrencyFormat from 'react-currency-format'
 import { BottomNav } from "../BottomNav";
@@ -11,11 +12,12 @@ const layout = {
   wrapperCol: { span: 16 }
 };
 
-const Form2 = props => {
+const Form2 = ({next, prev, employment}) => {
   // console.log(current, 'current');
   const dateFormat = "DD/MM/YYYY";
   const [form] = Form.useForm();
-  const { next, prev } = props;
+  const dispatch = useDispatch()
+ 
   const [accmDetails, setAccm] = useState(false);
   const [justFound, setJustFound] = useState(false);
   const [x, setX] = useState("Landlord");
@@ -53,8 +55,6 @@ const Form2 = props => {
     31
   ];
 
-  // const [lr, setLr]= useState('')
-  // const [formattedLr,setFormattedLr] = useState('')
   const validateMessages = {
     required: "This field is required!",
     types: {
@@ -67,9 +67,9 @@ const Form2 = props => {
   };
 
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("employment"));
-    if (data) {
-      const { employment } = data;
+    // const data = JSON.parse(localStorage.getItem("employment"));
+    if (employment) {
+      // const { employment } = data;
 
       form.setFieldsValue({
         company_name: employment.company_name,
@@ -81,13 +81,9 @@ const Form2 = props => {
         job_role: employment.job_role,
         work_email: employment.work_email
       });
-      // setFormattedLr(data.last_rent_amount)
-      // setLr(data.last_rent_amount)
+      
     }
-    // for (let i = 1; i < 32; i++) {
-    // 	payDates.push(i);
-    // 	console.log(i);
-    // }
+
   }, [form]);
 
   // const getCity = () => {
@@ -274,9 +270,14 @@ const Form2 = props => {
 
   const onFinish = fielValues => {
     const values = {
-      employment: { ...fielValues }
+      employment: { ...fielValues },
+      page: 1
     };
     console.log("Received values of form: ", values);
+    dispatch({
+      type: 'ADD_APPL',
+      data: values
+    })
     const data = JSON.stringify(values);
     localStorage.setItem("employment", data);
     next();
@@ -417,4 +418,10 @@ const Form2 = props => {
     </Form>
   );
 };
-export default Form2;
+
+const mapStateToProps = (state) => ({
+	employment: state.application.employment
+});
+
+export default connect(mapStateToProps)(Form2);
+

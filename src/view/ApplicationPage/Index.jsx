@@ -74,7 +74,7 @@ const Application = () => {
 	return progress
 	}
 	return (
-		<div className="">
+		<div className="container">
 				{/* <Layout className="site-layout"> */}
 					
 					
@@ -83,10 +83,10 @@ const Application = () => {
 					<AppSidebar goto={goto} current={current} progress={getProgress()} className=''/>
 				</Col>
 				<Col md={8}>
-				<Content style={{ margin: '0 14px ', height: '100%' }}>
+				{/* <Content style={{ margin: '0 14px ', height: '100%' }}> */}
 				<Heading step={current + 1} progress={getProgress()} title={steps[current].title} sub={steps[current].sub} />
 				<div className="steps-action">{steps[current].content}</div>
-				</Content>
+				{/* </Content> */}
 				</Col>
 			</Row>
 				

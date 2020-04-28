@@ -73,6 +73,7 @@ class ViewLayout extends React.Component {
 							<Breadcrumb.Item>Bill</Breadcrumb.Item> */}
 						</Breadcrumb>
 						<div className="site-layout-background" style={{ padding: 24 }}>
+							
 							<Navigation />
 						</div>
 					</Content>

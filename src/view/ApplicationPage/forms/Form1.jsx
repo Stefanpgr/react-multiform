@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useDispatch, connect} from 'react-redux'
 import { Container, Col, InputGroup, FormControl } from 'react-bootstrap';
 import { Radio, Form, InputNumber } from 'antd';
 import {BottomNav} from '../BottomNav'
@@ -33,9 +34,10 @@ const StyledSwitch = styled.button`
 		padding: 9px 0px 8px 15px;
 	`;
 
-const Form1 = ({ next, current }) => {
+const Form1 = ({ next, current, payment }) => {
 	const [ accStat, setAcc ] = useState('Looking to renew my rent');
 	const [form] = Form.useForm()
+	const dispatch = useDispatch()
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
@@ -48,10 +50,10 @@ const Form1 = ({ next, current }) => {
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('payment'));
+		// const data = JSON.parse(localStorage.getItem('payment'));
 		
-		if (data) {
-			const {payment} = data
+		if (payment) {
+			// const {payment} = data
 			setAcc(payment.acct_stat)
 			form.setFieldsValue({
 				acct_stat: payment.acct_stat,
@@ -66,10 +68,14 @@ const Form1 = ({ next, current }) => {
 		console.log('Received values of form: ', fielValues);
 		
 		const values = {
-		payment:{...fielValues}
+		payment:{...fielValues},
+		page: 0
 		};
 		console.log('Received values of form: ', values);
-		
+		dispatch({
+			type: 'ADD_APPL',
+			data:values
+		})
 		const data = JSON.stringify(values);
 		localStorage.setItem('payment', data);
 		next();
@@ -80,7 +86,6 @@ return result
 }
 	return (
 		<div style={{ maxWidth: '782px' }}>
-				<p className="p-question">What’s your accommodation status?</p>
 			
 	<Form
 			form={form}
@@ -230,4 +235,8 @@ return result
 	);
 };
 
-export default Form1;
+const mapStateToProps = (state) => ({
+	payment: state.application.payment
+});
+
+export default connect(mapStateToProps)(Form1);

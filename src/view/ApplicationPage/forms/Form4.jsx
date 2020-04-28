@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, InputNumber, Select, Radio } from 'antd';
 import { Col, Row, Container } from 'react-bootstrap';
+import {useDispatch, connect} from 'react-redux'
 import {BottomNav }from '../BottomNav'
 
 import styled from 'styled-components';
@@ -39,11 +40,12 @@ const layout = {
 	wrapperCol: { span: 16 }
 };
 
-const Form4 = (props) => {
+const Form4 = ({ next,prev, payment, rent}) => {
 	// console.log(props);
 	const [ accStat, setAcc ] = useState(1);
+	const [ rc, setRc ] = useState('Landlord');
+	const dispatch = useDispatch()
 	const [ form ] = Form.useForm();
-	const { prev, next } = props;
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
@@ -57,30 +59,32 @@ const Form4 = (props) => {
 
 	useEffect(() => {
 	
-		const data = JSON.parse(localStorage.getItem('rent'));
-		const test = JSON.parse(localStorage.getItem('payment'))
-		form.setFieldsValue({	acct_stat_show: test.payment.acct_stat})
-		setAcc( test.payment.acct_stat)
-		if (data) {
-			
+		// const data = JSON.parse(localStorage.getItem('rent'));
+		// const test = JSON.parse(localStorage.getItem('payment'))
+		if(payment){
+			form.setFieldsValue({	acct_stat_show: payment.acct_stat})
+			setAcc(payment.acct_stat)
+		}
+		
+		if (rent) {
 			form.setFieldsValue({
-				acct_stat_show: test.payment.acct_stat,
-				referee_lastname: data.referee_lastname,
-				referee_address: data.referee_address,
-				referee_phone: data.referee_phone,
-				referee_email: data.referee_email,
-				referee_relationship: data.referee_relationship
+				acct_stat_show:payment.acct_stat,
+				home_address: rent.home_address,
+				last_rent_amount: rent.last_rent_amount,
+				duration: rent.duration,
+				rent_collector: rent.rent_collector,
+				pay_type: rent.pay_type
 			});
 		}
 	}, [form]);
 
 	const onFinish = (values) => {
-		values.employment_date = values.employment_date.format();
 		console.log('Received values of form: ', values);
-
-		const data = JSON.stringify(values);
-		localStorage.setItem('rent', data);
-		alert('Done!');
+		dispatch({
+			type: 'ADD_APPL',
+			data:{rent: {...values}, page: 3}
+		})
+		next()
 		// message.success("Processing complete!")
 	};
 
@@ -127,13 +131,41 @@ const Form4 = (props) => {
 			</Select> 
 		
 					</Form.Item>	<a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a> */}
-		<Form.Item  label="What's your accomodation status?" name={[ 'acc_stat_show' ]} rules={[ { required: true } ]} >
-				<Select size='large' value={accStat} style={{width: '65%'}} disabled>
+		{/* <Form.Item  label="What's your accomodation status?" name={[ 'acc_stat_show' ]}  >
+				<Select size='large'
+				//  value={accStat} 
+				value='hhhh'
+				 style={{width: '65%'}} >
 					
+					<Select.Option  value='card'>
+						Card
+						</Select.Option>
+						<Select.Option  value='bank'>
+						Bank Transfer
+						</Select.Option>
+				</Select>
+			</Form.Item> */}
+
+
+
+
+			<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?"  >
+				<Select size='large' value={accStat}  style={{width: '65%'}} placeholder={accStat} disabled>
 					
-				</Select> <a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a>
+						<Select.Option  value='card'>
+						Card
+						</Select.Option>
+						<Select.Option  value='bank'>
+						Bank Transfer
+						</Select.Option>
+					
+				</Select> 
 			</Form.Item>
 
+
+
+			
+			<a><span className='ml-3'><small onClick={()=> next(0)}>Change?</small></span></a>
 <Box>	
 	<Container className='mt-3 ml-3'>
 		<Form.Item
@@ -145,30 +177,30 @@ const Form4 = (props) => {
 					</Form.Item>
 					
 					<Form.Item
-						name={[ 'rent_colector' ]}
+						name={[ 'rent_collector' ]}
 						label="Who did you pay to??"
 						rules={[ { required: true } ]}
 					>
 							<Radio.Group
 					onChange={(e) => {
-						setAcc(e.target.value);
+						setRc(e.target.value);
 					}}
 			
-					initialValues={2}
+					// name="radiogroup"
 				>
-					
-					<StyledRadio type='button' className="" switch={1} stat={accStat}>
-						<Radio className="fg" value={1}>
+					{/* rc => rent colector */}
+					<StyledRadio type='button' className="" switch='Landlord' stat={rc}>
+						<Radio className="fg" value='Landlord'>
 							Landlord
 						</Radio>
 					</StyledRadio>
 
-					<StyledRadio type='button' className="mr-3" switch={2} stat={accStat}>
-						<Radio value={2}>Caretaker</Radio>
+					<StyledRadio type='button' className="mr-3" switch='Caretaker' stat={rc}>
+						<Radio value='Caretaker'>Caretaker</Radio>
 					</StyledRadio>
 
-					<StyledRadio type='button' switch={3} stat={accStat}>
-						<Radio value={3}>Agent</Radio>
+					<StyledRadio type='button' switch='Agent' stat={rc}>
+						<Radio value='Agent'>Agent</Radio>
 					</StyledRadio>
 				</Radio.Group>
 
@@ -226,4 +258,10 @@ const Form4 = (props) => {
 		</Form>
 	);
 };
-export default Form4;
+const mapStateToProps = (state) => ({
+	payment: state.application.payment,
+	rent: state.application.rent
+});
+
+export default connect(mapStateToProps)(Form4);
+

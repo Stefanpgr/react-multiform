@@ -3,13 +3,17 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // import logo from './logo.svg';
 import ViewLayout from './view/ViewLayout';
 import 'antd/dist/antd.css';
-
+import { Provider } from "react-redux";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 import './App.css';
 import Application from './view/ApplicationPage/Index';
 
 function App() {
-	const loading = () => <div>loading...</div>;
+	// const loading = () => <div>loading...</div>;
 	return (
+		<Provider store={store}>
+		     <PersistGate loading={null} persistor={persistor}>
 		<BrowserRouter>
 			<Switch>
 				{/* <Route exact path="/test" component={AppSidebar} /> */}
@@ -17,6 +21,8 @@ function App() {
 				<ViewLayout />
 			</Switch>
 		</BrowserRouter>
+		</PersistGate>
+		</Provider>
 	);
 }
 

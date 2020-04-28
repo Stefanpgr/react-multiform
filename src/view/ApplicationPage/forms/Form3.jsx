@@ -1,5 +1,6 @@
 import React, {  useEffect } from 'react';
 import { Form, Input,  Select, DatePicker } from 'antd';
+import {useDispatch, connect, useSelector} from 'react-redux'
 // import CurrencyFormat from 'react-currency-format'
 import moment from "moment";
 import {BottomNav} from '../BottomNav'
@@ -9,10 +10,10 @@ const layout = {
 	labelCol: { span: 12 },
 	wrapperCol: { span: 16 }
 };
-const Form3 = (props) => {
+const Form3 = ( { next, prev, finance }) => {
 	const dateFormat = "DD/MM/YYYY";
 	const [ form ] = Form.useForm();
-	const { next, prev } = props;
+	const dispatch = useDispatch()
 	const payDates = [
 		1,
 		2,
@@ -61,9 +62,8 @@ const Form3 = (props) => {
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('finance'));
-		if (data) {
-			const {finance} = data
+		if (finance) {
+			
 			form.setFieldsValue({
 				salary_accnum: finance.salary_accnum,
 				bank_name: finance.bank_name,
@@ -77,10 +77,15 @@ const Form3 = (props) => {
 	const onFinish = (fielValues) => {
 		console.log('Received values of form: ', fielValues);
 		const values = {
-			finance:{...fielValues}
+			finance:{...fielValues},
+			page: 2
 		};
-		const data = JSON.stringify(values);
-		localStorage.setItem('finance', data);
+		dispatch({
+			type: 'ADD_APPL',
+			data: values
+		})
+		// const data = JSON.stringify(values);
+		// localStorage.setItem('finance', data);
 		next();
 	};
 
@@ -138,4 +143,10 @@ const Form3 = (props) => {
 		</Form>
 	);
 };
-export default Form3;
+
+
+const mapStateToProps = (state) => ({
+	finance: state.application.finance
+});
+
+export default connect(mapStateToProps)(Form3);

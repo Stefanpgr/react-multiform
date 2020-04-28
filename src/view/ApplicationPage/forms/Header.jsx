@@ -14,7 +14,7 @@ export const Heading = ({ step, progress, title, sub }) => (
 		<small>Step {step}</small>
 		<Head className="mb-2" >{title}</Head>
 
-		<ProgressBar variant="success" now={progress} className="mb-2" max={120} />
+		<ProgressBar variant="success" now={progress} className="mb-2" max={100} />
 	
 		<p className="text-muted">{sub}</p>
 		

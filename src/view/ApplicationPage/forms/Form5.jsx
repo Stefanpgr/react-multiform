@@ -39,7 +39,7 @@ const Form5 = (props) => {
 
 	const onFinish = (fielValues) => {
 		console.log('Received values of form: ', fielValues);
-		fielValues.dob = fielValues.dob.format();
+	
 		const values = {
 			...fielValues
 		};
