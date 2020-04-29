@@ -184,6 +184,26 @@ left: 650px; */
 	margin-top: 4px;
 }
 
+.reject-stat {
+	top: 924px;
+	left: 650px;
+	width: 836px;
+	height: 366px;
+	background: #fcfcfc 0% 0% no-repeat padding-box;
+	border: 1px solid #ff6c6c;
+	border-radius: 15px;
+	opacity: 1;
+}
+
+.reject-stat-child {
+	top: 983px;
+	left: 1022px;
+	width: 92px;
+	height: 92px;
+	background: #d85e5e 0% 0% no-repeat padding-box;
+	opacity: 1;
+}
+
 /* .btn-form{
 	min-width: 15%;
 	height: 100% !important;
