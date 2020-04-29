@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import AppSidebar from './AppSidebar';
 import { Row, Col, Container } from 'react-bootstrap';
-import {Heading }from './forms/Header'
-import {Layout} from 'antd'
+import { Heading } from './forms/Header';
+import { useDispatch } from 'react-redux';
+import { Layout } from 'antd';
 import Form1 from './forms/Form1';
 import Form2 from './forms/Form2';
 import Form3 from './forms/Form3';
@@ -10,11 +11,11 @@ import Form4 from './forms/Form4';
 import Form5 from './forms/Form5';
 import Form6 from './forms/Form6';
 
-
-const {Content} = Layout
+const { Content } = Layout;
 const Application = () => {
 	const [ current, setCurrent ] = useState(0);
-
+	// const [progress, setProgress]
+	// const dispatch =  useDispatch()
 	const next = (set) => {
 		const curr = current + 1;
 		setCurrent(curr);
@@ -24,9 +25,7 @@ const Application = () => {
 		console.log(current, 'next');
 	};
 	const goto = (set) => {
-		
 		setCurrent(set);
-		
 	};
 
 	const prev = () => {
@@ -66,34 +65,35 @@ const Application = () => {
 			sub: 'Give us information about your finance'
 		}
 	];
-	const getProgress = () =>{
-	const progress = 	Math.round((100/6)) *( current+1)
-	if(progress > 100){
-		return 100
-	}
-	return progress
-	}
+	const getProgress = () => {
+		const progress = Math.round(100 / 6) * (current + 1);
+		if (progress > 100) {
+			return 100;
+		}
+		return progress;
+	};
 	return (
 		<div className="container">
-				{/* <Layout className="site-layout"> */}
-					
-					
-						<Row>
-				<Col md={4} >
-					<AppSidebar goto={goto} current={current} progress={getProgress()} className=''/>
+			{/* <Layout className="site-layout"> */}
+
+			<Row>
+				<Col md={4}>
+					<AppSidebar goto={goto} current={current} progress={getProgress()} className="" />
 				</Col>
 				<Col md={8}>
-				{/* <Content style={{ margin: '0 14px ', height: '100%' }}> */}
-				<Heading step={current + 1} progress={getProgress()} title={steps[current].title} sub={steps[current].sub} />
-				<div className="steps-action">{steps[current].content}</div>
-				{/* </Content> */}
+					{/* <Content style={{ margin: '0 14px ', height: '100%' }}> */}
+					<Heading
+						step={current + 1}
+						progress={getProgress()}
+						title={steps[current].title}
+						sub={steps[current].sub}
+					/>
+					<div className="steps-action">{steps[current].content}</div>
+					{/* </Content> */}
 				</Col>
 			</Row>
-				
-					
-					
-				{/* </Layout> */}
-			
+
+			{/* </Layout> */}
 		</div>
 	);
 };

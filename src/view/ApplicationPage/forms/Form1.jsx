@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {useDispatch, connect} from 'react-redux'
+import { useDispatch, connect } from 'react-redux';
 import { Container, Col, InputGroup, FormControl } from 'react-bootstrap';
 import { Radio, Form, InputNumber } from 'antd';
-import {BottomNav} from '../BottomNav'
+import { BottomNav } from '../BottomNav';
 import styled from 'styled-components';
-
-
 
 const layout = {
 	labelCol: { span: 12 },
@@ -13,31 +11,30 @@ const layout = {
 };
 
 const StyledSwitch = styled.button`
-		width: 80px;
-		height: 79px;
-		background: #e7f7ff 0% 0% no-repeat padding-box;
-		border: 1px solid #5b55ff;
-		border-radius: 5px;
-		opacity: 1;
-	`;
+	width: 80px;
+	height: 79px;
+	background: #e7f7ff 0% 0% no-repeat padding-box;
+	border: 1px solid #5b55ff;
+	border-radius: 5px;
+	opacity: 1;
+`;
 
+const StyledRadio = styled.button`
+	background: ${(props) => (props.switch === props.stat ? '#e7f7ff' : 0)};
 
-	const StyledRadio = styled.button`
-		background: ${(props) => (props.switch === props.stat ? '#e7f7ff' : 0)};
+	border: ${(props) => (props.switch === props.stat ? '1px solid #5b55ff' : 0)};
 
-		border: ${(props) => (props.switch === props.stat ? '1px solid #5b55ff' : 0)};
-
-		border-radius: 5px;
-		font-family: Rubik, 'sans-serif';
-		color: #878787;
-		opacity: 1;
-		padding: 9px 0px 8px 15px;
-	`;
+	border-radius: 5px;
+	font-family: Rubik, 'sans-serif';
+	color: #878787;
+	opacity: 1;
+	padding: 9px 0px 8px 15px;
+`;
 
 const Form1 = ({ next, current, payment }) => {
 	const [ accStat, setAcc ] = useState('Looking to renew my rent');
-	const [form] = Form.useForm()
-	const dispatch = useDispatch()
+	const [ form ] = Form.useForm();
+	const dispatch = useDispatch();
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
@@ -49,131 +46,111 @@ const Form1 = ({ next, current, payment }) => {
 		}
 	};
 
-	useEffect(() => {
-		// const data = JSON.parse(localStorage.getItem('payment'));
-		
-		if (payment) {
-			// const {payment} = data
-			setAcc(payment.acct_stat)
-			form.setFieldsValue({
-				acct_stat: payment.acct_stat,
-				rent_request: payment.rent_request,
-				salary: payment.salary
+	useEffect(
+		() => {
+			// const data = JSON.parse(localStorage.getItem('payment'));
 
-			});
-		}
-	}, [form]);
+			if (payment) {
+				// const {payment} = data
+				setAcc(payment.acct_stat);
+				form.setFieldsValue({
+					acct_stat: payment.acct_stat,
+					rent_request: payment.rent_request,
+					salary: payment.salary
+				});
+			}
+		},
+		[ form ]
+	);
 
 	const onFinish = (fielValues) => {
 		console.log('Received values of form: ', fielValues);
-		
+
 		const values = {
-		payment:{...fielValues},
-		page: 0
+			payment: { ...fielValues },
+			page: 0
 		};
 		console.log('Received values of form: ', values);
 		dispatch({
 			type: 'ADD_APPL',
-			data:values
-		})
+			data: values
+		});
 		const data = JSON.stringify(values);
 		localStorage.setItem('payment', data);
 		next();
 	};
-const format = (val) =>{
-const result = `${val.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-return result
-}
+	const format = (val) => {
+		const result = `${val.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+		return result;
+	};
 	return (
 		<div style={{ maxWidth: '782px' }}>
-			
-	<Form
-			form={form}
-			
-			{...layout}
-			name="nest-messages"
-			onFinish={onFinish}
-			validateMessages={validateMessages}
-			layout="vertical"
-		>
-		
-				
+			<Form
+				form={form}
+				{...layout}
+				name="nest-messages"
+				onFinish={onFinish}
+				validateMessages={validateMessages}
+				layout="vertical"
+			>
 				{/* <small>Step 1</small>
 				<Head className="mb-2">Payment Option</Head>
 
 				<ProgressBar now={25} className="mb-2" /> */}
-<Form.Item
-				name={[ 'acct_stat' ]}
-				label="What’s your accommodation status?"
-				rules={[ { required: true } ]}
-			>
-				<Radio.Group
-					onChange={(e) => {
-						setAcc(e.target.value);
-					}}
-					name="radiogroup"
-			
+				<Form.Item
+					name={[ 'acct_stat' ]}
+					label="What’s your accommodation status?"
+					rules={[ { required: true } ]}
 				>
-					<StyledRadio type='button' className="mr-3 fg" switch='Looking to renew my rent' stat={accStat}>
-						<Radio className="fg" value='Looking to renew my rent'>
-							Looking to renew my rent
-						</Radio>
-					</StyledRadio>
+					<Radio.Group
+						onChange={(e) => {
+							setAcc(e.target.value);
+						}}
+						name="radiogroup"
+					>
+						<StyledRadio type="button" className="mr-3 fg" switch="Looking to renew my rent" stat={accStat}>
+							<Radio className="fg" value="Looking to renew my rent">
+								Looking to renew my rent
+							</Radio>
+						</StyledRadio>
 
-					<StyledRadio type='button' className="mr-3" switch='Want to pay for a new place' stat={accStat}>
-						<Radio value='Want to pay for a new place'>Want to pay for a new place</Radio>
-					</StyledRadio>
+						<StyledRadio type="button" className="mr-3" switch="Want to pay for a new place" stat={accStat}>
+							<Radio value="Want to pay for a new place">Want to pay for a new place</Radio>
+						</StyledRadio>
 
-					<StyledRadio type='button' switch="I'm still searching" stat={accStat}>
-						<Radio value="I'm still searching">I'm still searching</Radio>
-					</StyledRadio>
-				</Radio.Group>
-			
+						<StyledRadio type="button" switch="I'm still searching" stat={accStat}>
+							<Radio value="I'm still searching">I'm still searching</Radio>
+						</StyledRadio>
+					</Radio.Group>
 				</Form.Item>
 
-
-
-
-
-
-
 				<Form.Item
-				name={[ 'rent_request' ]}
-				label="How much is your rent request amount?"
-				rules={[ { required: true } ]}
-				
-			>
-				{/* <InputGroup style={{ width: '50%' }}>
+					name={[ 'rent_request' ]}
+					label="How much is your rent request amount?"
+					rules={[ { required: true } ]}
+				>
+					{/* <InputGroup style={{ width: '50%' }}>
 					<InputGroup.Prepend>
 						<InputGroup.Text id="basic-addon1">₦</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl type='number' placeholder="Enter amount" aria-label="Username" aria-describedby="basic-addon1" />
 				</InputGroup> */}
-				<InputNumber style={{ width: '50%' }}
-     
-      formatter={value =>
-		  `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-		}
-      parser={value => value.replace(/\$\s?|(,*)/g, '')}
-	  
-	  placeholder='Enter amount'
-    />
+					<InputNumber
+						style={{ width: '50%' }}
+						formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+						parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+						placeholder="Enter amount"
+					/>
 				</Form.Item>
 
-
-				<Form.Item
-				name={[ 'salary' ]}
-				label="How much do you earn monthly?"
-				rules={[ { required: true } ]}
-				
-			>
-				<InputNumber style={{ width: '50%' }}
-  
-      formatter={value => format(value)}
-      parser={value => value.replace(/\$\s?|(,*)/g, '')}
-	  addonBefore='₦'
-	  placeholder='Enter amount'
-    />
+				<Form.Item name={[ 'salary' ]} label="How much do you earn monthly?" rules={[ { required: true } ]}>
+					<InputNumber
+						style={{ width: '50%' }}
+						formatter={(value) => format(value)}
+						parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+						addonBefore="₦"
+						placeholder="Enter amount"
+					/>
 				</Form.Item>
 				<p className="p-question mt-3">Choose a monthly plan</p>
 				<StyledSwitch className="mr-4">
@@ -229,8 +206,8 @@ return result
 						<Input addonBefore="http://" placeholder="Enter Amount" />
 					</Form.Item>
 				</Form> */}
-			<BottomNav current={current} />
-	</Form>
+				<BottomNav current={current} />
+			</Form>
 		</div>
 	);
 };
