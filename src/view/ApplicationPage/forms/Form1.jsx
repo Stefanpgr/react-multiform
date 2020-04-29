@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { Container, Col, InputGroup, FormControl } from 'react-bootstrap';
 import { Radio, Form, InputNumber } from 'antd';
+import {getBanks} from '../../../actions/paystack'
 import { BottomNav } from '../BottomNav';
 import styled from 'styled-components';
 
@@ -31,7 +32,7 @@ const StyledRadio = styled.button`
 	padding: 9px 0px 8px 15px;
 `;
 
-const Form1 = ({ next, current, payment }) => {
+const Form1 = ({ next, current, payment, getBanks }) => {
 	const [ accStat, setAcc ] = useState('Looking to renew my rent');
 	const [ form ] = Form.useForm();
 	const dispatch = useDispatch();
@@ -49,7 +50,7 @@ const Form1 = ({ next, current, payment }) => {
 	useEffect(
 		() => {
 			// const data = JSON.parse(localStorage.getItem('payment'));
-
+getBanks()
 			if (payment) {
 				// const {payment} = data
 				setAcc(payment.acct_stat);
@@ -68,9 +69,14 @@ const Form1 = ({ next, current, payment }) => {
 
 		const values = {
 			payment: { ...fielValues },
-			page: 0
+			page: 0,
+			filled: true
 		};
 		console.log('Received values of form: ', values);
+		if(payment){
+			if(payment.filled) return next()
+		}
+		
 		dispatch({
 			type: 'ADD_APPL',
 			data: values
@@ -216,4 +222,4 @@ const mapStateToProps = (state) => ({
 	payment: state.application.payment
 });
 
-export default connect(mapStateToProps)(Form1);
+export default connect(mapStateToProps, {getBanks})(Form1);

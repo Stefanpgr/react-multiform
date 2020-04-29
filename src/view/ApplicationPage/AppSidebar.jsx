@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Nav, NavDropdown, Container } from 'react-bootstrap';
+import {useSelector} from 'react-redux'
 
 import { Progress } from 'antd';
 const Wrapper = styled.div`
@@ -38,7 +39,10 @@ const Wrapper = styled.div`
 // 	padding-top: 10px;
 // `;
 
-const AppSidebar = ({ current, progress, goto }) => {
+const AppSidebar = ({ current,progress, goto }) => {
+	// const {progress} = useSelector((state)=>({
+	// 	progress: state.application.progress
+	// }))
 	return (
 		<div>
 			<Wrapper>

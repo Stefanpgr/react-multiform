@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Select } from 'antd';
+import {useDispatch,  connect} from 'react-redux'
 // import CurrencyFormat from 'react-currency-format'
 import {BottomNav} from '../BottomNav'
 
@@ -10,7 +11,8 @@ const layout = {
 };
 const Form5 = (props) => {
 	const [ form ] = Form.useForm();
-	const { next, prev } = props;
+	const { next, prev, landlord } = props;
+	const dispatch = useDispatch()
 	
 	const validateMessages = {
 		required: 'This field is required!',
@@ -24,15 +26,13 @@ const Form5 = (props) => {
 	};
 
 	useEffect(() => {
-		const data = JSON.parse(localStorage.getItem('referee'));
-		if (data) {
+		// const data = JSON.parse(localStorage.getItem('referee'));
+		if (landlord) {
 			form.setFieldsValue({
-				referee_firstname: data.referee_firstname,
-				referee_lastname: data.referee_lastname,
-				referee_address: data.referee_address,
-				referee_phone: data.referee_phone,
-				referee_email: data.referee_email,
-				referee_relationship: data.referee_relationship
+				landlord_full_name:landlord.landlord_full_name,
+				landlord_acct_num: landlord.landlord_acct_num,
+				landlord_bankname: landlord.landlord_bankname,
+				landlord_phone_num: landlord.landlord_phone_num
 			});
 		}
 	}, [form]);
@@ -41,10 +41,14 @@ const Form5 = (props) => {
 		console.log('Received values of form: ', fielValues);
 	
 		const values = {
-			...fielValues
+		landlord: {...fielValues}
 		};
-		const data = JSON.stringify(values);
-		localStorage.setItem('personal', data);
+	dispatch({
+		type: 'ADD_APPL',
+		data: values,
+		page: 4
+	})
+		
 		next();
 	};
 
@@ -81,8 +85,8 @@ const Form5 = (props) => {
 
 			
             <Form.Item
-				name={[ 'landlord_acct_num' ]}
-				label="Bank account number"
+				name={[ 'landlord_bankname' ]}
+				label="Bank name"
 				rules={[ {  required: true } ]}
 				
 			>
@@ -102,4 +106,10 @@ const Form5 = (props) => {
 		</Form>
 	);
 };
-export default Form5;
+
+const mapStateToProps = (state) => ({
+	landlord: state.application.landlord
+});
+
+export default connect(mapStateToProps)(Form5);
+
