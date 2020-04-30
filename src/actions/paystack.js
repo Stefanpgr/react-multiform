@@ -14,17 +14,13 @@ export const getBanks = () => async dispatch => {
   // const history = useHistory();
   try {
     const {data} = await axios.get(`${url}/bank`);
-    console.log(data, "data");
-    if (data.status) {
-      dispatch({
-        type: "ADD_BANKS",
-        payload: [...data]
-      });
-      toastr.success("Success", "Payment Success");
-      
-    } else {
-      throw new Error();
-    }
+    console.log(data.status, "data");
+    if (!data.status)  throw new Error();
+    
+    dispatch({
+      type: "GET_BANKS",
+      payload: data.data
+    });
     // console.log(data, "raw");
   } catch (e) {
     return toastr.error(

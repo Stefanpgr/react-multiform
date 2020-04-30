@@ -303,7 +303,7 @@ const Form2 = ({next, prev, employment}) => {
           placeholder="Select your employment type"
         >
           <Select.Option value="Single">Salaried employment</Select.Option>
-          <Select.Option value="Married">Business Ownerk</Select.Option>
+          <Select.Option value="Married">Business owner</Select.Option>
         </Select>
       </Form.Item>
 

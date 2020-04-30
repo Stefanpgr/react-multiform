@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Nav, NavDropdown, Container } from 'react-bootstrap';
-import {useSelector} from 'react-redux'
+import { Nav } from 'react-bootstrap';
 
-import { Progress } from 'antd';
+// import {useSelector} from 'react-redux'
+
+import { Progress, Divider, Badge } from 'antd';
 const Wrapper = styled.div`
 	top: 80px;
 	left: 52px;
@@ -58,7 +59,8 @@ const AppSidebar = ({ current,progress, goto }) => {
 				<h5 className="text-white text-center" style={{ fontWeight: 'bold' }}>
 					Account Setup
 				</h5>
-				<hr />
+				<hr  />
+				{/* <Divider /> */}
 				<Nav
 					style={{ paddingRight: '50px', paddingLeft: '10px' }}
 					variant="pills"
@@ -67,7 +69,8 @@ const AppSidebar = ({ current,progress, goto }) => {
 				>
 					<Nav.Item>
 						<Nav.Link onClick={() => goto(0)} className="text-white" eventKey="0">
-							Payment Option
+							Payment Option <span className='nav-badge'><Badge count={1}  style={{ backgroundColor: '#21AD26' }}/>
+							</span>
 						</Nav.Link>
 					</Nav.Item>
 					<Nav.Item>

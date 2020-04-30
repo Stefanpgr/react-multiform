@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input } from 'antd';
+import { Form, Input, Space } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
 import {BottomNav} from '../BottomNav'
-import { Col, Row } from 'react-bootstrap';
+// import { Col, Row } from 'react-bootstrap';
 
 const layout = {
-	labelCol: { span: 12 },
+	labelCol: { span: 16 },
 	wrapperCol: { span: 16 }
 };
 const Form6 = (props) => {
@@ -79,22 +79,19 @@ const Form6 = (props) => {
 			</Form.Item>
 
 
-			<Row>
-				<Col>
-					<Form.Item name={[ 'phone' ]} label="Phone number" rules={[ { required: true } ]}>
-						<Input style={{ width: '58%' }} placeholder='Enter phone number'/>
+	<Space size='small'>				<Form.Item name={[ 'phone' ]} label="Phone number" rules={[ { required: true } ]}>
+						<Input style={{ width: '120%' }} placeholder='Enter phone number'/>
 					</Form.Item>
 					
-				</Col>
-				<Col><Form.Item name={[ 'email' ]} label="Email address" rules={[ { required: true, type: 'email' } ]}>
-						<Input placeholder='Enter email address' />
+				<Form.Item name={[ 'email' ]} label="Email address" rules={[ { required: true, type: 'email' } ]}>
+						<Input placeholder='Enter email address' style={{ width: '120%' }}/>
 						
-					</Form.Item></Col>
-				
-			</Row>
+					</Form.Item>
+					</Space>	
+			
 
-			<Form.Item name={[ 'relationship' ]} label="Email address" rules={[ { required: true } ]}>
-						<Input placeholder='Enter relationship' />
+			<Form.Item name={[ 'relationship' ]} label="Relationship" rules={[ { required: true } ]}>
+						<Input placeholder='Enter relationship'  />
 						
 					</Form.Item>
 		<BottomNav prev={prev}/>

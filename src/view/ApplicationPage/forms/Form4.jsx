@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Form, Input, InputNumber, Select, Radio } from 'antd';
+import { Form, Input, Select, Radio, Space } from 'antd';
 import { Col, Row, Container } from 'react-bootstrap';
 import { useDispatch, connect } from 'react-redux';
 import { BottomNav } from '../BottomNav';
@@ -18,7 +18,8 @@ const Box = styled.div`
 	top: 920px;
 	left: 650px;
 	width: 546px;
-	height: 320px;
+	min-height: 100px;
+	
 	background: ${(props) => (props.stat === "I'm still searching" ? '#FFFF' : '#edf3f8 0% 0% no-repeat padding-box')};
 
 	border: ${(props) => (props.stat === "I'm still searching" ? '1px solid #FF6C6C' : '1px solid #51a4fb')};
@@ -37,7 +38,7 @@ const StyledRadio = styled.button`
 	padding: 9px 0px 8px 15px;
 `;
 const layout = {
-	labelCol: { span: 12 },
+	labelCol: { span: 18 },
 	wrapperCol: { span: 16 }
 };
 
@@ -71,8 +72,9 @@ const Form4 = ({ next, prev, payment, rent }) => {
 				form.setFieldsValue({
 					acct_stat_show: payment.acct_stat,
 					home_address: rent.home_address,
-					last_rent_amount: rent.last_rent_amount,
+					last_rent_amount: rent.last_rent_amount || '',
 					duration: rent.duration,
+					property_address: rent.property_address || '',
 					rent_collector: rent.rent_collector,
 					pay_type: rent.pay_type
 				});
@@ -81,16 +83,80 @@ const Form4 = ({ next, prev, payment, rent }) => {
 		[ form ]
 	);
 
-	const Reject = () => {
+	const RC = () => {
 		return (
-			<div>
-				<div className="reject-stat-child">!</div>
-			</div>
+		<div>
+				<Form.Item name={[ 'rent_collector' ]} label="Who did you pay to?" rules={[ { required: true } ]}>
+						<Radio.Group
+							onChange={(e) => {
+								setRc(e.target.value);
+							}}
+						>
+							{/* rc => rent colector */}
+
+							<StyledRadio type="button" className="" switch="Landlord" stat={rc}>
+								<Radio className="fg" value="Landlord">
+									Landlord
+								</Radio>
+							</StyledRadio>
+
+							<StyledRadio type="button" className="mr-3" switch="Caretaker" stat={rc}>
+								<Radio value="Caretaker">Caretaker</Radio>
+							</StyledRadio>
+
+							<StyledRadio type="button" switch="Agent" stat={rc}>
+								<Radio value="Agent">Agent</Radio>
+							</StyledRadio>
+						</Radio.Group>
+					</Form.Item>
+		</div>
 		);
 	};
 
-	const ActStatus = () => {
-		return <div />;
+	const AccmStatus = () => {
+		if (accStat === "I'm still searching"){
+			return(
+				<div>
+				<div className="reject-stat-child">!</div>
+			</div>
+			)
+		
+		}else if(accStat === 'Want to pay for a new place'){
+			return(
+<div>
+<Form.Item
+						name={[ 'property_address' ]}
+						label="What’s the address of the property you just found?"
+						rules={[ { required: true } ]}
+					>
+						<Input  style={{width: '100%'}}/>
+					</Form.Item>
+					<RC />
+</div>
+			)
+		} else{
+			return(
+				<div>
+					<Form.Item
+						name={[ 'last_rent_amount' ]}
+						label="How much was your last rent?"
+						rules={[ { required: true } ]}
+					>
+						<Input addonBefore="₦" />
+					</Form.Item>
+
+				<RC />
+
+					<Form.Item name={[ 'pay_type' ]} label="How did you pay?" rules={[ { required: true } ]}>
+						<Select size="large" style={{ width: '96%' }} placeholder="Select how you paid">
+							<Select.Option value="card">Card</Select.Option>
+							<Select.Option value="bank">Bank Transfer</Select.Option>
+						</Select>
+					</Form.Item>
+				</div>
+			)
+		}
+	
 	};
 
 	const onFinish = (values) => {
@@ -176,61 +242,26 @@ const Form4 = ({ next, prev, payment, rent }) => {
 				</Select>
 			</Form.Item> */}
 
-			<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?">
-				<Select size="large" value={accStat} style={{ width: '65%' }} placeholder={accStat} disabled>
+<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?">
+<Space size='small'>
+				<Select size="large" value={accStat} style={{ width: '105%' }} placeholder={accStat} disabled>
 					<Select.Option value="card">Card</Select.Option>
 					<Select.Option value="bank">Bank Transfer</Select.Option>
 				</Select>
-			</Form.Item>
-
-			<a>
+				<a>
 				<span className="ml-3">
 					<small onClick={() => next(0)}>Change?</small>
 				</span>
 			</a>
-			{accStat === "I'm still searching" ? <Reject /> : ''}
+</Space>
+			</Form.Item>
+
+		
+			
+			{/* {accStat === "I'm still searching" ? <Reject /> : ''} */}
 			<Box stat={accStat}>
 				<Container className="mt-3 ml-3">
-					<Form.Item
-						name={[ 'last_rent_amount' ]}
-						label="How much was your last rent?"
-						rules={[ { required: true } ]}
-					>
-						<Input addonBefore="₦" />
-					</Form.Item>
-
-					<Form.Item name={[ 'rent_collector' ]} label="Who did you pay to??" rules={[ { required: true } ]}>
-						<Radio.Group
-							onChange={(e) => {
-								setRc(e.target.value);
-							}}
-
-							// name="radiogroup"
-						>
-							{/* rc => rent colector */}
-
-							<StyledRadio type="button" className="" switch="Landlord" stat={rc}>
-								<Radio className="fg" value="Landlord">
-									Landlord
-								</Radio>
-							</StyledRadio>
-
-							<StyledRadio type="button" className="mr-3" switch="Caretaker" stat={rc}>
-								<Radio value="Caretaker">Caretaker</Radio>
-							</StyledRadio>
-
-							<StyledRadio type="button" switch="Agent" stat={rc}>
-								<Radio value="Agent">Agent</Radio>
-							</StyledRadio>
-						</Radio.Group>
-					</Form.Item>
-
-					<Form.Item name={[ 'pay_type' ]} label="How did you pay?" rules={[ { required: true } ]}>
-						<Select size="large" style={{ width: '96%' }} placeholder="Select how you paid">
-							<Select.Option value="card">Card</Select.Option>
-							<Select.Option value="bank">Bank Transfer</Select.Option>
-						</Select>
-					</Form.Item>
+					<AccmStatus />
 				</Container>
 			</Box>
 

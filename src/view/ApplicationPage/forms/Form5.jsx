@@ -11,7 +11,7 @@ const layout = {
 };
 const Form5 = (props) => {
 	const [ form ] = Form.useForm();
-	const { next, prev, landlord } = props;
+	const { next, prev, landlord, banks } = props;
 	const dispatch = useDispatch()
 	
 	const validateMessages = {
@@ -91,9 +91,19 @@ const Form5 = (props) => {
 				
 			>
 
-                <Select  style={{ width: '58%' }} placeholder='Bank Name' ><Select.Option  value='Access'>
+<Select size='large' style={{ width: '58%' }} placeholder='Bank Name'>
+					{banks.map((e, i) =>(
+						<Select.Option key={i} value={e.name}>{e.name}</Select.Option>
+					))}
+						
+					
+				</Select>
+
+                {/* <Select  style={{ width: '58%' }} placeholder='Bank Name' ><Select.Option  value='Access'>
 							Access
-						</Select.Option></Select>
+						</Select.Option>
+						
+						</Select> */}
 			</Form.Item>
 
 		
@@ -108,7 +118,8 @@ const Form5 = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-	landlord: state.application.landlord
+	landlord: state.application.landlord,
+	banks: state.paystack.banks
 });
 
 export default connect(mapStateToProps)(Form5);

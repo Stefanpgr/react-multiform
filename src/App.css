@@ -71,6 +71,11 @@ div.site-layout-background {
 	opacity: 1;
 }
 
+.nav-badge{
+	float: right;
+opacity: 1;
+}
+
 .radio-box {
 	background: #e7f7ff;
 	border: 1px solid #5b55ff;
