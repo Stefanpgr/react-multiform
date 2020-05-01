@@ -159,7 +159,7 @@ getBanks()
 					/>
 				</Form.Item>
 				<p className="p-question mt-3">Choose a monthly plan</p>
-				<StyledSwitch className="mr-4">
+				<StyledSwitch type='button' className="mr-4">
 					<Col>
 						<strong className="switch-text">1</strong>
 					</Col>
@@ -167,7 +167,7 @@ getBanks()
 						<p className="switch-text">Month</p>
 					</Col>{' '}
 				</StyledSwitch>
-				<StyledSwitch className="mr-4">
+				<StyledSwitch  type='button' className="mr-4">
 					<Col>
 						<strong className="switch-text">3</strong>
 					</Col>
@@ -175,7 +175,7 @@ getBanks()
 						<p className="switch-text">Months</p>
 					</Col>{' '}
 				</StyledSwitch>
-				<StyledSwitch>
+				<StyledSwitch type='button'>
 					<Col>
 						<strong className="switch-text">6</strong>
 					</Col>

@@ -45,7 +45,7 @@ const Form6 = (props) => {
 		};
 		const data = JSON.stringify(values);
 		localStorage.setItem('personal', data);
-		next();
+		
 	};
 
 	return (

@@ -2,7 +2,8 @@ const INITIAL_STATE = {
 	completed: false,
 	last_filled: 0,
 	loading: true,
-	progress: 17
+	progress: 17,
+	currPage: 0
 };
 
 const application = (state = INITIAL_STATE, action) => {
@@ -15,6 +16,9 @@ const application = (state = INITIAL_STATE, action) => {
 				last_filled: action.data.page,
 				progress: state.progress + 17
 			};
+
+		case 'PAGE_CHANGE':
+			return {...state, currPage: action.data}
 		case 'LOGOUT_USER':
 			return {};
 		default:

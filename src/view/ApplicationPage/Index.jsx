@@ -11,27 +11,39 @@ import Form4 from './forms/Form4';
 import Form5 from './forms/Form5';
 import Form6 from './forms/Form6';
 
-const { Content } = Layout;
+const { Content,Footer, Sider, Header } = Layout;
 const Application = () => {
 	const [ current, setCurrent ] = useState(0);
 	// const [progress, setProgress]
-	// const dispatch =  useDispatch()
+	const dispatch =  useDispatch()
 	const next = (set) => {
 		const curr = current + 1;
 		setCurrent(curr);
 		if (set >= 0) {
 			setCurrent(set);
 		}
+		dispatch({
+			type: 'PAGE_CHANGE',
+			data: set || curr
+		})
 		console.log(current, 'next');
 	};
 	const goto = (set) => {
 		setCurrent(set);
+		dispatch({
+			type: 'PAGE_CHANGE',
+			data: set
+		})
 	};
 
 	const prev = () => {
 		const curr = current - 1;
 		setCurrent(curr);
 		console.log(current, 'prev');
+		dispatch({
+			type: 'PAGE_CHANGE',
+			data: curr
+		})
 	};
 	const steps = [
 		{
@@ -73,27 +85,42 @@ const Application = () => {
 		return progress;
 	};
 	return (
-		<div className="container">
+		<div className="">
+			  <Layout>
 			{/* <Layout className="site-layout"> */}
-
-			<Row>
-				<Col md={4}>
-					<AppSidebar goto={goto} current={current} progress={getProgress()} className="" />
-				</Col>
-				<Col md={8}>
-					{/* <Content style={{ margin: '0 14px ', height: '100%' }}> */}
+			<Header>dd</Header>
+			<Layout>
+      <Sider style={{padding: 14, marginLeft: '50px'}} width={300} className="site-layout-background hide mt-3">
+		  
+	
+					<AppSidebar goto={goto} current={current} progress={getProgress()} className="mt-5" />
+					</Sider>
+			
+				<Container
+          className="site-layout-background mt-3 form-wraper"
+          style={{
+			
+			// marginLeft: '80px',
+            margin: 0,
+            minHeight: 280,
+          }}
+        >
+			<div className='form-wraper-content'>
 					<Heading
 						step={current + 1}
 						progress={getProgress()}
 						title={steps[current].title}
 						sub={steps[current].sub}
 					/>
-					<div className="steps-action">{steps[current].content}</div>
-					{/* </Content> */}
-				</Col>
-			</Row>
-
-			{/* </Layout> */}
+					<div  className="steps-action">{steps[current].content}</div>
+					</div>
+					</Container>
+				{/* </Col>
+			</Row> */}
+			</Layout>
+			<Footer>Footer</Footer>
+{/* </Layout> */}
+			</Layout>
 		</div>
 	);
 };

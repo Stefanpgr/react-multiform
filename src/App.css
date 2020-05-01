@@ -25,11 +25,57 @@ body {
 }
 .site-layout-background {
 	background: #fff;
+	border-radius: 10px;
 }
 div.site-layout-background {
 	height: 100% !important;
 }
 
+@media screen and (max-width: 700px) {
+	.form-wraper-content{
+		padding: 14px 12px 14px 10px !important;
+	
+	}
+	.ant-select{
+		width: 99% !important;
+	}
+	.hide{
+		display: none;
+	}
+	.form-wraper{
+		margin-left: 0 !important;
+	
+	}
+	.btn-form{
+		margin-left: 5px !important;
+		width: 40% !important;
+	}
+
+	.ant-input-number-input {
+		width: 99% !important;
+		height: 36px;
+	}
+	
+	.ant-input {
+		width: 98% !important;
+		height: 36px;
+	}
+	.ant-input-number {
+		width: 99% !important;
+		height: 36px;
+	}
+  }
+
+
+.form-wraper-content{
+	padding: 34px 34px 104px 45px;
+}
+@media screen and (min-width: 1066px) {
+.form-wraper{
+	margin-left: 50px !important;
+
+}
+}
 /* Application navbar */
 
 .nav-pills .nav-link.active,
@@ -75,6 +121,13 @@ div.site-layout-background {
 	float: right;
 opacity: 1;
 }
+
+
+#components-layout-demo-fixed-sider .logo {
+	height: 32px;
+	background: rgba(255, 255, 255, 0.2);
+	margin: 16px;
+  }
 
 .radio-box {
 	background: #e7f7ff;
@@ -135,10 +188,8 @@ left: 650px; */
 	height: 38px;
 }
 
-.ant-input-number-input {
-	width: 79% !important;
-	height: 36px;
-}
+
+
 
 .ant-input {
 	width: 58%;
@@ -209,7 +260,14 @@ left: 650px; */
 	opacity: 1;
 }
 
-/* .btn-form{
-	min-width: 15%;
-	height: 100% !important;
-  } */
+@media screen and (min-width: 1024px){
+	.btn-form{
+
+		width: 18%;
+	 }
+	 .btn-form:nth-child(2){
+		 float: right;
+	 }
+}
+
+

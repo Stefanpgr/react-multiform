@@ -323,6 +323,7 @@ const Form2 = ({next, prev, employment}) => {
         <Input
           style={{ width: "58%" }}
           placeholder="Enter the company address"
+          size='large'
         />
       </Form.Item>
 

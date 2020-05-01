@@ -8,12 +8,14 @@ import { Progress, Divider, Badge } from 'antd';
 const Wrapper = styled.div`
 	top: 80px;
 	left: 52px;
-	width: 246px;
+	width: 256px;
 	height: 449px;
 	background: #00204f 0% 0% no-repeat padding-box;
 	border-radius: 18px;
 	opacity: 1;
 `;
+
+
 
 // const NavLink = styled.div`
 // 	top: 582px;

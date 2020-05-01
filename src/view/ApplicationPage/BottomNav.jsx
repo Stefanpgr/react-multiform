@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from'react'
 import {Divider, Button} from 'antd'
-
+import {useSelector} from 'react-redux'
 export const BottomNav = ({ prev, current}) => {
     const [curr, setCurr] = useState(false)
+    const [checkPage, setPage] = useState()
+    const {currPage} = useSelector((state)=> ({
+        currPage: state.application.currPage
+    }))
     console.log(current, 'curre')
 const getCurrent = () =>{
     if(current === 0) setCurr(true)
@@ -18,13 +22,13 @@ useEffect(()=>{
         <div>
         <Divider />
         <div className="steps-action">
-                    <Button style={{width: '15%'}} className="btn-form" size='large' onClick={() => prev()} disabled={curr}>
+                    <Button style={{width: '24%'}} className="btn-form" size='large' onClick={() => prev()} disabled={curr}>
                             Back
-                        </Button>
-                        <Button size='large' style={{   marginLeft: '350px', width: '22%' }} htmlType="submit" type="primary" className="btn-form">
-                            Save & Continue
+                        </Button>         <Button size='large' htmlType="submit" type="primary" className="btn-form">
+                           {currPage == 5 ? 'Finish' : 'Continue'}
                         </Button>
         
+               
                         
                     </div>
         

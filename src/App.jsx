@@ -8,6 +8,7 @@ import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import './App.css';
 import Application from './view/ApplicationPage/Index';
+import Test from './view/ApplicationPage/Test';
 
 function App() {
 	// const loading = () => <div>loading...</div>;
@@ -18,6 +19,7 @@ function App() {
 			<Switch>
 				{/* <Route exact path="/test" component={AppSidebar} /> */}
 				<Route exact path="/apply" component={Application} />
+				<Route exact path="/test" component={Test} />
 				<ViewLayout />
 			</Switch>
 		</BrowserRouter>
