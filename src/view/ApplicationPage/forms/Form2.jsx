@@ -332,7 +332,7 @@ const Form2 = ({next, prev, employment}) => {
         label="HR or employer’s work phone number"
         rules={[{ required: true }]}
       >
-        <Input style={{ width: "58%" }} placeholder="Enter phone number" />
+        <Input type='tel' style={{ width: "58%" }} placeholder="Enter phone number" />
       </Form.Item>
 
       <Form.Item

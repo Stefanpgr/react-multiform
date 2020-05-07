@@ -23,6 +23,31 @@ body {
 	background: rgba(255, 255, 255, 0.2);
 	margin: 16px;
 }
+
+.btn-pry{
+	width: 104px;
+height: 41px;
+background: #51A4FB 0% 0% no-repeat padding-box;
+border-radius: 3px;
+border: none;
+color: white;
+opacity: 1;
+}
+.btn-norm{
+	width: 104px;
+height: 41px;
+background: #ffff 0% 0% no-repeat padding-box;
+border-radius: 3px;
+border: 1px solid #a7a7a7;
+color: #585858;
+opacity: 1;
+
+}
+.line{
+	border: 1px solid #C3C3C3;
+	width: 456px;
+}
+
 .site-layout-background {
 	background: #fff;
 	border-radius: 10px;
@@ -65,18 +90,33 @@ div.site-layout-background {
 		height: 36px;
 	}
   }
+.sider-nav{
+background: transparent !important;
 
+}
 
 .form-wraper-content{
-	padding: 34px 34px 104px 45px;
+	padding: 34px 34px 104px 15px;
 }
 @media screen and (min-width: 1066px) {
 .form-wraper{
-	margin-left: 50px !important;
+	margin-left: 12px !important;
+	margin-right: 50px !important;
 
 }
 }
 /* Application navbar */
+
+
+.ant-divider-horizontal {
+	display: block !important;
+    clear: both !important;
+ 
+    min-width: 90% !important;
+    height: 1px;
+    margin: 24px 108px 24px 10px !important;
+}
+
 
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {

@@ -90,10 +90,10 @@ const Application = () => {
 			{/* <Layout className="site-layout"> */}
 			<Header>dd</Header>
 			<Layout>
-      <Sider style={{padding: 14, marginLeft: '50px'}} width={300} className="site-layout-background hide mt-3">
+      <Sider style={{padding: 14, marginLeft: '50px'}} width={300} className="sider-nav hide">
 		  
 	
-					<AppSidebar goto={goto} current={current} progress={getProgress()} className="mt-5" />
+					<AppSidebar goto={goto} current={current} progress={getProgress()} />
 					</Sider>
 			
 				<Container
