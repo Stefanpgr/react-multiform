@@ -10,6 +10,7 @@ import './App.css';
 import DashboardLayout from './view/Dashboard/DashboardLayout';
 import Dashboard from './view/Dashboard/Dashboard'
 import Application from './view/ApplicationPage/Index';
+import Profile from "./view/Dashboard/Profile"
 import Test from './view/ApplicationPage/Test';
 import Signup from './view/Signup';
 import SignupSuccess from './view/Dashboard/pages/SignupSuccess';
@@ -28,9 +29,10 @@ function App() {
 				<Route exact path="/test" component={Test} />
 				<Route exact path="/success" component={SignupSuccess} />
 				<Route exact path="/dashboard" component={Dashboard} />
+				<Route exact path="/dashboard/profile" component={Profile} />
 			<DashboardLayout />
 			</Switch>
-			
+
 		</BrowserRouter>
 		</PersistGate>
 		</Provider>
