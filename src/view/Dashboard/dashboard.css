@@ -1,0 +1,36 @@
+@media (min-width: 768px) {
+    .profile-form-wrap {
+        margin-left: 3.333333%;
+    }
+}
+
+/* stops from applying margin left on ipad screens */
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .profile-form-wrap {
+        margin-left: 3.333333%;
+    }
+
+    .ml-sm {
+        display: block !important;
+        margin-left: 0 !important;
+    }
+
+    .w-mobile {
+        width: 55% !important;
+    }
+
+    .w-mobile-date {
+        width: 55% !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .w-mobile {
+        width: 100% !important;
+    }
+
+    .w-mobile-date {
+        width: 75% !important;
+    }
+}

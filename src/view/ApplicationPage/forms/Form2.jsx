@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Button, InputNumber, Select, DatePicker } from "antd";
-import {useDispatch, connect} from 'react-redux'
+import { Form, Input, InputNumber, Select, DatePicker } from "antd";
+import { useDispatch, connect } from "react-redux";
 import moment from "moment";
 // import CurrencyFormat from 'react-currency-format'
 import { BottomNav } from "../BottomNav";
@@ -9,15 +9,15 @@ import { Col, Row } from "react-bootstrap";
 
 const layout = {
   labelCol: { span: 12 },
-  wrapperCol: { span: 16 }
+  wrapperCol: { span: 16 },
 };
 
-const Form2 = ({next, prev, employment}) => {
+const Form2 = ({ next, prev, employment }) => {
   // console.log(current, 'current');
   const dateFormat = "DD/MM/YYYY";
   const [form] = Form.useForm();
-  const dispatch = useDispatch()
- 
+  const dispatch = useDispatch();
+
   const [accmDetails, setAccm] = useState(false);
   const [justFound, setJustFound] = useState(false);
   const [x, setX] = useState("Landlord");
@@ -52,18 +52,18 @@ const Form2 = ({next, prev, employment}) => {
     28,
     29,
     30,
-    31
+    31,
   ];
 
   const validateMessages = {
     required: "This field is required!",
     types: {
       email: "Not a validate email!",
-      number: "Not a validate number!"
+      number: "Not a validate number!",
     },
     number: {
-      range: "Must be between ${min} and ${max}"
-    }
+      range: "Must be between ${min} and ${max}",
+    },
   };
 
   useEffect(() => {
@@ -79,11 +79,9 @@ const Form2 = ({next, prev, employment}) => {
         employment_date: moment(employment.employment_date),
         employment_type: employment.employment_type,
         job_role: employment.job_role,
-        work_email: employment.work_email
+        work_email: employment.work_email,
       });
-      
     }
-
   }, [form]);
 
   // const getCity = () => {
@@ -173,7 +171,7 @@ const Form2 = ({next, prev, employment}) => {
               rules={[{ required: true }]}
             >
               <Select
-                onChange={e => {
+                onChange={(e) => {
                   if (e === "Landlord") {
                     setX("Landlord");
                   } else if (e === "Caretaker") {
@@ -245,7 +243,7 @@ const Form2 = ({next, prev, employment}) => {
               rules={[{ required: true }]}
             >
               <Select
-                onChange={e => {
+                onChange={(e) => {
                   if (e === "Landlord") {
                     setX("Landlord");
                   } else if (e === "Caretaker") {
@@ -268,16 +266,16 @@ const Form2 = ({next, prev, employment}) => {
     }
   };
 
-  const onFinish = fielValues => {
+  const onFinish = (fielValues) => {
     const values = {
       employment: { ...fielValues },
-      page: 1
+      page: 1,
     };
     console.log("Received values of form: ", values);
     dispatch({
-      type: 'ADD_APPL',
-      data: values
-    })
+      type: "ADD_APPL",
+      data: values,
+    });
     const data = JSON.stringify(values);
     localStorage.setItem("employment", data);
     next();
@@ -323,7 +321,7 @@ const Form2 = ({next, prev, employment}) => {
         <Input
           style={{ width: "58%" }}
           placeholder="Enter the company address"
-          size='large'
+          size="large"
         />
       </Form.Item>
 
@@ -332,7 +330,11 @@ const Form2 = ({next, prev, employment}) => {
         label="HR or employer’s work phone number"
         rules={[{ required: true }]}
       >
-        <Input type='tel' style={{ width: "58%" }} placeholder="Enter phone number" />
+        <Input
+          type="tel"
+          style={{ width: "58%" }}
+          placeholder="Enter phone number"
+        />
       </Form.Item>
 
       <Form.Item
@@ -421,8 +423,7 @@ const Form2 = ({next, prev, employment}) => {
 };
 
 const mapStateToProps = (state) => ({
-	employment: state.application.employment
+  employment: state.application.employment,
 });
 
 export default connect(mapStateToProps)(Form2);
-
