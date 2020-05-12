@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Row, Col, Container } from 'react-bootstrap';
+import {  Container } from 'react-bootstrap';
 
 import { useDispatch } from 'react-redux';
 import { Layout } from 'antd';
@@ -92,28 +92,22 @@ const Dashboard = () => {
 		return progress;
 	};
 	return (
-<Layout >
-				<Layout className="site-layout">
-					<Header className="site-layout-background" style={{ padding: 0 }} />
+		<div style={{backgroundColor: '#F5F5F5'}}>
+					<Header style={{ padding: 0 }} />
 				
-					{/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
 
-				<Container className='mt-5 mb-3' style={{ backgroundColor: '#ffff', width: '580px' }}>
+				<Container className='mt-5 mb-3' style={{ backgroundColor: '#ffff', width: '580px', margin: 'auto', }}>
 				<AppBar className='mb-5'/>
 				</Container>
-					{/* <Heading
-						step={current + 1}
-						progress={getProgress()}
-						title={steps[current].title}
-						sub={steps[current].sub}
-					/> */}
-    <Container className=' bg-blue' style={{ minHeight: '410px', backgroundColor: '#ffff', width: '580px' }}>
+					<div style={{ minHeight: '410px', backgroundColor: '#ffff', margin: 'auto', width: '580px' }}>
+    				<Container>
 
 					<div  className="steps-action">{steps[current].content}</div>
 				</Container>
+				</div>
 					<Footer style={{ textAlign: 'center' }}>Copyright ©{new Date().getFullYear()} Kwaba</Footer>
-				</Layout>
-			</Layout>
+		</div>
+	
 	);
 };
 

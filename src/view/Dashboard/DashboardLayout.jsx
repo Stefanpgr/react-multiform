@@ -24,25 +24,16 @@ class DashboardLayout extends React.Component {
 
 	render() {
 		return (
-			<Layout >
-				<Layout className="site-layout">
-					<Header className="site-layout-background" style={{ padding: 0 }} />
-				
-					{/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
+			<div  style={{backgroundColor: '#F5F5F5'}}>
+					<Header style={{ padding: 0 }} />
 
-				<Container className='mt-5 mb-3'>
-				<AppBar className='mb-5'/>
-				</Container>
+				<div >
+						<AppSuccess/>
 					
-					{/* <Container className=' bg-white' style={{ height: '425px' }}>
-					
-						
-				
-					</Container> */}
-					<AppSuccess/>
-					<Footer style={{ textAlign: 'center' }}>Copyright ©{new Date().getFullYear()} Kwaba</Footer>
-				</Layout>
-			</Layout>
+				</div>
+				<Footer  style={{ textAlign: 'center' }}>Copyright ©{new Date().getFullYear()} Kwaba</Footer>
+
+			</div>
 		);
 	}
 }
