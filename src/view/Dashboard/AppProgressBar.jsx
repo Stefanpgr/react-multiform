@@ -1,21 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-const NavWrapper = styled.div `
-width: 567px;
-height: 35px;
-margin: auto !important;
-background: #FFFFFF 0% 0% no-repeat padding-box;
-opacity: 1;
-
-`
+const NavWrapper = styled.div`
+  width: 100%;
+  height: 35px;
+  margin: auto !important;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+`;
 
 const AppBar = () => {
-return(
+  return (
     <div>
-        <NavWrapper/>
+      <NavWrapper />
     </div>
-)
-}
+  );
+};
 
 export default AppBar;

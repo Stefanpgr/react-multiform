@@ -1,36 +1,78 @@
 @media (min-width: 768px) {
-    .profile-form-wrap {
-        margin-left: 3.333333%;
-    }
+  .profile-form-wrap {
+    margin-left: 3.333333%;
+  }
 }
 
 /* stops from applying margin left on ipad screens */
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
-    .profile-form-wrap {
-        margin-left: 3.333333%;
-    }
+  .profile-form-wrap {
+    margin-left: 3.333333%;
+  }
 
-    .ml-sm {
-        display: block !important;
-        margin-left: 0 !important;
-    }
+  .ml-sm {
+    display: block !important;
+    margin-left: 0 !important;
+  }
 
-    .w-mobile {
-        width: 55% !important;
-    }
+  .w-mobile {
+    width: 55% !important;
+  }
 
-    .w-mobile-date {
-        width: 55% !important;
-    }
+  .w-mobile-date {
+    width: 55% !important;
+  }
 }
 
 @media (max-width: 767px) {
-    .w-mobile {
-        width: 100% !important;
-    }
+  .w-mobile {
+    width: 100% !important;
+  }
+  .profile-cards {
+    height: 90% !important;
+    /* width: 70%;
+    margin-bottom: 5%; */
+  }
+  .m-view-center {
+    margin-left: 7.3% !important;
+  }
 
-    .w-mobile-date {
-        width: 75% !important;
-    }
+  .m-view-app-process {
+    width: 350px !important;
+  }
+
+  .w-mobile-date {
+    width: 75% !important;
+  }
+}
+
+/* for iphone 6/7/8 and pixel 2 */
+@media screen and (max-width: 418px) and (min-width: 410px) {
+  .m-view-center {
+    margin-left: 12.8% !important;
+  }
+}
+
+.profile-cards {
+  height: 140px;
+  border: none;
+}
+
+.profile-cards-right {
+  width: 275px;
+  border: none;
+  border-radius: 5px !important;
+}
+
+.text-muted {
+  color: #a7a7a7 !important;
+}
+
+.text-blue {
+  color: #00204f;
+}
+
+.profile-cards-large {
+  height: 210px;
 }

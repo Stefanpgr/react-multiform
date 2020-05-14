@@ -1,119 +1,143 @@
-import React, { useState } from "react";
-
-import { Container } from "react-bootstrap";
-
-import { useDispatch } from "react-redux";
-import { Layout } from "antd";
-import ProcessAppl from "./pages/ProcessAppl";
-import Contract from "./pages/Contract";
-import Congrats from "./pages/Congrats";
-import Offer from "./pages/Offer";
-import AppBar from "./AppProgressBar";
-import CongratsPay from "./pages/CongratsPay";
-import SetupPay from "./pages/SetupPay";
-import RemitaDoc from "./pages/Remita";
-
-const { Footer, Header } = Layout;
+import React from "react";
+import { Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Progress } from "antd";
 const Dashboard = () => {
-  const [current, setCurrent] = useState(0);
-  // const [progress, setProgress]
-  const dispatch = useDispatch();
-  const next = (set) => {
-    const curr = current + 1;
-    setCurrent(curr);
-    if (set >= 0) {
-      setCurrent(set);
-    }
-    dispatch({
-      type: "DASHPAGE_CHANGE",
-      data: set || curr,
-    });
-    console.log(current, "next");
-  };
-  const goto = (set) => {
-    setCurrent(set);
-    dispatch({
-      type: "DASHPAGE_CHANGE",
-      data: set,
-    });
-  };
-
-  const prev = () => {
-    const curr = current - 1;
-    setCurrent(curr);
-    console.log(current, "prev");
-    dispatch({
-      type: "DASHPAGE_CHANGE",
-      data: curr,
-    });
-  };
-  const steps = [
-    {
-      title: "Processing Application",
-      content: <ProcessAppl next={next} current={current} />,
-    },
-    {
-      title: "Employment Details",
-      content: <Congrats next={next} prev={prev} current={current} />,
-    },
-    {
-      title: "Financial Information",
-      content: <Offer next={next} prev={prev} current={current} />,
-      sub: "Give us information about your finance",
-    },
-    {
-      title: "Financial Information",
-      content: <Contract next={next} prev={prev} current={current} />,
-      sub: "Give us information about your finance",
-    },
-    {
-      title: "Financial Information",
-      content: <CongratsPay next={next} prev={prev} current={current} />,
-      sub: "Give us information about your finance",
-    },
-    {
-      title: "Financial Information",
-      content: <SetupPay next={next} prev={prev} current={current} />,
-      sub: "Give us information about your finance",
-    },
-    {
-      title: "Financial Information",
-      content: <RemitaDoc next={next} prev={prev} current={current} />,
-      sub: "Give us information about your finance",
-    },
-  ];
-  const getProgress = () => {
-    const progress = Math.round(100 / 6) * (current + 1);
-    if (progress > 100) {
-      return 100;
-    }
-    return progress;
-  };
   return (
-    <div style={{ backgroundColor: "#F5F5F5" }}>
-      <Header style={{ padding: 0 }} />
+    <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
+      <h1>TEST</h1>
+      <Container>
+        <Row>
+          <Col md="5">
+            <Card
+              className="bg-primary"
+              style={{
+                width: "100%",
+                margin: "auto",
+                height: "27vh",
+                boxShadow: "0px 3px 20px #5B55FF26",
+                border: "1px solid #C9C7FF",
+                // opacity: "0.07",
+              }}
+            >
+              <div className="card-body">
+                <Row className="justify-content-md-center">
+                  <Col className="offset-md-1" md="5">
+                    <div className="text-center text-white">
+                      <small className="text-center text-muted">
+                        Next payment amount
+                      </small>
+                      <h5 className="text-center text-white">N83,333</h5>
+                    </div>
+                  </Col>
+                  <Col md="">
+                    <div
+                      className="bg-white"
+                      style={{
+                        height: "5rem",
+                        width: "1px",
+                        marginLeft: "-15px",
+                      }}
+                    ></div>
+                  </Col>
+                  <Col md="5">
+                    <div>
+                      <small className="text-center text-muted">
+                        Next payment due date
+                      </small>
+                      <h5 className="text-center text-white">4, May 2020</h5>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+            </Card>
 
-      <Container
-        className="mt-5 mb-3"
-        style={{ backgroundColor: "#ffff", width: "580px", margin: "auto" }}
-      >
-        <AppBar className="mb-5" />
+            <Card
+              style={{
+                width: "75%",
+                margin: "auto",
+                position: "relative",
+                top: "-3rem",
+                boxShadow: "0px 3px 20px #5B55FF26",
+                border: "1px solid #C9C7FF",
+              }}
+            >
+              <div className="card-body">
+                <Row className="justify-content-md-center">
+                  <Col className="" md="6">
+                    <div className="">
+                      <div className="">21 days</div>
+                      <small className="text-muted">Next payment amount</small>
+                    </div>
+                  </Col>
+
+                  <Col md="6">
+                    <div>
+                      <h6
+                        className="pb-0"
+                        stlye={{ fontWeight: "3rem", fontSize: "10rem" }}
+                      >
+                        N750,001
+                      </h6>
+                      <small className="text-muted">
+                        Next payment due date
+                      </small>
+                    </div>
+                  </Col>
+                </Row>
+                <p className="mb-1  mt-4 pb-1">
+                  15%{" "}
+                  <span className="text-muted">
+                    <small>Percent complete</small>
+                  </span>
+                  <Progress percent={15} />
+                </p>
+              </div>
+            </Card>
+          </Col>
+          <Col md="6">
+            <Card
+              style={{
+                width: "100%",
+                margin: "auto",
+                height: "80vh",
+                boxShadow: "0px 3px 20px #5B55FF26",
+                border: "none",
+              }}
+            >
+              <div className="card-body">
+                <h5
+                  className="card-title"
+                  style={{
+                    color: "#00204F",
+                    fontSize: "30px/36px",
+                    fontWeight: "Bold ",
+                  }}
+                >
+                  Payment History
+                </h5>
+                <hr />
+                <Card
+                  style={{
+                    height: "47px",
+                    boxShadow: " 0px 3px 15px #0000001A",
+                    borderRadius: "10px",
+                    border: "none",
+                  }}
+                  className="mb-3"
+                ></Card>
+                <Card
+                  style={{
+                    height: "47px",
+                    boxShadow: " 0px 3px 15px #0000001A",
+                    borderRadius: "10px",
+                    border: "none",
+                  }}
+                ></Card>
+              </div>
+            </Card>
+          </Col>
+        </Row>
       </Container>
-      <div
-        style={{
-          minHeight: "410px",
-          backgroundColor: "#ffff",
-          margin: "auto",
-          width: "580px",
-        }}
-      >
-        <Container>
-          <div className="steps-action">{steps[current].content}</div>
-        </Container>
-      </div>
-      <Footer style={{ textAlign: "center" }}>
-        Copyright ©{new Date().getFullYear()} Kwaba
-      </Footer>
     </div>
   );
 };

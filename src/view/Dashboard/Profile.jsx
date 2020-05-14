@@ -1,6 +1,7 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import { Radio, Select, Form, Input, DatePicker, Layout } from "antd";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { Layout, Timeline } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 const layout = {
   labelCol: { span: 24 },
@@ -45,258 +46,192 @@ const ProfilePic = styled.div`
   opacity: 1;
 `;
 
-const Profile = () => {
-  const [form] = Form.useForm();
-  // const dispatch = useDispatch();
-  const validateMessages = {
-    required: "This field is required!",
-    types: {
-      email: "Not a validate email!",
-      number: "Not a validate number!",
-    },
-    number: {
-      range: "Must be between ${min} and ${max}",
-    },
-  };
-  const onFinish = (fielValues) => {
-    console.log("Received values of form: ", fielValues);
-  };
+const EditProfile = () => {
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
       <h1>TEST</h1>
       <div style={{ width: "97%", margin: "auto" }}>
         <Container fluid>
+          <SubHead>Personal info</SubHead>
           <Row>
             {/* <div class="w-100 d-none d-md-block"></div> */}
-            <Col md="4" className="order-md-2 mb-4">
-              <div className="mb-4">
-                <ProfilePicWrap>
+            <Col md="8" className="">
+              <Row>
+                <Col></Col>
+                <Col></Col>
+              </Row>
+
+              <Row className="mb-4">
+                <Col md="6">
+                  <Card className="profile-cards">
+                    <Card.Body>
+                      <Row>
+                        <Col className="text-muted ml-md-2">
+                          <small>Date of Birth</small>{" "}
+                          <p className="text-blue">January 7, 1990</p>
+                        </Col>
+
+                        <Col md="4" className=" text-muted">
+                          <small>Gender</small>{" "}
+                          <p className="text-blue">Male</p>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className="text-muted ml-md-2" md="12">
+                          <small>Marital status</small>{" "}
+                          <p className="text-blue">Single</p>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md="6">
+                  <Card className="profile-cards">
+                    <Card.Body>
+                      <Row>
+                        <Col className="text-muted ml-md-2" md="12">
+                          <small>Current Address</small>{" "}
+                          <p className="text-blue">
+                            No 23B Bright View Estate, Surulere, Lagos
+                          </p>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className="text-muted ml-md-2">
+                          <small>Duration of this property</small>{" "}
+                          <p className="text-blue">3 Years</p>
+                        </Col>
+
+                        <Col md="4" className=" text-muted">
+                          <small>Last Rent amount</small>{" "}
+                          <p className="text-blue">N700,000</p>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+
+              {/* <Card className="profile-cards profile-cards-large">
+                <Card.Body>
+                  <Card.Title>Employement info</Card.Title>
+                  <hr />
+                  <Row>
+                    <Col md="4">djj</Col>
+                    <Col md="4">ddd</Col>
+                    <Col md="4">djj</Col>
+                  </Row>
+                  <Row>
+                    <Col md="4">djj</Col>
+                    <Col md="4">ddd</Col>
+                    <Col md="4">
+                      djjjjjjjjjjjjjjjjjjjdhgdghdgfdgdfdgdgfgfsjsjsjjdkjksjjkltrwe
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card> */}
+
+              <FontAwesomeIcon icon={["fas", "envelope"]} />
+            </Col>
+
+            <Col md="4" className=" mb-4 m-view-center">
+              <Card
+                className="mb-4"
+                className="profile-cards-right"
+                style={{ backgroundColor: "#00204F", height: "140px" }}
+              >
+                <Card.Body>
+                  {/* <ProfilePicWrap> */}
                   <Container>
-                    <ProfilePic className="ml-5 mt-4" />
-                    <p className="text-center mt-4">Change profile picture</p>
-                  </Container>
-                </ProfilePicWrap>
-              </div>
-              <KcsWrap>
-                <Container>
-                  <div className="ml-3 mt-3 text-white">
                     <p
+                      className="text-center mt-1 mb-1"
                       style={{
+                        color: "#51A4FB",
                         fontWeight: "bold",
-                        fontSize: "25px",
-                        margin: 0,
+                        fontSize: "20px",
                       }}
                     >
-                      KCS Score
+                      Kwaba Credit Score
                     </p>
-                    <p
-                      className="mt--9"
-                      style={{ fontWeight: "bold", fontSize: "30px" }}
-                    >
-                      85%
-                    </p>
-                  </div>
-                </Container>
-              </KcsWrap>
-            </Col>
-            <Col md="8" className="order-md-1">
-              <div
-                className="bg-white"
-                style={{ overflow: "hidden", borderRadius: "10px" }}
-              >
-                <Container className=" profile-form-wrap mt-5">
-                  <SubHead>Personal info</SubHead>
-                  <div>
-                    <Form
-                      form={form}
-                      {...layout}
-                      name="nest-messages"
-                      onFinish={onFinish}
-                      validateMessages={validateMessages}
-                      layout="vertical"
-                    >
-                      {/* <Form.Item
-					name={[ 'acct_stat' ]}
-					label="What’s your accommodation status?"
-					rules={[ { required: true } ]}
-				>
-					<Radio.Group
-						onChange={(e) => {
-							setAcc(e.target.value);
-						}}
-						name="radiogroup"
-					>
-						<StyledRadio type="button" className="mr-3 fg" switch="Looking to renew my rent" stat={accStat}>
-							<Radio className="fg" value="Looking to renew my rent">
-								Looking to renew my rent
-							</Radio>
-						</StyledRadio>
+                    <div className="text-center mb-2 mt--9">
+                      <img
+                        src="https://res.cloudinary.com/kwaba/image/upload/v1589465498/favourites_zxcteh.svg"
+                        alt="credit score"
+                        width="14"
+                        className="mr-1"
+                      />
+                      <img
+                        src="https://res.cloudinary.com/kwaba/image/upload/v1589465498/favourites_zxcteh.svg"
+                        alt="credit score"
+                        width="20"
+                        className="mr-2"
+                      />
+                      <img
+                        src="https://res.cloudinary.com/kwaba/image/upload/v1589465498/favourites_zxcteh.svg"
+                        alt="credit score"
+                        width="30"
+                        className="mr-1"
+                      />
+                      <img
+                        src="https://res.cloudinary.com/kwaba/image/upload/v1589465498/favourites_zxcteh.svg"
+                        alt="credit score"
+                        width="20"
+                        className="mr-1"
+                      />
+                      <img
+                        src="https://res.cloudinary.com/kwaba/image/upload/v1589465498/favourites_zxcteh.svg"
+                        alt="credit score"
+                        width="14"
+                        className="mr-1"
+                      />
+                    </div>
+                    <div className="text-center" style={{}}>
+                      <FontAwesomeIcon
+                        className="text-white"
+                        icon={["fas", "minus"]}
+                      />
+                    </div>
+                  </Container>
+                  {/* </ProfilePicWrap> */}
+                </Card.Body>
+              </Card>
 
-						<StyledRadio type="button" className="mr-3" switch="Want to pay for a new place" stat={accStat}>
-							<Radio value="Want to pay for a new place">Want to pay for a new place</Radio>
-						</StyledRadio>
-
-						<StyledRadio type="button" switch="I'm still searching" stat={accStat}>
-							<Radio value="I'm still searching">I'm still searching</Radio>
-						</StyledRadio>
-					</Radio.Group>
-				</Form.Item> */}
-
-                      <Form.Item
-                        name={["first_name"]}
-                        label="First Name"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["last_name"]}
-                        label="Last Name"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 w-mobile ml-sm"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["address"]}
-                        label="Current Address"
-                        rules={[{ required: true }]}
-                        className="w-mobile"
-                      >
-                        <Input style={{ width: "57%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["rent_collector_bankname"]}
-                        label="Duration at this property"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Select style={{ width: "120%" }}>
-                          <Select.Option value="3">3 Years</Select.Option>
-                        </Select>
-                      </Form.Item>
-                      <Form.Item
-                        name={["rent_collector_bankname"]}
-                        label="Date of Birth"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 ml-sm w-mobile-date"
-                      >
-                        <DatePicker style={{ width: "130%", height: "39px" }} />
-                      </Form.Item>
-                      <br />
-                      <Form.Item
-                        name={["marital_status"]}
-                        label="Marital status &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Select style={{ width: "120%" }}>
-                          <Select.Option value="single">Single</Select.Option>
-                          <Select.Option value="married">married</Select.Option>
-                        </Select>
-                      </Form.Item>
-                      <Form.Item
-                        name={["last_name"]}
-                        label="Last rent amount"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 w-mobile ml-sm"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <br />
-                      <br />
-                      <SubHead>Employment info</SubHead>
-                      <Form.Item
-                        name={["employer_name"]}
-                        label="Employer Name"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["phone"]}
-                        label="Phone number"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 w-mobile ml-sm"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <br />
-                      <Form.Item
-                        name={["email"]}
-                        label="Email address"
-                        rules={[{ required: true, type: "email" }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["job_title"]}
-                        label="Job title"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 w-mobile ml-sm"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <br />
-                      <Form.Item
-                        name={["salary"]}
-                        label="Salary"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="w-mobile"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                      <Form.Item
-                        name={["last_name"]}
-                        label="Duration of employment"
-                        rules={[{ required: true }]}
-                        style={{
-                          display: "inline-block",
-                        }}
-                        className="ml-md-5 w-mobile ml-sm"
-                      >
-                        <Input style={{ width: "117%" }} placeholder="" />
-                      </Form.Item>
-                    </Form>
-                  </div>
-                </Container>
-              </div>
+              <Card className="profile-cards-right mt-4">
+                <Card.Body>
+                  <Card.Title className="text-blue">Activities</Card.Title>
+                  <hr />
+                  <Container>
+                    <Timeline className="text-blue">
+                      <Timeline.Item color="#FF6C6C">
+                        Loan not approved <br />
+                        <small className="text-muted">
+                          3 - 03 -2020 at 9:30 am
+                        </small>
+                      </Timeline.Item>
+                      <Timeline.Item>
+                        Processing Application <br />
+                        <small className="text-muted">
+                          3 - 03 -2020 at 9:30 am
+                        </small>
+                      </Timeline.Item>
+                      <Timeline.Item color="#21AD26">
+                        Application Complete
+                        <br />
+                        <small className="text-muted">
+                          3 - 03 -2020 at 9:30 am
+                        </small>
+                      </Timeline.Item>
+                      <Timeline.Item>
+                        Application Started
+                        <br />
+                        <small className="text-muted">
+                          3 - 03 -2020 at 9:30 am
+                        </small>
+                      </Timeline.Item>
+                    </Timeline>
+                  </Container>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>
@@ -311,4 +246,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default EditProfile;
