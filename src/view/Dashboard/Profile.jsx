@@ -53,26 +53,41 @@ const EditProfile = () => {
       <div style={{ width: "97%", margin: "auto" }}>
         <Container fluid>
           <Row>
+            <Col md="4">
+              <div>
+                <SubHead>Personal info</SubHead>
+              </div>
+            </Col>
+            <Col md="4" className="offset-md-3">
+              <p>
+                <span className="mr-1">
+                  <FontAwesomeIcon
+                    style={{ color: "#585858", fontSize: "12px" }}
+                    icon={["fas", "edit"]}
+                  />
+                </span>
+                Edit Profile
+              </p>
+            </Col>
+          </Row>
+
+          <Row>
             {/* <div class="w-100 d-none d-md-block"></div> */}
             <Col md="8" className="">
-              <div>
-                {" "}
-                <SubHead>Personal info</SubHead>
-                <p style={{ flex: "1" }}>
-                  <span className="mr-1">
-                    <FontAwesomeIcon
-                      style={{ color: "#585858", fontSize: "12px" }}
-                      icon={["fas", "edit"]}
-                    />
-                  </span>
-                  Edit Profile
-                </p>
-              </div>
-
-              <Row>
-                <Col></Col>
-                <Col></Col>
-              </Row>
+              <Card
+                style={{
+                  backgroundColor: "#5b54ff",
+                  height: "140px",
+                  border: "none",
+                  opacity: "0.07",
+                }}
+                className="mb-4"
+              >
+                <Row>
+                  <Col></Col>
+                  <Col></Col>
+                </Row>
+              </Card>
 
               <Row className="mb-4">
                 <Col md="6">
@@ -125,29 +140,49 @@ const EditProfile = () => {
                 </Col>
               </Row>
 
-              {/* <Card className="profile-cards profile-cards-large">
+              <Card className="profile-cards profile-cards-large">
                 <Card.Body>
                   <Card.Title>Employement info</Card.Title>
                   <hr />
                   <Row>
-                    <Col md="4">djj</Col>
-                    <Col md="4">ddd</Col>
-                    <Col md="4">djj</Col>
+                    <Col md="4">
+                      <small className="text-muted">Job Title</small>
+                      <p className="text-blue">Quality Assurance</p>
+                    </Col>
+                    <Col md="4">
+                      {" "}
+                      <small className="text-muted">Salary</small>
+                      <p className="text-blue">N500,000</p>
+                    </Col>
+                    <Col md="4">
+                      {" "}
+                      <small className="text-muted">
+                        Duration of employement
+                      </small>
+                      <p className="text-blue">2 Years</p>
+                    </Col>
                   </Row>
                   <Row>
-                    <Col md="4">djj</Col>
-                    <Col md="4">ddd</Col>
                     <Col md="4">
-                      djjjjjjjjjjjjjjjjjjjdhgdghdgfdgdfdgdgfgfsjsjsjjdkjksjjkltrwe
+                      <small className="text-muted">Employer name</small>
+                      <p className="text-blue">Lamigata Industrial LTD</p>
+                    </Col>
+                    <Col md="4">
+                      <small className="text-muted">Phone number</small>
+                      <p className="text-blue">0123345657</p>
+                    </Col>
+                    <Col md="4">
+                      <small className="text-muted">Email address</small>
+                      <p className="text-blue">info@lamigatacom</p>
                     </Col>
                   </Row>
                 </Card.Body>
-              </Card> */}
+              </Card>
 
               <FontAwesomeIcon icon={["fas", "envelope"]} />
             </Col>
 
-            <Col md="4" className=" mb-4 ">
+            <Col md="4" className=" mb-4  ">
               <Card
                 className="mb-4"
                 className="profile-cards-right"
