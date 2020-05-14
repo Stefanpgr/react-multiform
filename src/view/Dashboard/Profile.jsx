@@ -52,10 +52,23 @@ const EditProfile = () => {
       <h1>TEST</h1>
       <div style={{ width: "97%", margin: "auto" }}>
         <Container fluid>
-          <SubHead>Personal info</SubHead>
           <Row>
             {/* <div class="w-100 d-none d-md-block"></div> */}
             <Col md="8" className="">
+              <div>
+                {" "}
+                <SubHead>Personal info</SubHead>
+                <p style={{ flex: "1" }}>
+                  <span className="mr-1">
+                    <FontAwesomeIcon
+                      style={{ color: "#585858", fontSize: "12px" }}
+                      icon={["fas", "edit"]}
+                    />
+                  </span>
+                  Edit Profile
+                </p>
+              </div>
+
               <Row>
                 <Col></Col>
                 <Col></Col>
@@ -134,7 +147,7 @@ const EditProfile = () => {
               <FontAwesomeIcon icon={["fas", "envelope"]} />
             </Col>
 
-            <Col md="4" className=" mb-4 m-view-center">
+            <Col md="4" className=" mb-4 ">
               <Card
                 className="mb-4"
                 className="profile-cards-right"
