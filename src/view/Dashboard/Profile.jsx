@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { Layout, Timeline } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+
 const layout = {
   labelCol: { span: 24 },
   wrapperCol: { span: 24 },
@@ -15,14 +16,14 @@ const SubHead = styled.p`
   color: #00204f;
 `;
 
-const ProfilePicWrap = styled.div`
-  width: 255px;
-  overflow: hidden;
-
-  height: 223px;
-  background: #ffffff;
-  border-radius: 10px;
-  opacity: 1;
+const LoanStatus = styled.div`
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 15px #0000006e;
+  border-radius: 27px;
+  color: #00204f;
+  width: 140px;
+  height: 27px;
+  font-size: 12px;
 `;
 
 const KcsWrap = styled.div`
@@ -77,16 +78,96 @@ const EditProfile = () => {
               <Card
                 style={{
                   backgroundColor: "#5b54ff",
-                  height: "140px",
+                  height: "155px",
                   border: "none",
-                  opacity: "0.07",
                 }}
-                className="mb-4"
+                className="mb-4 bg-img-profile"
               >
-                <Row>
-                  <Col></Col>
-                  <Col></Col>
-                </Row>
+                <Card.Body>
+                  {" "}
+                  <Row>
+                    <Col md="2">
+                      <div>
+                        <img
+                          src="https://res.cloudinary.com/kwaba/image/upload/v1589548933/Group_1819_usqxwo.png"
+                          alt="profile image"
+                          style={{ width: "125px", height: "125px" }}
+                        />
+                        <div
+                          style={{
+                            width: "22px",
+                            height: "21px",
+                            backgroundColor: "#ffff",
+                            borderRadius: "50%",
+
+                            position: "relative",
+                            top: "-2rem",
+                            left: "4.5rem",
+                          }}
+                          className="text-center"
+                        >
+                          <img
+                            style={{ width: "11px", height: "11px" }}
+                            src="https://res.cloudinary.com/kwaba/image/upload/v1589549432/Icon_feather-image_uxxoye.svg"
+                          />
+                        </div>
+                      </div>
+                    </Col>
+                    <Col md="4">
+                      <div className="line-height-5 mt-5 text-white">
+                        <p style={{ fontSize: "27px", fontWeight: "medium" }}>
+                          Joseph Oluwale
+                        </p>
+                        <small>
+                          {" "}
+                          <span className="pr-2">
+                            <FontAwesomeIcon
+                              style={{ color: "#51A4FB", fontSize: "12px" }}
+                              icon={["fas", "envelope"]}
+                            />
+                          </span>
+                          joseph_oluwale@gmail.com
+                        </small>
+                      </div>
+                    </Col>
+                    <Col md="2">
+                      <div
+                        className="text-white"
+                        style={{
+                          marginTop: "4.5rem",
+                        }}
+                      >
+                        <small>
+                          <span className="pr-2">
+                            <FontAwesomeIcon
+                              style={{ color: "#51A4FB", fontSize: "11px" }}
+                              icon={["fas", "phone-alt"]}
+                            />
+                          </span>
+                          081928394302
+                        </small>
+                      </div>
+                    </Col>
+                    <Col md="4">
+                      <LoanStatus
+                        className="text-center"
+                        style={{
+                          marginTop: "4.2rem",
+                        }}
+                      >
+                        <p className="pt-1">
+                          <span className="pr-1">
+                            <FontAwesomeIcon
+                              style={{ color: "green", fontSize: "12px" }}
+                              icon={["far", "check-circle"]}
+                            />
+                          </span>
+                          Loan approved
+                        </p>
+                      </LoanStatus>
+                    </Col>
+                  </Row>
+                </Card.Body>
               </Card>
 
               <Row className="mb-4">
@@ -178,15 +259,13 @@ const EditProfile = () => {
                   </Row>
                 </Card.Body>
               </Card>
-
-              <FontAwesomeIcon icon={["fas", "envelope"]} />
             </Col>
 
             <Col md="4" className=" mb-4  ">
               <Card
                 className="mb-4"
                 className="profile-cards-right"
-                style={{ backgroundColor: "#00204F", height: "140px" }}
+                style={{ backgroundColor: "#00204F", height: "155px" }}
               >
                 <Card.Body>
                   {/* <ProfilePicWrap> */}
@@ -233,11 +312,17 @@ const EditProfile = () => {
                         className="mr-1"
                       />
                     </div>
-                    <div className="text-center" style={{}}>
-                      <FontAwesomeIcon
+                    <div className="text-center text-white" style={{}}>
+                      {/* <FontAwesomeIcon
                         className="text-white"
                         icon={["fas", "minus"]}
-                      />
+                      /> */}
+                      <h4 className="line-height-5 text-white  mt-3">
+                        <strong>920</strong>
+                      </h4>
+                      <p>
+                        <strong>1000</strong>
+                      </p>
                     </div>
                   </Container>
                   {/* </ProfilePicWrap> */}

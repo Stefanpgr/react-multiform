@@ -13,13 +13,15 @@ import Application from "./view/ApplicationPage/Index";
 import Profile from "./view/Dashboard/Profile";
 import EditProfile from "./view/Dashboard/EditProfile";
 import Dashboard from "./view/Dashboard/Dashboard";
+import Documents from "./view/Dashboard/Documents";
 import Test from "./view/ApplicationPage/Test";
 import Signup from "./view/Signup";
 import SignupSuccess from "./view/Dashboard/pages/SignupSuccess";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
 
-library.add(fas);
+library.add(fas, far);
 
 function App() {
   // const loading = () => <div>loading...</div>;
@@ -41,6 +43,7 @@ function App() {
             />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/dashboard/profile" component={Profile} />
+            <Route exact path="/dashboard/docs" component={Documents} />
             <DashboardLayout />
           </Switch>
         </BrowserRouter>

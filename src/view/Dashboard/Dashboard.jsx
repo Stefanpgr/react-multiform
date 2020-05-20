@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Container, Row, Col } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
 const Dashboard = () => {
   return (
@@ -9,24 +9,30 @@ const Dashboard = () => {
         <Row>
           <Col md="5">
             <Card
-              className="bg-primary"
+              className="bg-img-profile"
               style={{
                 width: "100%",
                 margin: "auto",
                 height: "27vh",
                 boxShadow: "0px 3px 20px #5B55FF26",
-                border: "1px solid #C9C7FF",
+                border: "none",
+                backgroundColor: "#5b54ff",
                 // opacity: "0.07",
               }}
             >
               <div className="card-body">
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center ">
                   <Col className="offset-md-1" md="5">
-                    <div className="text-center text-white">
-                      <small className="text-center text-muted">
+                    <div className="text-center text-white mt-3">
+                      <small
+                        style={{ color: "#C2BFFF" }}
+                        className="text-center"
+                      >
                         Next payment amount
                       </small>
-                      <h5 className="text-center text-white">N83,333</h5>
+                      <h5 className="text-center text-white">
+                        <strong>N83,333</strong>
+                      </h5>
                     </div>
                   </Col>
                   <Col md="">
@@ -35,16 +41,21 @@ const Dashboard = () => {
                       style={{
                         height: "5rem",
                         width: "1px",
-                        marginLeft: "-15px",
+                        marginLeft: "-10px",
                       }}
                     ></div>
                   </Col>
-                  <Col md="5">
-                    <div>
-                      <small className="text-center text-muted">
+                  <Col md="6">
+                    <div className="mt-3">
+                      <small
+                        style={{ color: "#C2BFFF" }}
+                        className="text-center "
+                      >
                         Next payment due date
                       </small>
-                      <h5 className="text-center text-white">4, May 2020</h5>
+                      <h5 className="text-center text-white">
+                        <strong>4, May 2020</strong>
+                      </h5>
                     </div>
                   </Col>
                 </Row>
@@ -53,7 +64,7 @@ const Dashboard = () => {
 
             <Card
               style={{
-                width: "75%",
+                width: "81%",
                 margin: "auto",
                 position: "relative",
                 top: "-3rem",
@@ -64,29 +75,36 @@ const Dashboard = () => {
               <div className="card-body">
                 <Row className="justify-content-md-center">
                   <Col className="" md="6">
-                    <div className="">
-                      <div className="">21 days</div>
-                      <small className="text-muted">Next payment amount</small>
+                    <div className="" style={{ lineHeight: "50%" }}>
+                      <div className="text-blue">
+                        <h6>
+                          <strong>21 days</strong>
+                        </h6>
+                      </div>
+                      <small className="text-muted">Next Loan payment</small>
                     </div>
                   </Col>
 
                   <Col md="6">
-                    <div>
+                    <div style={{ lineHeight: "50%" }}>
                       <h6
-                        className="pb-0"
+                        className="pb-0 text-blue"
                         stlye={{ fontWeight: "3rem", fontSize: "10rem" }}
                       >
-                        N750,001
+                        <strong>N750,001</strong>
                       </h6>
-                      <small className="text-muted">
-                        Next payment due date
+                      <small
+                        style={{ fontSize: "10px" }}
+                        className="text-muted"
+                      >
+                        Remaining payment balance
                       </small>
                     </div>
                   </Col>
                 </Row>
-                <p className="mb-1  mt-4 pb-1">
-                  15%{" "}
-                  <span className="text-muted">
+                <p className="mb-1  mt-4 pb-1 text-blue">
+                  <strong>15%</strong>
+                  <span className="text-muted ml-1">
                     <small>Percent complete</small>
                   </span>
                   <Progress percent={15} />
@@ -118,21 +136,63 @@ const Dashboard = () => {
                 <hr />
                 <Card
                   style={{
-                    height: "47px",
+                    height: "59px",
                     boxShadow: " 0px 3px 15px #0000001A",
                     borderRadius: "10px",
                     border: "none",
                   }}
                   className="mb-3"
-                ></Card>
+                >
+                  <Card.Body>
+                    <Row>
+                      <Col md="4">
+                        <div style={{ lineHeight: "43%" }}>
+                          <p className="text-blue" stlye={{ fontSize: "12px" }}>
+                            April Payment
+                          </p>
+                          <small className="text-muted">3 - 03 -2020</small>
+                        </div>
+                      </Col>
+                      <Col md="6">
+                        <div className="tag tag-fail">failed</div>
+                      </Col>
+                      <Col md="2">
+                        <p style={{ fontSize: "12px" }} className="text-blue">
+                          <strong>N83,333</strong>
+                        </p>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
                 <Card
                   style={{
-                    height: "47px",
+                    height: "59px",
                     boxShadow: " 0px 3px 15px #0000001A",
                     borderRadius: "10px",
                     border: "none",
                   }}
-                ></Card>
+                >
+                  <Card.Body>
+                    <Row>
+                      <Col md="4">
+                        <div style={{ lineHeight: "43%" }}>
+                          <p className="text-blue" stlye={{ fontSize: "12px" }}>
+                            March Payment
+                          </p>
+                          <small className="text-muted">3 - 03 -2020</small>
+                        </div>
+                      </Col>
+                      <Col md="6">
+                        <div className="tag tag-success">paid</div>
+                      </Col>
+                      <Col md="2">
+                        <p style={{ fontSize: "12px" }} className="text-blue">
+                          <strong>N83,333</strong>
+                        </p>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+                </Card>
               </div>
             </Card>
           </Col>
