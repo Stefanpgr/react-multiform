@@ -22,7 +22,7 @@ const TopNav = () => {
                   <Nav.Link href="/about" className="px-3">About</Nav.Link>
                   <Nav.Link  href="/faq" className="px-3">FAQ</Nav.Link>
                   <Nav.Link href="/login" className="px-3">Login</Nav.Link>
-                  <Nav.Link href="/register"  className="btn btn-outline-primary px-3 mx-2">Register</Nav.Link>
+                  <Nav.Link href="/signup"  className="btn btn-outline-primary px-3 mx-2">Register</Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>

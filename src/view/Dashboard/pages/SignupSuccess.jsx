@@ -16,7 +16,6 @@ const Btn = styled.button`
 const SignupSuccess = () => {
   return (
     <div>
-      <h1>Navbar</h1>
       <Container className=" bg-white">
         <div className="text-center mt-5">
           <img
