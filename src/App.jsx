@@ -15,7 +15,7 @@ import EditProfile from "./view/Dashboard/EditProfile";
 import Dashboard from "./view/Dashboard/Dashboard";
 import Documents from "./view/Dashboard/Documents";
 import Test from "./view/ApplicationPage/Test";
-import Signup from "./view/Signup";
+import Signup from "./view/Auth/Signup/Index";
 import SignupSuccess from "./view/Dashboard/pages/SignupSuccess";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
