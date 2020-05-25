@@ -20,6 +20,7 @@ import SignupSuccess from "./view/Dashboard/pages/SignupSuccess";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
+import TestUpload from "./utils/TestUpload";
 
 library.add(fas, far);
 
@@ -44,6 +45,7 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route exact path="/dashboard/docs" component={Documents} />
+            <Route exact path="/upload" component={TestUpload} />
             <DashboardLayout />
           </Switch>
         </BrowserRouter>
