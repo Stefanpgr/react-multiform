@@ -5,12 +5,12 @@ import { ReactComponent as Logo } from '../assets/img/logo.svg'
 const TopNav = () => {
 
     return (
-            <Navbar collapseOnSelect expand="md" bg="white" variant="light" className="px-4 px-lg-5 py-0">
+            <Navbar collapseOnSelect expand="md" bg="white" variant="light" className="px-4 px-lg-5 py-0 sticky-top">
               <Navbar.Brand href="/" className="py-0">
                 <Logo
                   alt="RentCrowdy"
                   width="140"
-                  height="75"
+                  height="70"
                   className="d-inline-block align-top"
                 />
               </Navbar.Brand>

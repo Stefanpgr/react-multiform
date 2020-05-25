@@ -1,10 +1,14 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
+import UserTopNav from "../UserTopNav";
+
 const Dashboard = () => {
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
-      <h1>TEST</h1>
+      
+      <UserTopNav />
+
       <Container>
         <Row>
           <Col md="5">
