@@ -21,7 +21,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import TestUpload from "./utils/TestUpload";
-
+import { ProtectedRoute } from "./protected.routes";
 library.add(fas, far);
 
 function App() {
@@ -34,18 +34,27 @@ function App() {
             {/* <Route exact path="/test" component={AppSidebar} /> */}
             <Route exact path="/signup" component={Signup} />
             {/* <Route exact path="/test" component={Test} /> */}
-            <Route exact path="/apply" component={Application} />
+            <ProtectedRoute exact path="/apply" component={Application} />
             <Route exact path="/test" component={Test} />
-            <Route exact path="/success" component={SignupSuccess} />
+            <ProtectedRoute exact path="/success" component={SignupSuccess} />
             <Route
               exact
               path="/application-process"
               component={ApplicationStage}
             />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/dashboard/profile" component={Profile} />
-            <Route exact path="/dashboard/docs" component={Documents} />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute
+              exact
+              path="/dashboard/profile"
+              component={Profile}
+            />
+            <ProtectedRoute
+              exact
+              path="/dashboard/docs"
+              component={Documents}
+            />
             <Route exact path="/upload" component={TestUpload} />
+            <Route exact path="*" component={() => "404 NOT FOUND"} />
             <DashboardLayout />
           </Switch>
         </BrowserRouter>

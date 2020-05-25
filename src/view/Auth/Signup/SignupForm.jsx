@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Col, Row, Container, Image } from "react-bootstrap";
 import { Form, Input, Select, Button, Checkbox, Radio } from "antd";
 import styled from "styled-components";
-
 const StyledRadio = styled.button`
   background: ${(props) => (props.switch === props.stat ? "#e7f7ff" : 0)};
 
@@ -33,7 +32,7 @@ const SignupForm = (props) => {
                   <label className="text-muted">First Name</label>
 
                   <Form.Item
-                    name="first_name"
+                    name="firstname"
                     rules={[
                       {
                         required: true,
@@ -51,7 +50,7 @@ const SignupForm = (props) => {
                 <Col md="6" lg="5" className="mb-0">
                   <label className="text-muted">Last Name</label>
                   <Form.Item
-                    name="last_name"
+                    name="lastname"
                     rules={[
                       {
                         required: true,
