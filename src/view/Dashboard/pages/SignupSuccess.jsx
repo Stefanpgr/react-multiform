@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Button } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 const Btn = styled.button`
   width: 146px;
   height: 44px;
@@ -22,6 +22,10 @@ const SignupSuccess = () => {
             src={require("../../../assets/img/signup-success.svg")}
             width="320"
           />
+          {/* <img
+            src="https://res.cloudinary.com/kwaba/image/upload/v1590424411/Group_1755_kdwzda.svg"
+            width="320"
+          /> */}
           <h6
             style={{ color: "#5B55FF", fontWeight: "bold", fontSize: "35px" }}
           >
@@ -34,7 +38,9 @@ const SignupSuccess = () => {
             Please check your email to verify your account
           </h6>
 
-          <Btn>Login</Btn>
+          <Link to="/dashboard">
+            <Btn>Login</Btn>
+          </Link>
         </div>
       </Container>
     </div>
