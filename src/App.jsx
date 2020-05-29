@@ -17,6 +17,7 @@ import Dashboard from "./view/Dashboard/Dashboard";
 import Documents from "./view/Dashboard/Documents";
 import Test from "./view/ApplicationPage/Test";
 import Signup from "./view/Auth/Signup/Index";
+import Login from "./view/Auth/Login";
 import SignupSuccess from "./view/Dashboard/pages/SignupSuccess";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
@@ -34,6 +35,7 @@ function App() {
           <Switch>
             {/* <Route exact path="/test" component={AppSidebar} /> */}
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             {/* <Route exact path="/test" component={Test} /> */}
             <ProtectedRoute exact path="/apply" component={Application} />
             <Route exact path="/test" component={Test} />

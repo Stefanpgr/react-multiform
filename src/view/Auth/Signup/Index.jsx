@@ -24,6 +24,4 @@ const Signup = ({ requestSignup, history }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
-
-export default connect(mapStateToProps, { requestSignup })(Signup);
+export default connect(null, { requestSignup })(Signup);

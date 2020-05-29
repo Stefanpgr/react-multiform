@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Container, Image } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import { Form, Input, Select, Button, Checkbox, Radio } from "antd";
 import styled from "styled-components";
 const StyledRadio = styled.button`

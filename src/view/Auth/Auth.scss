@@ -1,61 +1,66 @@
-.auth{
+.auth {
 
-    .left-cont{
+    .left-cont {
 
-        background-color: #E7F7FF;        
+        background-color: #E7F7FF;
         background-image: url('/assets/img/signupimg.svg');
         background-repeat: no-repeat;
-        background-position: center center; 
+        background-position: center center;
         background-size: 145% 145%;
     }
 
-    .btn-outline-primary{
+    .btn-outline-primary {
         border-color: #5B55FF;
         color: #5B55FF !important;
 
-        &:hover{
+        &:hover {
             color: #fff !important;
             background-color: #5B55FF;
         }
     }
 
-    .text-primary{
+    .text-primary {
         color: #5CC6FF !important;
     }
 
-    .ant-radio-group{
+    .ant-radio-group {
         width: 100%;
-        
-        .ant-radio-button-wrapper-checked:not([class*=" ant-radio-button-wrapper-disabled"]).ant-radio-button-wrapper{
+
+        .ant-radio-button-wrapper-checked:not([class*=" ant-radio-button-wrapper-disabled"]).ant-radio-button-wrapper {
             border-color: #5B55FF;
         }
 
-        .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled){
+        .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
             color: #5B55FF !important;
         }
 
-        .ant-radio-button-wrapper{
-        
-            padding:2px 19px 33px !important;
+        .ant-radio-button-wrapper {
+
+            padding: 2px 19px 33px !important;
             min-width: 40%;
             color: #878787;
 
 
-            input[type="radio"]{
+            input[type="radio"] {
                 opacity: 1;
                 outline: inherit;
             }
 
-            span:not(.ant-radio-button){
+            span:not(.ant-radio-button) {
                 padding-left: 10px;
             }
 
         }
 
-        .ant-radio-button-wrapper:nth-child(2){
+        .ant-radio-button-wrapper:nth-child(2) {
             min-width: 45%;
 
             float: right;
         }
     }
+
+    .bg-img-login {
+        background-image: url('https://res.cloudinary.com/kwaba/image/upload/v1590747119/loginsvg.svg');
+    }
+
 }
