@@ -3,10 +3,9 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
 import UserTopNav from "../UserTopNav";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
-      
       <UserTopNav />
 
       <Container>
@@ -106,13 +105,13 @@ const Dashboard = () => {
                     </div>
                   </Col>
                 </Row>
-                <p className="mb-1  mt-4 pb-1 text-blue">
+                <div className="mb-1  mt-4 pb-1 text-blue">
                   <strong>15%</strong>
                   <span className="text-muted ml-1">
                     <small>Percent complete</small>
                   </span>
                   <Progress percent={15} />
-                </p>
+                </div>
               </div>
             </Card>
           </Col>

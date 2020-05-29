@@ -28,9 +28,7 @@ export const requestSignup = (val, history) => async (dispatch) => {
 
 		dispatch({
 			type: "LOGIN_USER",
-			payload: {
-				...data
-			},
+			payload: data.user,
 		});
 		// toastr.success("Success", "Account Created Successfully");
 		history.push("/success");

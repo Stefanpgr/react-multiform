@@ -7,7 +7,8 @@ import { Provider } from "react-redux";
 import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import "./App.css";
-import DashboardLayout from "./view/Dashboard/DashboardLayout";
+import { Page404 } from "./view/Dashboard/pages/404";
+import AppSuccess from "./view/Dashboard/pages/AppSuccess";
 import ApplicationStage from "./view/Dashboard/ApplicationStage";
 import Application from "./view/ApplicationPage/Index";
 import Profile from "./view/Dashboard/Profile";
@@ -53,9 +54,13 @@ function App() {
               path="/dashboard/docs"
               component={Documents}
             />
+            <ProtectedRoute
+              exact
+              path="/application-success"
+              component={AppSuccess}
+            />
             <Route exact path="/upload" component={TestUpload} />
-            <Route exact path="*" component={() => "404 NOT FOUND"} />
-            <DashboardLayout />
+            <Route exact path="*" component={Page404} />
           </Switch>
         </BrowserRouter>
       </PersistGate>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Container, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import UserTopNav from "../../UserTopNav";
 const Btn = styled.button`
   width: 146px;
   height: 44px;
@@ -16,8 +17,9 @@ const Btn = styled.button`
 const SignupSuccess = () => {
   return (
     <div>
+      <UserTopNav />
       <Container className=" bg-white">
-        <div className="text-center mt-5">
+        <div className="text-center " style={{ marginTop: "5rem" }}>
           <img
             src={require("../../../assets/img/signup-success.svg")}
             width="320"

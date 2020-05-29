@@ -1,25 +1,28 @@
 import axios from "axios";
-import { toastr } from "react-redux-toastr";
+import {
+  toastr
+} from "react-redux-toastr";
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
 const url = "https://kwaba.com.ng";
 // const url = "http://localhost:8888";
 // const token =sessionStorage.getItem("token")
 
-const withdraw = id => async dispatch => {
-  console.log(sessionStorage.getItem("token"), "token");
+const sendApplication = val => async dispatch => {
   try {
-    const { data, status } = await axios.get(
-      `${url}/api/investor/withdraw/${id}`,
-      {
-        headers: {
-          "x-auth-token": sessionStorage.getItem("token")
-        }
-      }
+    const {
+      data,
+      status
+    } = await axios.post(
+      `${url}/api/investor/withdraw`,
+      val
     );
     // if (!data) throw new Error();
     if (status === 200) {
-      toastr.success("Request Sent Succesfully, please check your mail.");
+      dispatch({
+        type: "ADD_APPL",
+        payload: data,
+      });
     } else {
       throw new Error();
     }

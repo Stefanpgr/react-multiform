@@ -12,6 +12,7 @@ import AppBar from "./AppProgressBar";
 import CongratsPay from "./pages/CongratsPay";
 import SetupPay from "./pages/SetupPay";
 import RemitaDoc from "./pages/Remita";
+import UserTopNav from "../UserTopNav";
 
 const { Footer, Header } = Layout;
 const ApplicationStage = () => {
@@ -91,7 +92,7 @@ const ApplicationStage = () => {
   };
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
-      <Header style={{ padding: 0 }} />
+      <UserTopNav />
       <div style={{ width: "100%", margin: "auto" }}>
         <Container
           className="mt-5 mb-3"
