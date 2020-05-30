@@ -6,6 +6,7 @@ import { Input } from "antd";
 import { SearchOutlined, BellOutlined } from "@ant-design/icons";
 import "./UserTopNav.scss";
 import { withRouter } from "react-router";
+import {NavLink} from 'react-router-dom';
 
 const UserTopNav = (props) => {
   const { location, history } = props;
@@ -37,31 +38,46 @@ const UserTopNav = (props) => {
             variant="light"
             className="second-nav px-4"
           >
-            <Nav.Link href="/dashboard" className="pl-3 pr-4 active">
-              <i className="kw kw-dash"></i> Dashboard
-            </Nav.Link>
+            <Nav.Item>
+              <NavLink to="/dashboard" exact={true} activeClassName='active' className="nav-link pl-3 pr-4">
+                <i className="kw kw-dash"></i> Dashboard
+              </NavLink>
+            </Nav.Item>
 
             <Navbar.Toggle
               aria-controls="responsive-navbar-nav"
               className="bg-white"
             />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav.Link href="/dashboard/profile" className="pl-3 pr-4">
-                {" "}
-                <i className="kw kw-renter"></i> Renter Profile
-              </Nav.Link>
-              <Nav.Link href="/dashboard/docs" className="pl-3 pr-4">
-                {" "}
-                <i className="kw kw-app"></i> Documents
-              </Nav.Link>
-              <Nav.Link href="/dashboard/referral" className="pl-3 pr-4">
-                {" "}
-                <i className="kw kw-ref"></i> Referrals
-              </Nav.Link>
-              <Nav.Link href="/dashboard/settings" className="pl-3 pr-4">
-                {" "}
-                <i className="kw kw-setting"></i> Settings
-              </Nav.Link>
+
+              <Nav.Item>
+                <NavLink to="/dashboard/profile" exact={true} activeClassName='active' className="nav-link pl-3 pr-4">
+                  {" "}
+                  <i className="kw kw-renter"></i> Renter Profile
+                </NavLink>
+              </Nav.Item>
+
+              <Nav.Item>
+                <NavLink to="/dashboard/docs" exact={true} activeClassName='active' className="nav-link pl-3 pr-4">
+                  {" "}
+                  <i className="kw kw-app"></i> Documents
+                </NavLink>
+              </Nav.Item>
+
+              <Nav.Item>
+                <NavLink to="/dashboard/referral" exact={true} activeClassName='active' className="nav-link pl-3 pr-4">
+                  {" "}
+                  <i className="kw kw-ref"></i> Referrals
+                </NavLink>
+              </Nav.Item>
+
+              <Nav.Item>
+                <NavLink to="/dashboard/settings" exact={true} activeClassName='active' className="nav-link pl-3 pr-4">
+                  {" "}
+                  <i className="kw kw-setting"></i> Settings
+                </NavLink>
+              </Nav.Item>
+
             </Navbar.Collapse>
           </Navbar>
         </div>
