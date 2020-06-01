@@ -19,7 +19,7 @@ const Box = styled.div`
 	left: 650px;
 	width: 546px;
 	min-height: 100px;
-	
+
 	background: ${(props) => (props.stat === "I'm still searching" ? '#FFFF' : '#edf3f8 0% 0% no-repeat padding-box')};
 
 	border: ${(props) => (props.stat === "I'm still searching" ? '1px solid #FF6C6C' : '1px solid #51a4fb')};
@@ -85,57 +85,56 @@ const Form4 = ({ next, prev, payment, rent }) => {
 
 	const RC = () => {
 		return (
-		<div>
+			<div>
 				<Form.Item name={[ 'rent_collector' ]} label="Who did you pay to?" rules={[ { required: true } ]}>
-						<Radio.Group
-							onChange={(e) => {
-								setRc(e.target.value);
-							}}
-						>
-							{/* rc => rent colector */}
+					<Radio.Group
+						onChange={(e) => {
+							setRc(e.target.value);
+						}}
+					>
+						{/* rc => rent colector */}
 
-							<StyledRadio type="button" className="" switch="Landlord" stat={rc}>
-								<Radio className="fg" value="Landlord">
-									Landlord
-								</Radio>
-							</StyledRadio>
+						<StyledRadio type="button" className="" switch="Landlord" stat={rc}>
+							<Radio className="fg" value="Landlord">
+								Landlord
+							</Radio>
+						</StyledRadio>
 
-							<StyledRadio type="button" className="mr-3" switch="Caretaker" stat={rc}>
-								<Radio value="Caretaker">Caretaker</Radio>
-							</StyledRadio>
+						<StyledRadio type="button" className="mr-3" switch="Caretaker" stat={rc}>
+							<Radio value="Caretaker">Caretaker</Radio>
+						</StyledRadio>
 
-							<StyledRadio type="button" switch="Agent" stat={rc}>
-								<Radio value="Agent">Agent</Radio>
-							</StyledRadio>
-						</Radio.Group>
-					</Form.Item>
-		</div>
+						<StyledRadio type="button" switch="Agent" stat={rc}>
+							<Radio value="Agent">Agent</Radio>
+						</StyledRadio>
+					</Radio.Group>
+				</Form.Item>
+			</div>
 		);
 	};
 
 	const AccmStatus = () => {
-		if (accStat === "I'm still searching"){
-			return(
+		if (accStat === "I'm still searching") {
+			return (
 				<div>
-				<div className="reject-stat-child">!</div>
-			</div>
-			)
-		
-		}else if(accStat === 'Want to pay for a new place'){
-			return(
-<div>
-<Form.Item
+					<div className="reject-stat-child">!</div>
+				</div>
+			);
+		} else if (accStat === 'Want to pay for a new place') {
+			return (
+				<div>
+					<Form.Item
 						name={[ 'property_address' ]}
 						label="What’s the address of the property you just found?"
 						rules={[ { required: true } ]}
 					>
-						<Input  style={{width: '100%'}}/>
+						<Input style={{ width: '100%' }} />
 					</Form.Item>
 					<RC />
-</div>
-			)
-		} else{
-			return(
+				</div>
+			);
+		} else {
+			return (
 				<div>
 					<Form.Item
 						name={[ 'last_rent_amount' ]}
@@ -145,7 +144,7 @@ const Form4 = ({ next, prev, payment, rent }) => {
 						<Input addonBefore="₦" />
 					</Form.Item>
 
-				<RC />
+					<RC />
 
 					<Form.Item name={[ 'pay_type' ]} label="How did you pay?" rules={[ { required: true } ]}>
 						<Select size="large" style={{ width: '96%' }} placeholder="Select how you paid">
@@ -154,16 +153,15 @@ const Form4 = ({ next, prev, payment, rent }) => {
 						</Select>
 					</Form.Item>
 				</div>
-			)
+			);
 		}
-	
 	};
 
 	const onFinish = (values) => {
 		console.log('Received values of form: ', values);
 		dispatch({
 			type: 'ADD_APPL',
-			data: { rent: { ...values }, page: 3 }
+			data: { rent_info: { ...values }, page: 3 }
 		});
 		next();
 		// message.success("Processing complete!")
@@ -242,22 +240,20 @@ const Form4 = ({ next, prev, payment, rent }) => {
 				</Select>
 			</Form.Item> */}
 
-<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?">
-<Space size='small'>
-				<Select size="large" value={accStat} style={{ width: '105%' }} placeholder={accStat} disabled>
-					<Select.Option value="card">Card</Select.Option>
-					<Select.Option value="bank">Bank Transfer</Select.Option>
-				</Select>
-				<a>
-				<span className="ml-3">
-					<small onClick={() => next(0)}>Change?</small>
-				</span>
-			</a>
-</Space>
+			<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?">
+				<Space size="small">
+					<Select size="large" value={accStat} style={{ width: '105%' }} placeholder={accStat} disabled>
+						<Select.Option value="card">Card</Select.Option>
+						<Select.Option value="bank">Bank Transfer</Select.Option>
+					</Select>
+					<a>
+						<span className="ml-3">
+							<small onClick={() => next(0)}>Change?</small>
+						</span>
+					</a>
+				</Space>
 			</Form.Item>
 
-		
-			
 			{/* {accStat === "I'm still searching" ? <Reject /> : ''} */}
 			<Box stat={accStat}>
 				<Container className="mt-3 ml-3">

@@ -51,7 +51,7 @@ const Form6 = ({ prev, application }) => {
 			data: values,
 			page: 5
 		});
-		console.log(application);
+		console.log(application, 'APPLICATION');
 	};
 
 	return (
