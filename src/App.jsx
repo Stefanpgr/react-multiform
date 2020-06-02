@@ -24,6 +24,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import TestUpload from "./utils/TestUpload";
 import { ProtectedRoute } from "./protected.routes";
+import Home from "./view/General/Home";
 library.add(fas, far);
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
               component={AppSuccess}
             />
             <Route exact path="/upload" component={TestUpload} />
+            <Route exact path="/" component={Home} />
             <Route exact path="*" component={Page404} />
           </Switch>
         </BrowserRouter>

@@ -49,7 +49,7 @@ const TopNav = () => {
                   </Nav.Item>
                   
                   <Nav.Item>
-                    <NavLink to="/signup" exact={true}  activeClassName='active' className="nav-link btn btn-outline-primary px-3 mx-2">
+                    <NavLink to="/signup" exact={true}  activeClassName='active' className="nav-link btn btn-outline-primary bg-white text-dark px-3 mx-2">
                       Register
                     </NavLink>
                   </Nav.Item>
