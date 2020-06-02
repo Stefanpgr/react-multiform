@@ -10,7 +10,7 @@ const layout = {
 	labelCol: { span: 18 },
 	wrapperCol: { span: 16 }
 };
-const Form3 = ({ next, prev, finance, banks }) => {
+const Form3 = ({ next, prev, finance_info, banks }) => {
 	const dateFormat = 'DD/MM/YYYY';
 	const [ form ] = Form.useForm();
 	const dispatch = useDispatch();
@@ -64,14 +64,15 @@ const Form3 = ({ next, prev, finance, banks }) => {
 
 	useEffect(
 		() => {
+			window.scrollTo(0, 0);
 			console.log(banks);
-			if (finance) {
+			if (finance_info) {
 				form.setFieldsValue({
-					salary_accnum: finance.salary_accnum,
-					bank_name: finance.bank_name,
-					bvn: finance.bvn,
-					pay_date: finance.pay_date,
-					dob: moment(finance.dob)
+					salary_accnum: finance_info.salary_accnum,
+					bank_name: finance_info.bank_name,
+					bvn: finance_info.bvn,
+					pay_date: finance_info.pay_date,
+					dob: moment(finance_info.dob)
 				});
 			}
 		},
@@ -154,7 +155,7 @@ const Form3 = ({ next, prev, finance, banks }) => {
 };
 
 const mapStateToProps = (state) => ({
-	finance: state.application.finance,
+	finance_info: state.application.finance_info,
 	banks: state.paystack.banks
 });
 

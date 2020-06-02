@@ -3,16 +3,17 @@ import { Form, Input, Space } from 'antd';
 // import CurrencyFormat from 'react-currency-format'
 import { connect, useDispatch } from 'react-redux';
 import { BottomNav } from '../BottomNav';
+import { sendApplication } from '../../../actions/application';
 // import { Col, Row } from 'react-bootstrap';
 
 const layout = {
 	labelCol: { span: 16 },
 	wrapperCol: { span: 16 }
 };
-const Form6 = ({ prev, application }) => {
+const Form6 = ({ prev, application, user, sendApplication }) => {
 	const [ form ] = Form.useForm();
 	const dispatch = useDispatch();
-	const { referee } = application;
+	const { referee_details } = application;
 
 	const validateMessages = {
 		required: 'This field is required!',
@@ -27,13 +28,14 @@ const Form6 = ({ prev, application }) => {
 
 	useEffect(
 		() => {
-			if (referee) {
+			window.scrollTo(0, 0);
+			if (referee_details) {
 				form.setFieldsValue({
-					full_name: referee.full_name,
-					address: referee.address,
-					phone: referee.phone,
-					email: referee.email,
-					relationship: referee.relationship
+					full_name: referee_details.full_name,
+					address: referee_details.address,
+					phone: referee_details.phone,
+					email: referee_details.email,
+					relationship: referee_details.relationship
 				});
 			}
 		},
@@ -41,17 +43,25 @@ const Form6 = ({ prev, application }) => {
 	);
 
 	const onFinish = (fielValues) => {
-		console.log('Received values of form: ', fielValues);
+		// console.log('Received values of form: ', fielValues);
 
 		const values = {
-			referee: { ...fielValues }
+			referee_details: { ...fielValues }
 		};
 		dispatch({
 			type: 'ADD_APPL',
 			data: values,
 			page: 5
 		});
-		console.log(application, 'APPLICATION');
+		sendApplication({
+			id: user._id,
+			firstname: user.firstname,
+			lastname: user.lastname,
+			email: user.email,
+			...application,
+			...values
+		});
+		console.log({ ...application, ...values }, 'APPLICATION');
 	};
 
 	return (
@@ -90,7 +100,8 @@ const Form6 = ({ prev, application }) => {
 };
 
 const mapStateToProps = (state) => ({
-	application: state.application
+	application: state.application,
+	user: state.user
 });
 
-export default connect(mapStateToProps)(Form6);
+export default connect(mapStateToProps, { sendApplication })(Form6);

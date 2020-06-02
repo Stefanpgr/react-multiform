@@ -42,10 +42,10 @@ const layout = {
 	wrapperCol: { span: 16 }
 };
 
-const Form4 = ({ next, prev, payment, rent }) => {
+const Form4 = ({ next, prev, payment_option, rent_info }) => {
 	// console.log(props);
 	const [ accStat, setAcc ] = useState(1);
-	const [ rc, setRc ] = useState('Landlord');
+	const [ rc, setRc ] = useState('');
 	const dispatch = useDispatch();
 	const [ form ] = Form.useForm();
 	const validateMessages = {
@@ -63,20 +63,21 @@ const Form4 = ({ next, prev, payment, rent }) => {
 		() => {
 			// const data = JSON.parse(localStorage.getItem('rent'));
 			// const test = JSON.parse(localStorage.getItem('payment'))
-			if (payment) {
-				form.setFieldsValue({ acct_stat_show: payment.acct_stat });
-				setAcc(payment.acct_stat);
+			window.scrollTo(0, 0);
+			if (payment_option) {
+				form.setFieldsValue({ acct_stat_show: payment_option.acct_stat });
+				setAcc(payment_option.acct_stat);
 			}
 
-			if (rent) {
+			if (rent_info) {
 				form.setFieldsValue({
-					acct_stat_show: payment.acct_stat,
-					home_address: rent.home_address,
-					last_rent_amount: rent.last_rent_amount || '',
-					duration: rent.duration,
-					property_address: rent.property_address || '',
-					rent_collector: rent.rent_collector,
-					pay_type: rent.pay_type
+					acct_stat_show: payment_option.acct_stat,
+					home_address: rent_info.home_address,
+					last_rent_amount: rent_info.last_rent_amount || '',
+					duration: rent_info.duration,
+					property_address: rent_info.property_address || '',
+					rent_collector: rent_info.rent_collector,
+					pay_type: rent_info.pay_type
 				});
 			}
 		},
@@ -298,8 +299,8 @@ const Form4 = ({ next, prev, payment, rent }) => {
 	);
 };
 const mapStateToProps = (state) => ({
-	payment: state.application.payment,
-	rent: state.application.rent
+	payment_option: state.application.payment_option,
+	rent_info: state.application.rent_info
 });
 
 export default connect(mapStateToProps)(Form4);

@@ -26,6 +26,7 @@ const Form5 = (props) => {
 
 	useEffect(
 		() => {
+			window.scrollTo(0, 0);
 			// const data = JSON.parse(localStorage.getItem('referee'));
 			if (landlord_details) {
 				form.setFieldsValue({
@@ -96,7 +97,7 @@ const Form5 = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-	landlord: state.application.landlord,
+	landlord_details: state.application.landlord_details,
 	banks: state.paystack.banks
 });
 

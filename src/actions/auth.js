@@ -40,7 +40,7 @@ export const requestSignup = (val, history) => async (dispatch) => {
 	}
 };
 
-export const requestLogin = (val, history, application) => async (dispatch) => {
+export const requestLogin = (val, history) => async (dispatch) => {
 	try {
 		const { data, status } = await axios.post(`${url}/api/renter/auth/login`, val);
 		console.log(data, 'STATUS');
@@ -52,12 +52,13 @@ export const requestLogin = (val, history, application) => async (dispatch) => {
 				type: 'LOGIN_USER',
 				payload: data.user
 			});
+			const { application } = data.user;
 			// toastr.success("Success", "Account Created Successfully");
 			//   toastr.success("Success", "Login Success");
 			if (!application.completed) {
 				history.push('/apply');
-			} else {
-				history.push('/dashboard');
+			} else if (!application.isProcessed) {
+				history.push('/application-process');
 			}
 		} else {
 			throw new Error();
