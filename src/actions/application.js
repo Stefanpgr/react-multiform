@@ -1,20 +1,28 @@
 import axios from 'axios';
-import { toastr } from 'react-redux-toastr';
+import {
+	toastr
+} from 'react-redux-toastr';
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
 // const url = "https://kwaba.com.ng";
 const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
-export const sendApplication = (val) => async (dispatch) => {
+export const sendApplication = (val, route) => async (dispatch) => {
 	try {
-		const { data, status } = await axios.post(`${url}/api/renter/rnpl/apply`, val);
+		const {
+			data,
+			status
+		} = await axios.post(`${url}/api/renter/rnpl/${route}`, {
+			email: localStorage.getItem("email"),
+			...val
+		});
 		// if (!data) throw new Error();
 		if (status === 200) {
-			// dispatch({
-			// 	type: 'ADD_APPL',
-			// 	payload: data
-			// });
+			dispatch({
+				type: 'ADD_APPL',
+				payload: data
+			});
 			console.log(data);
 		} else {
 			throw new Error();
@@ -37,7 +45,10 @@ export const sendApplication = (val) => async (dispatch) => {
 
 export const getApplication = (id) => async (dispatch) => {
 	try {
-		const { data, status } = await axios.post(`${url}/api/renter/rnpl/get/${id}`);
+		const {
+			data,
+			status
+		} = await axios.post(`${url}/api/renter/rnpl/get/${id}`);
 		// if (!data) throw new Error();
 		if (status === 200) {
 			dispatch({
