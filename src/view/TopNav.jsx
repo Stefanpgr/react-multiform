@@ -1,6 +1,7 @@
 import React from 'react'
 import {Navbar,Form,FormControl, Nav, Button, NavItem, NavDropdown} from 'react-bootstrap'
-import { ReactComponent as Logo } from '../assets/img/logo.svg'
+import { ReactComponent as Logo } from '../assets/img/logo.svg';
+import {NavLink} from 'react-router-dom'
 
 const TopNav = () => {
 
@@ -17,12 +18,41 @@ const TopNav = () => {
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="ml-auto font-weight-bold">
-                  <Nav.Link href="/" className="px-3">Home</Nav.Link>
-                  <Nav.Link href="/calculate" className="px-3">Calculate ROI</Nav.Link>
-                  <Nav.Link href="/about" className="px-3">About</Nav.Link>
-                  <Nav.Link  href="/faq" className="px-3">FAQ</Nav.Link>
-                  <Nav.Link href="/login" className="px-3">Login</Nav.Link>
-                  <Nav.Link href="/signup"  className="btn btn-outline-primary px-3 mx-2">Register</Nav.Link>
+                  <Nav.Item>
+                    <NavLink to="/" exact={true}  activeClassName='active' className="nav-link px-3">
+                      Home
+                    </NavLink>
+                  </Nav.Item>
+                  
+                  <Nav.Item>
+                    <NavLink to="/calculate" exact={true}  activeClassName='active' className="nav-link px-3">
+                      Calculate ROI
+                    </NavLink>
+                  </Nav.Item>
+                  
+                  <Nav.Item>
+                    <NavLink to="/about" exact={true}  activeClassName='active' className="nav-link px-3">
+                      About
+                    </NavLink>
+                  </Nav.Item>
+                  
+                  <Nav.Item>
+                    <NavLink to="/faq" exact={true}  activeClassName='active' className="nav-link px-3">
+                      FAQ
+                    </NavLink>
+                  </Nav.Item>
+                  
+                  <Nav.Item>
+                    <NavLink to="/login" exact={true}  activeClassName='active' className="nav-link px-3">
+                      Login
+                    </NavLink>
+                  </Nav.Item>
+                  
+                  <Nav.Item>
+                    <NavLink to="/signup" exact={true}  activeClassName='active' className="nav-link btn btn-outline-primary bg-white text-dark px-3 mx-2">
+                      Register
+                    </NavLink>
+                  </Nav.Item>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
