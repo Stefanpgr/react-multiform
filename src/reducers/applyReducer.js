@@ -10,18 +10,19 @@ const application = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				...action.data,
-					loading: false,
-					progress: state.progress + 17
+				loading: false,
+				progress: state.progress + 17
 			};
 
 		case 'PAGE_CHANGE':
 			return {
-				...state, currPage: action.data
-			}
-			case 'LOGOUT_USER':
-				return {};
-			default:
-				return state;
+				...state,
+				currPage: action.data
+			};
+		// case 'LOGOUT_USER':
+		// 	return {};
+		default:
+			return state;
 	}
 };
 
