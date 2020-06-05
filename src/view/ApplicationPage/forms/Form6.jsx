@@ -39,7 +39,7 @@ const Form6 = ({ prev, application, user, sendApplication, history }) => {
     }
   }, [form]);
 
-  const onFinish = (fielValues) => {
+  const onFinish = async (fielValues) => {
     // console.log('Received values of form: ', fielValues);
 
     const values = {
@@ -50,8 +50,10 @@ const Form6 = ({ prev, application, user, sendApplication, history }) => {
       data: values,
       page: 5,
     });
-    sendApplication(values, "referee-details", history);
-
+    const decide = await sendApplication(values, "referee-details", history);
+    if (decide.isComplete) {
+      history.push("/application-success");
+    }
     console.log({ ...application, ...values }, "APPLICATION");
   };
 

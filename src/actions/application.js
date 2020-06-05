@@ -27,9 +27,9 @@ export const sendApplication = (val, route, history) => async (dispatch) => {
 		} else {
 			throw new Error();
 		}
-		if (data.isComplete) {
-			history.push('/application-success')
-		}
+		// if (data.isComplete) {
+		// 	history.push('/application-success')
+		// }
 		// console.log(Object.values(data));
 	} catch (e) {
 		if (e.response) {

@@ -190,10 +190,10 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
       data: values,
     });
 
-    const decide = await sendApplication(values, "rent-info");
-    console.log(decide, "DECIDE");
+    await sendApplication(values, "rent-info");
+    // console.log(decide, "DECIDE");
 
-    // next();
+    next();
     // message.success("Processing complete!")
   };
 
