@@ -104,7 +104,7 @@ const Home = () => {
                     </Col>
                 </Row>
 
-                <div className="easy-pay text-center py-5 mt-4">
+                <div className="easy-pay text-center mx-2 py-3 py-md-5 mt-4">
                     <h3 className="font-weight-bold text-white">
                         The easy way to pay rent
                     </h3>
@@ -114,7 +114,7 @@ const Home = () => {
                     </p>
                 </div>
 
-                <CardDeck className="mx-5 card-cont">
+                <CardDeck className="mx-md-5 card-cont">
                     <Card>
                         <Card.Body>
                             <img src={Approved} height="100px" width="100px" alt="Approved"/>
@@ -189,14 +189,14 @@ const Home = () => {
                     </Card>
                 </CardDeck>
 
-                <h3 className="text-center font-weight-bold mt-5 pt-5">
+                <h3 className="text-center font-weight-bold mx-2 mt-5 pt-5">
                     Invest in the rental market
                 </h3>
-                <p className="text-center text-muted">
+                <p className="text-center text-muted mx-2">
                     Kwaba has made investing in real estate very simple. <br/> Earn guaranteed returns when you help renters pay their rent.
                 </p>
 
-                <Row className="mx-5 mt-5 justify-content-center">
+                <Row className="mx-0 mx-md-5 mt-5 justify-content-center">
                     <Col md="6" lg="5" className="px-5 py-5">
                         
                         <h3 style={{color:"#5B55FF"}} className="mt-lg-4">
@@ -225,7 +225,7 @@ const Home = () => {
                     </Col>
                 </Row>
 
-                <Row className="mx-5 mt-5 justify-content-center">
+                <Row className="mx-0 mx-md-5 mt-5 justify-content-center">
                     <Col md="6" lg="5" className="px-5 py-5 order-md-2">
                         
                         <h3 style={{color:"#5B55FF"}} className="mt-lg-4">
@@ -254,7 +254,7 @@ const Home = () => {
                     </Col>
                 </Row>
 
-                <Row className="mx-5 mt-5 justify-content-center">
+                <Row className="mx-0 mx-md-5 mt-5 justify-content-center">
                     <Col md="6" lg="5" className="px-5 py-5">
                         
                         <h3 style={{color:"#5B55FF"}} className="mt-lg-4">
@@ -340,7 +340,7 @@ const Home = () => {
 
                 </div>
 
-                <div className="rent-cont px-5">
+                <div className="rent-cont px-2 px-lg-5">
                     <Card className="mx-md-5 p-5">
                         <h4>
                             What renters are saying
@@ -349,7 +349,7 @@ const Home = () => {
                             <Col md="6" className="mt-2">
                                 <Row>
                                     <Col sm="3">
-                                        <img src={Renter1} alt="Renter 1" className="img-fluid"/>
+                                        <img src={Renter1} alt="Renter 1" className="img-fluid mb-2"/>
                                     </Col>
                                     <Col sm="9">
                                         <Card >
@@ -366,7 +366,7 @@ const Home = () => {
                             <Col md="6" className="mt-2">
                                 <Row>
                                     <Col sm="3">
-                                        <img src={Renter2} alt="Renter 2" className="img-fluid"/>
+                                        <img src={Renter2} alt="Renter 2" className="img-fluid mb-2"/>
                                     </Col>
                                     <Col sm="9">
                                         <Card >
@@ -390,37 +390,37 @@ const Home = () => {
                     </h3>
 
                     <Row className="mt-4 mx-5 text-center">
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Deloitte} alt="Dellotte" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={EkoHotel} alt="Eko Hotel" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Glo} alt="Glo" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Ikedc} alt="Ikedc" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Kudda} alt="Kudda" className="img-fluid" />
                         </Col>
                     </Row>
 
                     <Row className="mt-4 mx-5 text-center">
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Lagos} alt="Lagos" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Police} alt="Police" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Oando} alt="Oando" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Who} alt="WHO" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Uber} alt="Uber" className="img-fluid" />
                         </Col>
                     </Row>
@@ -433,19 +433,19 @@ const Home = () => {
                     </h3>
 
                     <Row className="my-4 mx-5 text-center">
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Arm} alt="ARM" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={V} alt="V" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Axa} alt="AXA" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Wapic} alt="Wapic" className="img-fluid" />
                         </Col>
-                        <Col>
+                        <Col className="col-12 col-sm">
                             <img src={Paystack} alt="Paystack" className="img-fluid" />
                         </Col>
                     </Row>
