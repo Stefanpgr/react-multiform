@@ -1,92 +1,97 @@
-.home{
+.home {
 
-    .intro-cont{
+    .intro-cont {
 
-        nav{
+        nav {
             background-color: transparent !important;
         }
+
         @media (min-width: 768px) {
 
             min-height: calc(100vh + 5rem);
             background: #fff url('/assets/img/intro-background.svg') no-repeat;
             background-size: cover;
 
-            .intro-text{
-                
+            .intro-text {
+
                 margin-top: 4rem;
             }
-            
-            p{
+
+            p {
                 padding-right: 10rem !important;
             }
-            
+
         }
 
-        .intro-text{
+        .intro-text {
 
             padding-top: 3rem;
             padding-bottom: 3rem;
 
 
-            h2{
+            h2 {
                 font-weight: bold;
                 color: #00204F;
             }
-            p{
+
+            p {
                 line-height: 1.5;
             }
 
-            button{
-                
+            button {
+
                 color: #fff;
                 padding: 0.7rem 1rem;
                 margin-top: 0.3rem;
 
-                &:hover{
+                &:hover {
                     opacity: 0.85;
                 }
 
-            
-                span{
+
+                span {
                     vertical-align: super;
                     font-size: 0.9rem;
                 }
             }
 
-            button:first-child{
+            .btn-invest {
                 background-color: #5B55FF;
-                border-radius:0 0 0 2rem;
+                border-radius: 0 0 0 2rem;
             }
-            button:last-child{
+
+            .btn-rnpl {
                 background-color: #5CC6FF;
-                border-radius:0 0 2rem 0;
+                border-radius: 0 0 2rem 0;
             }
         }
     }
 
-    .easy-pay{
+    .easy-pay {
 
         background: linear-gradient(to bottom, #5B55FF 0%, #5B55FF 100%);
         min-height: 25rem;
     }
 
-    .card-cont{
+    .card-cont {
 
         margin-top: -13.5rem;
-        
-        .card{
+
+        .card {
 
             margin-left: 1.2rem;
             margin-right: 1.2rem;
+            border: none;
+            box-shadow: 0 0 3rem rgba(136, 152, 170, .175) !important;
 
-            
             @media (min-width:992px) {
                 margin-left: 2.2rem;
                 margin-right: 2.2rem;
             }
+
             border-radius: 1rem;
 
-            .card-body{
+            .card-body {
 
                 padding: 1.5rem 1.2rem 0 1.2rem;
 
@@ -95,7 +100,8 @@
                 }
 
             }
-            .card-footer{
+
+            .card-footer {
 
                 padding: 0;
                 background-color: #fff;
@@ -103,61 +109,62 @@
                 padding-top: 0.5rem;
                 border-radius: 0 0 1rem 1rem;
 
-                button{
+                button {
                     background-color: #5CC6FF;
-                    border-radius:0 0 0 1rem;
+                    border-radius: 0 0 0 1rem;
                     color: #fff;
                     padding: 0.7rem 1rem;
 
-                    span{
+                    span {
                         vertical-align: super;
                     }
 
-                    &:hover{
+                    &:hover {
                         opacity: 0.8;
                     }
                 }
             }
 
-            h6{
+            h6 {
                 color: #5B55FF;
                 font-size: 1.5rem;
                 font-weight: bold;
                 padding-top: 0.2rem;
             }
-            
-            p{
+
+            p {
                 color: #A4A4A4;
                 font-size: 0.9rem;
             }
         }
     }
-    .learn-more{
+
+    .learn-more {
         background-color: #5CC6FF;
-        border-radius:0 0 0 1rem;
+        border-radius: 0 0 0 1rem;
         color: #fff;
         padding: 0.7rem 1rem;
 
-        span{
+        span {
             vertical-align: super;
         }
 
-        &:hover{
+        &:hover {
             opacity: 0.8;
         }
-    
+
 
     }
 
-    .card-box{
+    .card-box {
 
         padding: 0.5rem;
-        
+
         @media (min-width: 992px) {
             padding: 5rem;
         }
 
-        .card{
+        .card {
             background-color: #E6EDFF;
             border-color: #E6EDFF;
             border-radius: 1rem;
@@ -170,14 +177,14 @@
                 padding: 2rem;
             }
 
-            .row div:first-child{
+            .row div:first-child {
 
-                @media (min-width: 992px) {    
+                @media (min-width: 992px) {
                     padding-top: 3.5rem;
-                    padding-left: 8rem;   
+                    padding-left: 8rem;
                 }
 
-                h2{
+                h2 {
                     color: #5B55FF;
                     font-weight: bold;
                 }
@@ -185,56 +192,58 @@
         }
     }
 
-    .investor-cont{
+    .investor-cont {
         margin-top: 4rem;
         min-height: 55rem;
         background-color: #5B55FF;
         padding: 2rem;
 
-        .invest-img{
+        .invest-img {
             height: 12rem;
             width: 20rem;
 
             @media (min-width:992px) {
                 height: 17rem;
-                width:30rem;
-                position: absolute;  
+                width: 30rem;
+                position: absolute;
                 z-index: 20;
-                top: 0;              
+                top: 0;
             }
         }
-        .card{
+
+        .card {
             background-color: #00204F;
             border-radius: 1rem;
             padding: 1rem;
-            
+
             @media (min-width:500px) {
                 padding: 2rem 2rem 2rem 4rem;
                 margin-left: 2rem;
             }
+
             margin-top: 1rem;
 
             @media (min-width:992px) {
                 padding: 4rem 4rem 3rem 10rem;
                 margin-top: 5rem;
-                position: absolute;    
-                margin-left: 25rem;                
+                position: absolute;
+                margin-left: 25rem;
             }
 
-            p{
+            p {
                 color: #fff;
                 font-size: 1.1rem;
             }
 
-            h5{
+            h5 {
                 color: #5CC6FF;
             }
 
-            .btn.learn-more{
+            .btn.learn-more {
                 background-color: #5B55FF;
             }
 
-            .coins-img{
+            .coins-img {
                 position: absolute;
                 height: 10rem;
                 width: 7rem;
@@ -245,17 +254,17 @@
                 @media (min-width:992px) {
 
                     margin-right: -3rem;
-            
+
                 }
             }
         }
 
-        @media (min-width: 992px) {    
-            padding:3rem 10rem;   
+        @media (min-width: 992px) {
+            padding: 3rem 10rem;
         }
     }
 
-    .rent-cont{
+    .rent-cont {
         margin-top: -5rem;
 
         @media (min-width:992px) {
@@ -263,18 +272,18 @@
             padding: 2rem;
         }
 
-        .card{
+        .card {
             border-radius: 1rem;
             box-shadow: 0px 10px 20px rgb(188, 188, 196);
 
-            h4{
+            h4 {
                 font-weight: bold;
                 color: #00204F;
                 padding: 1rem;
                 text-align: center;
             }
 
-            .card{
+            .card {
                 box-shadow: none;
                 padding: 0.8rem;
                 background-color: #F9F9F9;
@@ -285,7 +294,7 @@
                     padding: 1.8rem 2.2rem;
                 }
 
-                h6{
+                h6 {
                     color: #5B55FF;
                     font-weight: bold;
                 }

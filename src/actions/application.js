@@ -8,7 +8,7 @@ import {
 const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
-export const sendApplication = (val, route) => async (dispatch) => {
+export const sendApplication = (val, route, history) => async (dispatch) => {
 	try {
 		const {
 			data,
@@ -23,11 +23,13 @@ export const sendApplication = (val, route) => async (dispatch) => {
 				type: 'ADD_APPL',
 				payload: data
 			});
-			console.log(data);
+			return data
 		} else {
 			throw new Error();
 		}
-
+		if (data.isComplete) {
+			history.push('/application-success')
+		}
 		// console.log(Object.values(data));
 	} catch (e) {
 		if (e.response) {

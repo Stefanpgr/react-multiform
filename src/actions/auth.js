@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
 // import { setUserSession } from "../Utils/Common";
-import { toastr } from "react-redux-toastr";
+import {
+  toastr
+} from "react-redux-toastr";
 import application from "../reducers/applyReducer";
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
@@ -10,15 +12,20 @@ const url = "http://localhost:8888";
 
 export const requestSignup = (val, history) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${url}/api/renter/auth/register`, val);
+    const {
+      data
+    } = await axios.post(`${url}/api/renter/auth/register`, val);
     if (!data) throw new Error();
     console.log(data);
 
     if (data.token) localStorage.setItem("token", data.token);
-
+    localStorage.setItem("email", data.user.email)
     dispatch({
       type: "LOGIN_USER",
-      payload: { ...data.user, application: data.application },
+      payload: {
+        ...data.user,
+        application: data.application
+      },
     });
     // toastr.success("Success", "Account Created Successfully");
     history.push("/success");
@@ -45,7 +52,10 @@ export const requestSignup = (val, history) => async (dispatch) => {
 
 export const requestLogin = (val, history) => async (dispatch) => {
   try {
-    const { data, status } = await axios.post(
+    const {
+      data,
+      status
+    } = await axios.post(
       `${url}/api/renter/auth/login`,
       val
     );
@@ -53,12 +63,25 @@ export const requestLogin = (val, history) => async (dispatch) => {
     if (status === 200) {
       // console.log(data, "data");
       if (data.token) localStorage.setItem("token", data.token);
-
+      localStorage.setItem("email", data.user.email)
       dispatch({
         type: "LOGIN_USER",
-        payload: { ...data.user, application: data.application },
+        payload: {
+          ...data.user,
+          application: data.application
+        },
       });
-      const { application } = data.user;
+      const {
+        application
+      } = data.user;
+
+      // dispatch({
+      //   type: "ADD_APPL",
+      //   payload: {
+      //     ...data.user,
+      //     application: data.application
+      //   },
+      // });
       // toastr.success("Success", "Account Created Successfully");
       //   toastr.success("Success", "Login Success");
       if (!application || !application.isComplete) {

@@ -83,10 +83,10 @@ const Form1 = ({
     // 	if(payment.filled) return next()
     // }
 
-    // dispatch({
-    //   type: "ADD_APPL",
-    //   data: values,
-    // });
+    dispatch({
+      type: "ADD_APPL",
+      data: values,
+    });
     await sendApplication(values, "payment-option");
     // const data = JSON.stringify(values);
     // localStorage.setItem("payment", data);

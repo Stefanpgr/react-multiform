@@ -275,10 +275,10 @@ const Form2 = ({ next, prev, employment, sendApplication }) => {
       page: 1,
     };
     console.log("Received values of form: ", values);
-    // dispatch({
-    //   type: "ADD_APPL",
-    //   data: values,
-    // });
+    dispatch({
+      type: "ADD_APPL",
+      data: values,
+    });
     await sendApplication(values, "employment-info");
     // const data = JSON.stringify(values);
     // localStorage.setItem("employment", data);

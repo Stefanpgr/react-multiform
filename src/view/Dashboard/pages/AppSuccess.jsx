@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import UserTopNav from "../../UserTopNav";
 import FooterCommon from "../../Partials/FooterCommon";
@@ -42,7 +43,9 @@ const AppSuccess = () => {
             <h6 style={{ color: "#707070", fontSize: "10px" }}>
               You have successfully completed your application
             </h6>
-            <Btn>Ok</Btn>
+            <Link to="/application-process">
+              <Btn>Ok</Btn>
+            </Link>
           </div>
         </Container>
       </div>
