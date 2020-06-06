@@ -63,3 +63,27 @@
 
 
 }
+
+.login {
+    .bg-img {
+
+        // background-image: url('https://res.cloudinary.com/kwaba/image/upload/v1590747119/loginsvg.svg');
+        @media (min-width: 768px) {
+
+            min-height: calc(100vh);
+
+            background: #eff7ff url('https://res.cloudinary.com/kwaba/image/upload/v1590747119/loginsvg.svg') no-repeat;
+            // background-size: cover;
+
+            .login-text {
+
+                margin-top: 9rem !important;
+            }
+
+            p {
+                padding-right: 10rem !important;
+            }
+
+        }
+    }
+}

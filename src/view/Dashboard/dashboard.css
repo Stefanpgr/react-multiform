@@ -29,9 +29,11 @@
   .w-mobile {
     width: 100% !important;
   }
+
   .line-height-sm {
     line-height: 100% !important;
   }
+
   .profile-cards {
     height: 90% !important;
     /* width: 70%;
@@ -44,6 +46,7 @@
 
   .m-view-app-process {
     width: 350px !important;
+
   }
 
   .w-mobile-date {
@@ -63,10 +66,8 @@
 }
 
 .bg-img-profile {
-  background: transparent
-    url("https://res.cloudinary.com/kwaba/image/upload/v1589543708/Mask_Group_42_key0od.svg")
-    0% 0% no-repeat;
-  /* opacity: 0.07; */
+  background-image: transparent url("https://res.cloudinary.com/kwaba/image/upload/v1589543708/Mask_Group_42_key0od.svg") 0 0 no-repeat;
+  opacity: 0.07;
 
   /* filter: blur(1px); */
 }

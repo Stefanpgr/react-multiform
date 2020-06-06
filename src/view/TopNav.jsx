@@ -21,11 +21,18 @@ const TopNav = () => {
       className="px-4 px-lg-5 py-0 sticky-top"
     >
       <Navbar.Brand href="/" className="py-0">
-        <Logo
+        {/* <Logo
           alt="RentCrowdy"
           width="140"
           height="70"
           className="d-inline-block align-top"
+        /> */}
+        <img
+          src="https://res.cloudinary.com/kwaba/image/upload/v1587125730/logo_kccjal.png"
+          alt="Kwaba"
+          width="130"
+          height="35"
+          className="d-inline-block align-top mt-2 mb-2"
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

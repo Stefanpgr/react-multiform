@@ -6,8 +6,8 @@ const { Footer } = Layout;
 class FooterCommon extends React.Component {
   render() {
     return (
-      <div style={{ backgroundColor: "#F5F5F5" }}>
-        <Footer style={{ textAlign: "center" }}>
+      <div>
+        <Footer style={{ textAlign: "center", backgroundColor: "#F8F8F8" }}>
           Copyright ©{new Date().getFullYear()} Kwaba
         </Footer>
       </div>

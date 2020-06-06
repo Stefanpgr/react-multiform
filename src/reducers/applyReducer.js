@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+	data: null,
 	loading: true,
 	progress: 17,
 	currPage: 0
@@ -10,8 +11,8 @@ const application = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				...action.data,
-				loading: false,
-				progress: state.progress + 17
+					loading: false,
+					progress: state.progress + 17
 			};
 
 		case 'PAGE_CHANGE':
@@ -19,8 +20,12 @@ const application = (state = INITIAL_STATE, action) => {
 				...state,
 				currPage: action.data
 			};
-		// case 'LOGOUT_USER':
-		// 	return {};
+		case 'GET_APPL':
+			return {
+				...state, ...action.data
+			};
+		case 'CLEAR_APPL':
+			return {};
 		default:
 			return state;
 	}

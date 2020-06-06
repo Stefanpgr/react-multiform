@@ -52,7 +52,7 @@ function App() {
             <ProtectedRoute exact path="/apply" component={Application} />
             <Route exact path="/test" component={Test} />
             <ProtectedRoute exact path="/success" component={SignupSuccess} />
-            <Route
+            <ProtectedRoute
               exact
               path="/application-process"
               component={ApplicationStage}

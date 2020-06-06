@@ -1,9 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { Layout, Timeline } from "antd";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-
+import UserTopNav from "../UserTopNav";
+import "./Dashboard.scss";
 const layout = {
   labelCol: { span: 24 },
   wrapperCol: { span: 24 },
@@ -48,10 +50,15 @@ const ProfilePic = styled.div`
 `;
 
 const EditProfile = () => {
+  const { user, appl } = useSelector((state) => ({
+    user: state.user,
+    appl: state.application,
+  }));
+
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
-      <h1>TEST</h1>
-      <div style={{ width: "97%", margin: "auto" }}>
+      <UserTopNav />
+      <div style={{ width: "97%", margin: "auto" }} className="profile">
         <Container fluid>
           <Row>
             <Col md="4">
@@ -78,10 +85,10 @@ const EditProfile = () => {
               <Card
                 style={{
                   backgroundColor: "#5b54ff",
-                  height: "155px",
+                  height: "170px",
                   border: "none",
                 }}
-                className="mb-4 bg-img-profile"
+                className="mb-4 bg-img"
               >
                 <Card.Body>
                   {" "}
@@ -114,27 +121,34 @@ const EditProfile = () => {
                       </div>
                     </Col>
                     <Col md="4">
-                      <div className="line-height-5 mt-5 text-white">
-                        <p style={{ fontSize: "27px", fontWeight: "medium" }}>
-                          Joseph Oluwale
-                        </p>
-                        <small>
-                          {" "}
-                          <span className="pr-2">
-                            <FontAwesomeIcon
-                              style={{ color: "#51A4FB", fontSize: "12px" }}
-                              icon={["fas", "envelope"]}
-                            />
-                          </span>
-                          joseph_oluwale@gmail.com
-                        </small>
+                      <div className=" mt-5 text-white">
+                        <h6
+                          className="text-white"
+                          style={{ fontSize: "27px", fontWeight: "medium" }}
+                        >
+                          {`${user.firstname} ${user.lastname}`}{" "}
+                          <small style={{ fontSize: "13px" }}>
+                            <br />
+                            <span className="pr-2">
+                              <FontAwesomeIcon
+                                style={{ color: "#51A4FB", fontSize: "12px" }}
+                                icon={["fas", "envelope"]}
+                              />
+                            </span>{" "}
+                            {user.email}
+                          </small>
+                        </h6>
+                        {/* <small className="mt--9">
+                         
+                          {user.email}
+                        </small> */}
                       </div>
                     </Col>
                     <Col md="2">
                       <div
                         className="text-white"
                         style={{
-                          marginTop: "4.5rem",
+                          marginTop: "3.6rem",
                         }}
                       >
                         <small>
@@ -144,7 +158,7 @@ const EditProfile = () => {
                               icon={["fas", "phone-alt"]}
                             />
                           </span>
-                          081928394302
+                          {user.phone}
                         </small>
                       </div>
                     </Col>
@@ -152,7 +166,7 @@ const EditProfile = () => {
                       <LoanStatus
                         className="text-center"
                         style={{
-                          marginTop: "4.2rem",
+                          marginTop: "3.6rem",
                         }}
                       >
                         <p className="pt-1">
@@ -170,50 +184,54 @@ const EditProfile = () => {
                 </Card.Body>
               </Card>
 
-              <Row className="mb-4">
+              <Row>
                 <Col md="6">
-                  <Card className="profile-cards">
+                  <Card className="profile-cards mb-4">
                     <Card.Body>
                       <Row>
                         <Col className="text-muted ml-md-2">
                           <small>Date of Birth</small>{" "}
-                          <p className="text-blue">January 7, 1990</p>
+                          <p className="text-blue">{appl.finance_info.dob}</p>
                         </Col>
 
                         <Col md="4" className=" text-muted">
                           <small>Gender</small>{" "}
-                          <p className="text-blue">Male</p>
+                          <p className="text-blue">{user.gender}</p>
                         </Col>
                       </Row>
                       <Row>
                         <Col className="text-muted ml-md-2" md="12">
                           <small>Marital status</small>{" "}
-                          <p className="text-blue">Single</p>
+                          <p className="text-blue">{user.marital_status}</p>
                         </Col>
                       </Row>
                     </Card.Body>
                   </Card>
                 </Col>
                 <Col md="6">
-                  <Card className="profile-cards">
+                  <Card className="profile-cards mb-4">
                     <Card.Body>
                       <Row>
                         <Col className="text-muted ml-md-2" md="12">
                           <small>Current Address</small>{" "}
                           <p className="text-blue">
-                            No 23B Bright View Estate, Surulere, Lagos
+                            {appl.rent_info.home_address}
                           </p>
                         </Col>
                       </Row>
                       <Row>
                         <Col className="text-muted ml-md-2">
                           <small>Duration of this property</small>{" "}
-                          <p className="text-blue">3 Years</p>
+                          <p className="text-blue">
+                            {appl.rent_info.duration} Years
+                          </p>
                         </Col>
 
                         <Col md="4" className=" text-muted">
                           <small>Last Rent amount</small>{" "}
-                          <p className="text-blue">N700,000</p>
+                          <p className="text-blue">
+                            N{appl.rent_info.last_rent_amount}
+                          </p>
                         </Col>
                       </Row>
                     </Card.Body>
@@ -221,19 +239,19 @@ const EditProfile = () => {
                 </Col>
               </Row>
 
-              <Card className="profile-cards profile-cards-large">
+              <Card className="profile-cards profile-cards-large mb-sm-4">
                 <Card.Body>
                   <Card.Title>Employement info</Card.Title>
                   <hr />
                   <Row>
                     <Col md="4">
                       <small className="text-muted">Job Title</small>
-                      <p className="text-blue">Quality Assurance</p>
+                      <p className="text-blue">{appl.employment.job_role}</p>
                     </Col>
                     <Col md="4">
                       {" "}
                       <small className="text-muted">Salary</small>
-                      <p className="text-blue">N500,000</p>
+                      <p className="text-blue">N{appl.employment.salary}</p>
                     </Col>
                     <Col md="4">
                       {" "}
@@ -246,15 +264,21 @@ const EditProfile = () => {
                   <Row>
                     <Col md="4">
                       <small className="text-muted">Employer name</small>
-                      <p className="text-blue">Lamigata Industrial LTD</p>
+                      <p className="text-blue">
+                        {appl.employment.company_name}
+                      </p>
                     </Col>
                     <Col md="4">
                       <small className="text-muted">Phone number</small>
-                      <p className="text-blue">0123345657</p>
+                      <p className="text-blue">
+                        {appl.employment.employer_phone}
+                      </p>
                     </Col>
                     <Col md="4">
                       <small className="text-muted">Email address</small>
-                      <p className="text-blue">info@lamigatacom</p>
+                      <p className="text-blue">
+                        {appl.employment.employer_email}
+                      </p>
                     </Col>
                   </Row>
                 </Card.Body>
@@ -265,13 +289,13 @@ const EditProfile = () => {
               <Card
                 className="mb-4"
                 className="profile-cards-right"
-                style={{ backgroundColor: "#00204F", height: "155px" }}
+                style={{ backgroundColor: "#00204F", height: "170px" }}
               >
                 <Card.Body>
                   {/* <ProfilePicWrap> */}
                   <Container>
                     <p
-                      className="text-center mt-1 mb-1"
+                      className="text-center  mb-1"
                       style={{
                         color: "#51A4FB",
                         fontWeight: "bold",

@@ -3,9 +3,9 @@ import {
 	toastr
 } from 'react-redux-toastr';
 
-// const url = "https://rentcrowdyapi.herokuapp.com";
+const url = "https://rentcrowdyapi.herokuapp.com";
 // const url = "https://kwaba.com.ng";
-const url = 'http://localhost:8888';
+// const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
 export const sendApplication = (val, route, history) => async (dispatch) => {
@@ -50,7 +50,11 @@ export const getApplication = (id) => async (dispatch) => {
 		const {
 			data,
 			status
-		} = await axios.post(`${url}/api/renter/rnpl/get/${id}`);
+		} = await axios.get(`${url}/api/renter/rnpl/get`, {
+			headers: {
+				"x-auth-token": localStorage.getItem("token")
+			}
+		});
 		// if (!data) throw new Error();
 		if (status === 200) {
 			dispatch({
