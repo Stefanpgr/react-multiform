@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   Navbar,
   Form,
@@ -12,6 +13,12 @@ import { ReactComponent as Logo } from "../assets/img/logo.svg";
 import { NavLink } from "react-router-dom";
 
 const TopNav = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => ({
+    user: state.user,
+  }));
+
+  const handleLogout = () => dispatch({ type: "LOGOUT_USER" });
   return (
     <Navbar
       collapseOnSelect
@@ -78,25 +85,48 @@ const TopNav = () => {
           </Nav.Item>
 
           <Nav.Item>
-            <NavLink
-              to="/login"
-              exact={true}
-              activeClassName="active"
-              className="nav-link px-3"
-            >
-              Login
-            </NavLink>
+            {user.isAuth ? (
+              <NavLink
+                to="#"
+                exact={true}
+                activeClassName="active"
+                className="nav-link px-3"
+                onClick={() => handleLogout()}
+              >
+                Logout
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/login"
+                exact={true}
+                activeClassName="active"
+                className="nav-link px-3"
+              >
+                Login
+              </NavLink>
+            )}
           </Nav.Item>
 
           <Nav.Item>
-            <NavLink
-              to="/signup"
-              exact={true}
-              activeClassName="active"
-              className="nav-link btn btn-outline-primary bg-white text-dark px-3 mx-2"
-            >
-              Register
-            </NavLink>
+            {user.isAuth ? (
+              <NavLink
+                to="/dashboard"
+                exact={true}
+                activeClassName="active"
+                className="nav-link btn btn-outline-primary bg-white text-dark px-3 mx-2"
+              >
+                Dashboard
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/signup"
+                exact={true}
+                activeClassName="active"
+                className="nav-link btn btn-outline-primary bg-white text-dark px-3 mx-2"
+              >
+                Register
+              </NavLink>
+            )}
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>

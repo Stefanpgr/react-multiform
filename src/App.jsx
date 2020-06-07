@@ -20,11 +20,12 @@ import Test from "./view/ApplicationPage/Test";
 import Signup from "./view/Auth/Signup/Index";
 import Login from "./view/Auth/Login";
 import SignupSuccess from "./view/Dashboard/pages/SignupSuccess";
+import GetStarted from "./view/Dashboard/pages/GetStarted";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import TestUpload from "./utils/TestUpload";
-import { ProtectedRoute } from "./protected.routes";
+import { ProtectedRoute, ProtectedDashRoute } from "./protected.routes";
 import "antd/dist/antd.css";
 
 import "./App.css";
@@ -52,6 +53,8 @@ function App() {
             <ProtectedRoute exact path="/apply" component={Application} />
             <Route exact path="/test" component={Test} />
             <ProtectedRoute exact path="/success" component={SignupSuccess} />
+            <ProtectedRoute exact path="/get-started" component={GetStarted} />
+
             <ProtectedRoute
               exact
               path="/application-process"

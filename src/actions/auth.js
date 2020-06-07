@@ -32,7 +32,7 @@ export const requestSignup = (val, history) => async (dispatch) => {
   } catch (e) {
     //console.log(e.response);
     if (e.response) {
-      // console.log(e.response);
+      console.log(e.response.data);
       dispatch({
         type: 'LOGIN_ERROR'
       });

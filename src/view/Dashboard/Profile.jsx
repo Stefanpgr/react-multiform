@@ -49,11 +49,17 @@ const ProfilePic = styled.div`
   opacity: 1;
 `;
 
-const EditProfile = () => {
+const Profile = ({ history }) => {
   const { user, appl } = useSelector((state) => ({
     user: state.user,
     appl: state.application,
   }));
+
+  React.useEffect(() => {
+    if (!appl.isComplete) {
+      history.push("/apply");
+    }
+  }, []);
 
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
@@ -403,4 +409,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default Profile;

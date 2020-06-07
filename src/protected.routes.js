@@ -9,6 +9,8 @@ import {
 import {
 	store
 } from './store/index'
+
+
 export const ProtectedRoute = ({
 	component: Component,
 	...rest
@@ -20,6 +22,40 @@ export const ProtectedRoute = ({
 		render = {
 			(props) => {
 				if (store.getState().user.isAuth) {
+
+					return <Component {
+						...props
+					}
+					/>
+				} else {
+					return <Redirect to = {
+						{
+							path: '/login',
+							state: props.location
+						}
+					}
+					/ >
+				}
+
+
+			}
+		}
+		/>
+	)
+}
+
+
+export const ProtectedDashRoute = ({
+	component: Component,
+	...rest
+}) => {
+	return ( <
+		Route {
+			...rest
+		}
+		render = {
+			(props) => {
+				if (store.getState().application.isProcessed) {
 
 					return <Component {
 						...props

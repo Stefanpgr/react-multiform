@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
 import { getApplication } from "../../actions/application";
 import UserTopNav from "../UserTopNav";
 import "./Dashboard.scss";
-const Dashboard = (props) => {
+const Dashboard = ({ appl, history }) => {
+  useEffect(() => {
+    if (!appl.isComplete) {
+      history.push("/apply");
+    } else if (!appl.isProcessed) {
+      history.push("/application-process");
+    }
+  }, []);
+
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
       <UserTopNav />
@@ -192,6 +201,8 @@ const Dashboard = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  appl: state.application,
+});
 
 export default connect(mapStateToProps, { getApplication })(Dashboard);

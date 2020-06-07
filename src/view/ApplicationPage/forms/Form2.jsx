@@ -346,6 +346,12 @@ const Form2 = ({ next, prev, employment, sendApplication }) => {
         label="HR or employer’s email address"
         rules={[{ required: true, type: "email" }]}
       >
+        {/* <small className="mb-2 mt--5">
+          This should be the official phone number of the HR, admin or customer{" "}
+          <br />
+          services team and not your work phone number
+        </small>
+        <br /> */}
         <Input style={{ width: "58%" }} placeholder="Enter email address" />
       </Form.Item>
       <Form.Item

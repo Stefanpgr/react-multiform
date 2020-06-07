@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Nav } from "react-bootstrap";
-
+import "./AppSideBar.scss";
 // import {useSelector} from 'react-redux'
 
 import { Progress, Divider, Badge } from "antd";
@@ -9,9 +9,10 @@ const Wrapper = styled.div`
   top: 80px;
   left: 52px;
   width: 256px;
-  height: 499px;
+  height: 510px;
   background: #00204f 0% 0% no-repeat padding-box;
   border-radius: 18px;
+
   opacity: 1;
 `;
 
@@ -48,7 +49,7 @@ const AppSidebar = ({ current, progress, goto }) => {
   console.log("current", current);
   sideBar.push(current);
   return (
-    <div>
+    <div className="nav-cont">
       <Wrapper>
         {/* <MenuItem>Payment Option</MenuItem> */}
         <Progress
@@ -63,75 +64,176 @@ const AppSidebar = ({ current, progress, goto }) => {
           Account Setup
         </h5>
         {/* <hr  /> */}
-        <Divider style={{ width: "2px" }} />
+        {/* <Divider style={{ width: "2px" }} /> */}
+        <div className="m-auto px-3 pt-2 pb-3">
+          {" "}
+          <div
+            style={{
+              border: "0.5px solid #365583",
+              height: "0px",
+              width: "225px",
+            }}
+          ></div>
+        </div>
+
         <Nav
-          style={{ paddingRight: "50px", paddingLeft: "10px" }}
+          style={{
+            paddingRight: "10px",
+            paddingLeft: "10px",
+            marginBottom: "50px",
+          }}
           variant="pills"
           activeKey={current}
           className="flex-column"
         >
           <Nav.Item className="pb-2">
             <Nav.Link
-              className={sideBar.includes(0) ? "text-white" : "text-muted"}
+              className={sideBar.includes(0) ? "text-tab" : "text-muted"}
               disabled={sideBar.includes(0) ? false : true}
               onClick={() => goto(0)}
               eventKey="0"
             >
+              {/* <span>
+                <img src="https://res.cloudinary.com/kwaba/image/upload/v1591462539/Group_1487_gljhuo.svg" />
+              </span> */}
               Payment Option{" "}
               <span className="nav-badge">
-                <Badge count={1} style={{ backgroundColor: "#21AD26" }} />
+                <Badge
+                  count={1}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(0) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+                {/* {sideBar.includes(0) ? (
+                  <Badge
+                    count={1}
+                    style={{
+                      backgroundColor: "#21AD26",
+                    }}
+                  />
+                ) : (
+                  <Badge
+                    count={1}
+                    style={{
+                      backgroundColor: "#365583",
+                    }}
+                  />
+                )} */}
               </span>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="pb-2">
             <Nav.Link
-              className={sideBar.includes(1) ? "text-white" : "text-muted"}
+              className={sideBar.includes(1) ? "text-tab" : "text-disable"}
               disabled={sideBar.includes(1) ? false : true}
               onClick={() => goto(1)}
               eventKey="1"
               title="Item"
             >
               Employment Details
+              <span className="nav-badge">
+                {/* <Badge count={2} style={{ backgroundColor: "#21AD26" }} /> */}
+                <Badge
+                  count={2}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(1) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+              </span>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="pb-2">
             <Nav.Link
-              className={sideBar.includes(2) ? "text-white" : "text-muted"}
+              className={sideBar.includes(2) ? "text-tab" : "text-disable"}
               disabled={sideBar.includes(2) ? false : true}
               onClick={() => goto(2)}
               eventKey="2"
             >
+              <span className="tab-svg">
+                {/* <img
+                  className="tab-svg"
+                  src="https://res.cloudinary.com/kwaba/image/upload/v1591462705/finance-info-svg_twxymw.svg"
+                /> */}
+              </span>
               Financial Information
+              <span className="nav-badge">
+                {/* <Badge count={3} style={{ backgroundColor: "#21AD26" }} /> */}
+                <Badge
+                  count={3}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(2) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+              </span>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="pb-2">
             <Nav.Link
-              className={sideBar.includes(3) ? "text-white" : "text-muted"}
+              className={sideBar.includes(3) ? "text-tab" : "text-disable"}
               disabled={sideBar.includes(3) ? false : true}
               onClick={() => goto(3)}
               eventKey="3"
             >
               Rent Information
+              <span className="nav-badge">
+                {/* <Badge count={4} style={{ backgroundColor: "#21AD26" }} /> */}
+                <Badge
+                  count={4}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(3) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+              </span>
             </Nav.Link>
           </Nav.Item>
           <Nav.Item className="pb-2">
             <Nav.Link
-              className={sideBar.includes(4) ? "text-white" : "text-muted"}
+              className={sideBar.includes(4) ? "text-tab" : "text-disable"}
               disabled={sideBar.includes(4) ? false : true}
               onClick={() => goto(4)}
               eventKey="4"
             >
               Landlord Details
+              <span className="nav-badge">
+                {/* <Badge count={5} style={{ backgroundColor: "#21AD26" }} /> */}
+                <Badge
+                  count={5}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(4) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+              </span>
             </Nav.Link>
           </Nav.Item>
-          <Nav.Item className="pb-2">
+          <Nav.Item className="pb-5 mb-5">
             <Nav.Link
-              className={sideBar.includes(5) ? "text-white" : "text-muted"}
+              className={sideBar.includes(5) ? "text-tab" : "text-disable"}
               disabled={sideBar.includes(5) ? false : true}
               onClick={() => goto(5)}
               eventKey="5"
             >
               Referee Details
+              <span className="nav-badge">
+                {/* <Badge count={6} style={{ backgroundColor: "#21AD26" }} /> */}
+                <Badge
+                  count={6}
+                  style={{
+                    backgroundColor: `${
+                      sideBar.includes(5) ? "#21AD26" : "#365583"
+                    }`,
+                  }}
+                />
+              </span>
             </Nav.Link>
           </Nav.Item>
         </Nav>

@@ -121,18 +121,25 @@ const UserTopNav = (props) => {
         className="py-0 px-4"
       >
         <Navbar.Brand href="/" className="py-0">
-          <Logo
+          {/* <Logo
             alt="RentCrowdy"
             width="140"
             height="70"
             className="d-inline-block align-top"
+          /> */}
+          <img
+            src="https://res.cloudinary.com/kwaba/image/upload/v1587125730/logo_kccjal.png"
+            alt="Kwaba"
+            width="130"
+            height="35"
+            className="d-inline-block align-top mt-2 mb-2"
           />
         </Navbar.Brand>
 
         <Nav.Item className="d-none d-md-inline">
           <Input
             prefix={
-              <SearchOutlined className="site-form-item-icon text-muted" />
+              <SearchOutlined className="site-form-item-icon text-muted mt-2" />
             }
             placeholder="Search"
           />

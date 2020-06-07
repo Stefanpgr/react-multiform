@@ -40,7 +40,7 @@ const SignupSuccess = () => {
             Please check your email to verify your account
           </h6>
 
-          <Link to="/dashboard">
+          <Link to="/get-started">
             <Btn>Login</Btn>
           </Link>
         </div>
