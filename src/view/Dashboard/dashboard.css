@@ -114,3 +114,13 @@
   background: #d6ffd8 0% 0% no-repeat padding-box;
   color: #21ad26;
 }
+
+.vl {
+  border-left: 6px solid green;
+  height: 500px;
+
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
 import { getApplication } from "../../actions/application";
