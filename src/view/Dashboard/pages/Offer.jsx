@@ -31,30 +31,32 @@ const Offer = ({ next }) => {
            <Col md='6'>skkss</Col>
             </Row> */}
         <table width="600">
-          <tr>
-            <Th>Rent request amount</Th>
-            <Th>Approved amount</Th>
-          </tr>
+          <tbody>
+            <tr>
+              <Th>Rent request amount</Th>
+              <Th>Approved amount</Th>
+            </tr>
 
-          <tr>
-            <Td>N1,000,000</Td>
-            <Td>N1,000,000</Td>
-          </tr>
-          <tr>
-            <Th>Monthly payment</Th>
-            <Th>Duration</Th>
-          </tr>
+            <tr>
+              <Td>N1,000,000</Td>
+              <Td>N1,000,000</Td>
+            </tr>
+            <tr>
+              <Th>Monthly payment</Th>
+              <Th>Duration</Th>
+            </tr>
 
-          <tr>
-            <Td>N83,333</Td>
-            <Td>12 Months</Td>
-          </tr>
-          <tr>
-            <Th>Deposit</Th>
-          </tr>
-          <tr>
-            <Td>N1,000,000</Td>
-          </tr>
+            <tr>
+              <Td>N83,333</Td>
+              <Td>12 Months</Td>
+            </tr>
+            <tr>
+              <Th>Deposit</Th>
+            </tr>
+            <tr>
+              <Td>N1,000,000</Td>
+            </tr>
+          </tbody>
         </table>
       </div>
 

@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Progress } from "antd";
-const Dashboard = () => {
+import { getApplication } from "../../actions/application";
+import UserTopNav from "../UserTopNav";
+import "./Dashboard.scss";
+const Dashboard = ({ appl, history }) => {
+  useEffect(() => {
+    if (!appl.isComplete) {
+      history.push("/apply");
+    } else if (!appl.isProcessed) {
+      history.push("/application-process");
+    }
+  }, []);
+
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
-      <h1>TEST</h1>
-      <Container>
+      <UserTopNav />
+
+      <Container className="dashboard">
         <Row>
           <Col md="5">
             <Card
-              className="bg-img-profile"
+              className="bg-img"
               style={{
                 width: "100%",
                 margin: "auto",
@@ -22,7 +36,7 @@ const Dashboard = () => {
             >
               <div className="card-body">
                 <Row className="justify-content-md-center ">
-                  <Col className="offset-md-1" md="5">
+                  <Col className="offset-md-1" md="5" sm="4">
                     <div className="text-center text-white mt-3">
                       <small
                         style={{ color: "#C2BFFF" }}
@@ -37,16 +51,16 @@ const Dashboard = () => {
                   </Col>
                   <Col md="">
                     <div
-                      className="bg-white"
+                      className="bg-white hide"
                       style={{
                         height: "5rem",
                         width: "1px",
                         marginLeft: "-10px",
                       }}
-                    ></div>
+                    />
                   </Col>
-                  <Col md="6">
-                    <div className="mt-3">
+                  <Col md="6" sm="3">
+                    <div className="mt-md-3">
                       <small
                         style={{ color: "#C2BFFF" }}
                         className="text-center "
@@ -102,13 +116,13 @@ const Dashboard = () => {
                     </div>
                   </Col>
                 </Row>
-                <p className="mb-1  mt-4 pb-1 text-blue">
+                <div className="mb-1  mt-4 pb-1 text-blue">
                   <strong>15%</strong>
                   <span className="text-muted ml-1">
                     <small>Percent complete</small>
                   </span>
                   <Progress percent={15} />
-                </p>
+                </div>
               </div>
             </Card>
           </Col>
@@ -136,7 +150,7 @@ const Dashboard = () => {
                 <hr />
                 <Card
                   style={{
-                    height: "59px",
+                    height: "69px",
                     boxShadow: " 0px 3px 15px #0000001A",
                     borderRadius: "10px",
                     border: "none",
@@ -144,53 +158,38 @@ const Dashboard = () => {
                   className="mb-3"
                 >
                   <Card.Body>
-                    <Row>
-                      <Col md="4">
-                        <div style={{ lineHeight: "43%" }}>
-                          <p className="text-blue" stlye={{ fontSize: "12px" }}>
-                            April Payment
-                          </p>
-                          <small className="text-muted">3 - 03 -2020</small>
-                        </div>
-                      </Col>
-                      <Col md="6">
-                        <div className="tag tag-fail">failed</div>
-                      </Col>
-                      <Col md="2">
-                        <p style={{ fontSize: "12px" }} className="text-blue">
+                    {/* <Row> */}
+                    {/* <Col md="4"> */}
+                    <div className="d-flex bd-highlight">
+                      <div
+                        // style={{ lineHeight: "83%" }}
+                        className="bd-highlight"
+                      >
+                        <p className="text-blue" stlye={{ fontSize: "12px" }}>
+                          April Payment <br />{" "}
+                          <span>
+                            <small className="text-muted">3 - 03 -2020</small>
+                          </span>
+                        </p>
+                      </div>
+                      {/* </Col> */}
+                      {/* <Col md="2"> */}
+                      <div className="tag tag-fail  bd-highlight ml-5">
+                        <p className="text-blue">failed</p>
+                      </div>
+                      {/* </Col> */}
+                      {/* <Col md="2"> */}
+                      <div className="ml-auto  bd-highlight">
+                        <p
+                          style={{ fontSize: "12px" }}
+                          className="text-blue align-self-md-end"
+                        >
                           <strong>N83,333</strong>
                         </p>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                </Card>
-                <Card
-                  style={{
-                    height: "59px",
-                    boxShadow: " 0px 3px 15px #0000001A",
-                    borderRadius: "10px",
-                    border: "none",
-                  }}
-                >
-                  <Card.Body>
-                    <Row>
-                      <Col md="4">
-                        <div style={{ lineHeight: "43%" }}>
-                          <p className="text-blue" stlye={{ fontSize: "12px" }}>
-                            March Payment
-                          </p>
-                          <small className="text-muted">3 - 03 -2020</small>
-                        </div>
-                      </Col>
-                      <Col md="6">
-                        <div className="tag tag-success">paid</div>
-                      </Col>
-                      <Col md="2">
-                        <p style={{ fontSize: "12px" }} className="text-blue">
-                          <strong>N83,333</strong>
-                        </p>
-                      </Col>
-                    </Row>
+                      </div>
+                    </div>
+                    {/* </Col> */}
+                    {/* </Row> */}
                   </Card.Body>
                 </Card>
               </div>
@@ -202,4 +201,8 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  appl: state.application,
+});
+
+export default connect(mapStateToProps, { getApplication })(Dashboard);

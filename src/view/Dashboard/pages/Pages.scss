@@ -1,0 +1,25 @@
+.get-started {
+
+    // .res {
+    @media screen and (max-width: 700px) {
+        .text-res {
+            font-size: 1rem !important;
+        }
+
+        .img-res {
+            width: 300px !important;
+            height: 300px;
+        }
+
+        .text-cont {
+            width: 270px !important;
+        }
+
+        .btn-res {
+            width: 50% !important;
+        }
+    }
+
+    // }
+
+}

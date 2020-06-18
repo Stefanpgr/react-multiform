@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Container, Button } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
+import UserTopNav from "../../UserTopNav";
 const Btn = styled.button`
   width: 146px;
   height: 44px;
@@ -16,13 +17,17 @@ const Btn = styled.button`
 const SignupSuccess = () => {
   return (
     <div>
-      <h1>Navbar</h1>
+      <UserTopNav />
       <Container className=" bg-white">
-        <div className="text-center mt-5">
+        <div className="text-center " style={{ marginTop: "5rem" }}>
           <img
             src={require("../../../assets/img/signup-success.svg")}
             width="320"
           />
+          {/* <img
+            src="https://res.cloudinary.com/kwaba/image/upload/v1590424411/Group_1755_kdwzda.svg"
+            width="320"
+          /> */}
           <h6
             style={{ color: "#5B55FF", fontWeight: "bold", fontSize: "35px" }}
           >
@@ -35,7 +40,9 @@ const SignupSuccess = () => {
             Please check your email to verify your account
           </h6>
 
-          <Btn>Login</Btn>
+          <Link to="/get-started">
+            <Btn>Login</Btn>
+          </Link>
         </div>
       </Container>
     </div>

@@ -1,10 +1,17 @@
-
 .bg-img-signup {
   background-image: url("./assets/img/signupsvg.svg");
   background-repeat: no-repeat;
   background-size: 100% 955px;
   height: 700px;
-  
+
   /* background-attachment: fixed; */
   /* background-color: #d6effc; */
+}
+
+.bg-img-login {
+  background-image: url('https://res.cloudinary.com/kwaba/image/upload/v1590747119/loginsvg.svg');
+}
+
+.test {
+  background-color: red;
 }
