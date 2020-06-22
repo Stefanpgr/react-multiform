@@ -71,6 +71,7 @@ function App() {
               path="/dashboard/docs"
               component={Documents}
             />
+            <Route exact path="/upload-docs" component={Documents} />
             <ProtectedRoute
               exact
               path="/application-success"
