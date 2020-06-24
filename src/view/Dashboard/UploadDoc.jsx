@@ -32,7 +32,8 @@ const UploadDoc = ({ title }) => {
 
   const allInputs = { imgUrl: "" };
   const [imageAsFile, setImageAsFile] = useState("");
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+  const [fileUrl, setFileUrl] = useState(allInputs);
+  const [files, setFiles] = useState([]);
   const fileInput = useRef(null);
   const handleClick = () => {
     fileInput.current.click();
@@ -40,56 +41,65 @@ const UploadDoc = ({ title }) => {
 
   const handleFileChange = (e, title) => {
     e.preventDefault();
-    console.log(e.target.files);
-    // setFilename(e.target.files[0].name);
+    const file = e.target.files[0];
+    setFiles([...files, file]);
 
-    let image = e.target.files[0];
-    setImageAsFile(image);
-    setProgress(true);
+    console.log(files);
+  };
 
-    console.log("start of upload");
-    // async magic goes here...
-    if (imageAsFile === "") {
-      console.error(`not an image, the image file is a ${typeof imageAsFile}`);
-    }
-    const uploadTask = storage.ref(`/documents/${image.name}`).put(image);
-    //initiates the firebase side uploading
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        //takes a snap shot of the process as it is happening
-        let getProgress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setPercent(getProgress);
-        console.log("Upload is " + getProgress + "% done");
-        console.log(snapshot);
-      },
-      (err) => {
-        //catches the errors
-        console.log(err);
-      },
-      () => {
-        // gets the functions from storage refences the image storage in firebase by the children
-        // gets the download url then sets the image from firebase as the value for the imgUrl key:
-        storage
-          .ref("documents")
-          .child(image.name)
-          .getDownloadURL()
-          .then((fireBaseUrl) => {
-            setImageAsUrl((prevObject) => ({
-              ...prevObject,
-              imgUrl: fireBaseUrl,
-            }));
-            setProgress(false);
-            setFilename(image.name);
-            sendToServer({
-              title,
-              name: image.name,
-            });
-            console.log(fireBaseUrl);
-          });
+  const upload = () => {
+    files.forEach((el) => {
+      setFilename(el.name);
+
+      setImageAsFile(el);
+      setProgress(true);
+
+      console.log("start of upload");
+      // async magic goes here...
+      if (imageAsFile === "") {
+        console.error(
+          `not an image, the image file is a ${typeof imageAsFile}`
+        );
       }
-    );
+      const uploadTask = storage.ref(`/documents/${el.name}`).put(el);
+      //initiates the firebase side uploading
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          //takes a snap shot of the process as it is happening
+          let getProgress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setPercent(getProgress);
+          console.log("Upload is " + getProgress + "% done");
+          console.log(snapshot);
+        },
+        (err) => {
+          //catches the errors
+          console.log(err);
+        },
+        () => {
+          // gets the functions from storage refences the image storage in firebase by the children
+          // gets the download url then sets the image from firebase as the value for the imgUrl key:
+          storage
+            .ref("documents")
+            .child(el.name)
+            .getDownloadURL()
+            .then((fireBaseUrl) => {
+              setFileUrl((prevObject) => ({
+                ...prevObject,
+                url: fireBaseUrl,
+              }));
+              setProgress(false);
+              setFilename(el.name);
+              sendToServer({
+                title,
+                name: el.name,
+              });
+              console.log(fireBaseUrl);
+            });
+        }
+      );
+    });
   };
 
   const sendToServer = (data) => {};
@@ -120,7 +130,7 @@ const UploadDoc = ({ title }) => {
               <div className="pt-2 pl-2">
                 {!(filename || progress) ? "No file uploaded" : null}
                 {filename ? (
-                  <a href={imageAsUrl.imgUrl} target="_blank">
+                  <a href={fileUrl.url} target="_blank">
                     <p style={{ color: "#51A4FB" }}>{filename}</p>
                   </a>
                 ) : (
@@ -144,6 +154,7 @@ const UploadDoc = ({ title }) => {
                   />
                   Choose file
                 </Btn>
+                <button onClick={() => upload()}>upload</button>
               </div>
             </Vl>
           </Row>

@@ -17,8 +17,11 @@ const Documents = () => {
                 <strong>All Documents</strong>
               </Card.Title>
               <hr />
-              {docs.map((e) => (
-                <UploadDoc title={e.title} />
+              {docs.map((e, index) => (
+                <div key={index}>
+                  {" "}
+                  <UploadDoc title={e.title} />
+                </div>
               ))}
             </Card.Body>
           </Card>
