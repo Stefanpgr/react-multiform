@@ -4,9 +4,9 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import application from '../reducers/applyReducer';
 
-// const url = "https://rentcrowdyapi.herokuapp.com";
+const url = "https://rentcrowdyapi.herokuapp.com";
 // const url = 'https://kwaba.com.ng';
-const url = 'http://localhost:8888';
+// const url = 'http://localhost:8888';
 
 export const requestSignup = (val, history) => async (dispatch) => {
 	try {

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 
-// const url = "https://rentcrowdyapi.herokuapp.com";
+const url = "https://rentcrowdyapi.herokuapp.com";
 // const url = "https://kwaba.com.ng";
-const url = 'http://localhost:8888';
+// const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
 export const sendApplication = (val, route, history) => async (dispatch) => {
