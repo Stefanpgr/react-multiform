@@ -16,7 +16,7 @@ import UserTopNav from "../UserTopNav";
 import FooterCommon from "../Partials/FooterCommon";
 
 const { Footer, Header } = Layout;
-const ApplicationStage = () => {
+const ApplicationStage = (props) => {
   const [current, setCurrent] = useState(0);
   // const [progress, setProgress]
 
@@ -116,7 +116,14 @@ const ApplicationStage = () => {
     },
     {
       title: "Financial Information",
-      content: <SetupPay next={next} prev={prev} current={current} />,
+      content: (
+        <SetupPay
+          next={next}
+          prev={prev}
+          current={current}
+          history={props.history}
+        />
+      ),
       sub: "Give us information about your finance",
     },
     {

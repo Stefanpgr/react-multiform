@@ -4,7 +4,10 @@ import UploadDoc from "./UploadDoc";
 import UserTopNav from "../UserTopNav";
 
 const Documents = () => {
-  const docs = [{ title: "Employment letter" }, { title: "Bank Statement" }];
+  const docs = [
+    { title: "Employment letter", action: "EMPLOYMENT_LETTER" },
+    { title: "Bank Statement", action: "BANK_STATEMENT" },
+  ];
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>
       <UserTopNav />
@@ -17,10 +20,10 @@ const Documents = () => {
                 <strong>All Documents</strong>
               </Card.Title>
               <hr />
-              {docs.map((e, index) => (
+              {docs.map((el, index) => (
                 <div key={index}>
                   {" "}
-                  <UploadDoc title={e.title} />
+                  <UploadDoc title={el.title} action={el.action} />
                 </div>
               ))}
             </Card.Body>

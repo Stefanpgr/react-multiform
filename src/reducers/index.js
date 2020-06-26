@@ -6,6 +6,7 @@ import user from "./authReducer";
 import profile from "./profileReducer";
 import application from "./applyReducer";
 import paystack from './paystackReducer'
+import documents from './documents'
 // import appl from './appl-data-reducer'
 import {
   reducer as toastrReducer
@@ -13,7 +14,7 @@ import {
 
 export default combineReducers({
   application,
-  // appl,
+  documents,
   user,
   alert,
   profile,

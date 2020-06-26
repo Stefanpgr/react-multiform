@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Progress } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import { UploadOutlined } from "@ant-design/icons";
 import { Row, Card, Container } from "react-bootstrap";
 import { storage } from "../../utils/firebase";
@@ -25,20 +26,23 @@ const Btn = styled.button`
   opacity: 1;
 `;
 
-const UploadDoc = ({ title }) => {
+const UploadDoc = ({ title, action }) => {
   const [filename, setFilename] = useState(null);
   const [progress, setProgress] = useState(false);
   const [percent, setPercent] = useState(0);
-
+  const dispatch = useDispatch();
   const allInputs = { imgUrl: "" };
   const [imageAsFile, setImageAsFile] = useState("");
   const [fileUrl, setFileUrl] = useState(allInputs);
   const [files, setFiles] = useState([]);
   const fileInput = useRef(null);
+  const { documents } = useSelector((state) => ({
+    documents: state.documents,
+  }));
   const handleClick = () => {
     fileInput.current.click();
   };
-
+  const items = [];
   const handleFileChange = (e, title) => {
     e.preventDefault();
     const file = e.target.files[0];
@@ -47,7 +51,26 @@ const UploadDoc = ({ title }) => {
     console.log(files);
   };
 
+  const Holdfile = () => {
+    return (
+      <div>
+        {!progress ? (
+          <div>
+            {files.map((el, i) => (
+              <ul key={i}>
+                <li>{el.name}</li>
+              </ul>
+            ))}
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  };
+
   const upload = () => {
+    const promises = [];
     files.forEach((el) => {
       setFilename(el.name);
 
@@ -56,13 +79,14 @@ const UploadDoc = ({ title }) => {
 
       console.log("start of upload");
       // async magic goes here...
-      if (imageAsFile === "") {
-        console.error(
-          `not an image, the image file is a ${typeof imageAsFile}`
-        );
-      }
+      // if (imageAsFile === "") {
+      //   console.error(
+      //     `not an image, the image file is a ${typeof imageAsFile}`
+      //   );
+      // }
       const uploadTask = storage.ref(`/documents/${el.name}`).put(el);
       //initiates the firebase side uploading
+      promises.push(uploadTask);
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -77,32 +101,75 @@ const UploadDoc = ({ title }) => {
           //catches the errors
           console.log(err);
         },
-        () => {
+        async () => {
           // gets the functions from storage refences the image storage in firebase by the children
           // gets the download url then sets the image from firebase as the value for the imgUrl key:
-          storage
+          const fireBaseUrl = await storage
             .ref("documents")
             .child(el.name)
-            .getDownloadURL()
-            .then((fireBaseUrl) => {
-              setFileUrl((prevObject) => ({
-                ...prevObject,
-                url: fireBaseUrl,
-              }));
-              setProgress(false);
-              setFilename(el.name);
-              sendToServer({
-                title,
-                name: el.name,
-              });
-              console.log(fireBaseUrl);
-            });
+            .getDownloadURL();
+          // .then((fireBaseUrl) => {
+          //   setFileUrl((prevObject) => ({
+          //     ...prevObject,
+          //     url: fireBaseUrl,
+          //   }));
+          setFileUrl((prevObject) => ({
+            ...prevObject,
+            url: fireBaseUrl,
+          }));
+          setProgress(false);
+          setFilename(el.name);
+          // sendToServer({
+          //  url: fireBaseUrl,
+          //   name: el.name,
+          // });
+          // items.push({
+          //   url: fireBaseUrl,
+          //    name: el.name,
+          //  })
+          dispatch({
+            type: action,
+            payload: {
+              url: fireBaseUrl,
+              name: el.name,
+            },
+          });
+          items.push({
+            url: fireBaseUrl,
+            name: el.name,
+          });
+          console.log(fireBaseUrl);
         }
       );
     });
+    Promise.all(promises)
+      .then(() => console.log(documents))
+      .catch((err) => console.log(err.code));
   };
 
-  const sendToServer = (data) => {};
+  const sendToServer = (val) => {
+    // try {
+    //   const { data, status } = await axios.post(`${url}/api/renter/rnpl/${route}`, {
+    //     email: localStorage.getItem('email'),
+    //     ...val
+    //   });
+    //   if (status === 200) {
+    //     dispatch({
+    //       type: 'ADD_APPL',
+    //       payload: data
+    //     });
+    //     return data;
+    //   } else {
+    //     throw new Error();
+    //   }
+    // } catch (e) {
+    //   if (e.response) {
+    //     console.log(e.response);
+    //   } else {
+    //     console.log(e, 'error');
+    //   }
+    // }
+  };
 
   return (
     <div>
@@ -128,7 +195,9 @@ const UploadDoc = ({ title }) => {
                 {title}
               </p>
               <div className="pt-2 pl-2">
-                {!(filename || progress) ? "No file uploaded" : null}
+                {!(filename || progress || files.length > 1)
+                  ? "No file uploaded"
+                  : ""}
                 {filename ? (
                   <a href={fileUrl.url} target="_blank">
                     <p style={{ color: "#51A4FB" }}>{filename}</p>

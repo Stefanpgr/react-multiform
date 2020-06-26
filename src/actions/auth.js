@@ -1,16 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 // import { setUserSession } from "../Utils/Common";
-import { toastr } from 'react-redux-toastr';
+import {
+	toastr
+} from 'react-redux-toastr';
 import application from '../reducers/applyReducer';
 
-// const url = "https://rentcrowdyapi.herokuapp.com";
+const url = "https://rentcrowdyapi.herokuapp.com";
 // const url = 'https://kwaba.com.ng';
-const url = 'http://localhost:8888';
+// const url = 'http://localhost:8888';
 
 export const requestSignup = (val, history) => async (dispatch) => {
 	try {
-		const { data } = await axios.post(`${url}/api/renter/auth/register`, val);
+		const {
+			data
+		} = await axios.post(`${url}/api/renter/auth/register`, val);
 		if (!data) throw new Error();
 		console.log(data);
 
@@ -45,7 +49,10 @@ export const requestSignup = (val, history) => async (dispatch) => {
 
 export const requestLogin = (val, history) => async (dispatch) => {
 	try {
-		const { data, status } = await axios.post(`${url}/api/renter/auth/login`, val);
+		const {
+			data,
+			status
+		} = await axios.post(`${url}/api/renter/auth/login`, val);
 		console.log(data, 'STATUS');
 		if (status === 200) {
 			// console.log(data, "data");
@@ -58,7 +65,9 @@ export const requestLogin = (val, history) => async (dispatch) => {
 					application: data.application
 				}
 			});
-			const { application } = data;
+			const {
+				application
+			} = data;
 
 			// dispatch({
 			//   type: "ADD_APPL",
