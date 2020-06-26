@@ -3,6 +3,8 @@ import { Form, Input, Select, Radio, Space } from 'antd';
 import { Col, Row, Container } from 'react-bootstrap';
 import { useDispatch, connect } from 'react-redux';
 import { BottomNav } from '../BottomNav';
+import {InfoCircleOutlined} from '@ant-design/icons'
+
 import { sendApplication } from '../../../actions/application';
 
 import styled from 'styled-components';
@@ -37,6 +39,14 @@ const StyledRadio = styled.button`
 	color: #878787;
 	opacity: 1;
 	padding: 9px 0px 8px 15px;
+`;
+
+const ErrorView = styled.div`
+	background: #FCFCFC 0% 0% no-repeat padding-box;
+	/* border: 1px solid #FF6C6C; */
+	border-radius: 15px;
+	opacity: 1;
+	text-align: center;
 `;
 const layout = {
 	labelCol: { span: 18 },
@@ -119,9 +129,12 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 	const AccmStatus = () => {
 		if (accStat === "I'm still searching") {
 			return (
-				<div>
-					<div className="reject-stat-child">!</div>
-				</div>
+				<ErrorView>
+					<InfoCircleOutlined style={{color: '#d85d5e', fontSize: '40px'}} />
+					<h2 className="mt-2">Oops</h2>
+					<h6 className="text-danger"> As you haven’t found a place yet, you can’t proceed. </h6>
+					<p className="" style={{color: '#c1c1c1'}}>You can save your application though. once you find a place, you can continue from where you left off.</p>
+				</ErrorView>
 			);
 		} else if (accStat === 'Want to pay for a new place') {
 			return (
@@ -269,7 +282,7 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 
 			{/* {accStat === "I'm still searching" ? <Reject /> : ''} */}
 			<Box stat={accStat}>
-				<Container className="mt-3 ml-3">
+				<Container className="p-4">
 					<AccmStatus />
 				</Container>
 			</Box>
@@ -306,7 +319,7 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 						<Input  />
 					</Form.Item> */}
 
-			<BottomNav prev={prev} />
+			<BottomNav prev={prev} accm={payment_option.acct_stat}/>
 		</Form>
 	);
 };
