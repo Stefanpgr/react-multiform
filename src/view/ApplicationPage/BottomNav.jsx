@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Divider, Button } from "antd";
 import { useSelector } from "react-redux";
-export const BottomNav = ({ prev, current }) => {
+export const BottomNav = ({ prev, current, accm }) => {
   const [curr, setCurr] = useState(false);
   const [checkPage, setPage] = useState();
   const { currPage } = useSelector((state) => ({
@@ -31,14 +31,23 @@ export const BottomNav = ({ prev, current }) => {
         >
           Back
         </Button>{" "}
-        <Button
+       { (accm === "I'm still searching" && currPage ===3) ? (<Button
+          size="large"
+          htmlType="button"
+          type="primary"
+          className="btn-form"
+          
+        >
+          Save
+        </Button>):(<Button
           size="large"
           htmlType="submit"
           type="primary"
           className="btn-form"
+          
         >
           {currPage == 5 ? "Finish" : "Continue"}
-        </Button>
+        </Button>)}
       </div>
     </div>
   );
