@@ -12,14 +12,14 @@ const layout = {
 };
 const Form5 = (props) => {
   const [form] = Form.useForm();
-  const { next, prev, landlord_details, banks, sendApplication } = props;
+  const { next, prev, landlord_details, rent_info, banks, sendApplication } = props;
   const dispatch = useDispatch();
-
+ 
   const validateMessages = {
     required: "This field is required!",
     types: {
-      email: "Not a validate email!",
-      number: "Not a validate number!",
+      email: "Not a valid email!",
+      number: "Not a valid number!",
     },
     number: {
       range: "Must be between ${min} and ${max}",
@@ -65,10 +65,10 @@ const Form5 = (props) => {
     >
       <Form.Item
         name={["landlord_full_name"]}
-        label="Landlord's full name"
+        label={`${rent_info.rent_collector}'s full name`}
         rules={[{ required: true }]}
       >
-        <Input style={{ width: "58%" }} placeholder="Enter full name" />
+        <Input style={{ width: "58%" }} placeholder={`Enter ${rent_info.rent_collector}'s full name`} />
       </Form.Item>
 
       <Form.Item
@@ -101,10 +101,10 @@ const Form5 = (props) => {
 
       <Form.Item
         name={["landlord_phone_num"]}
-        label="Landlord's phone number"
+        label={`${rent_info.rent_collector}'s phone number`}
         rules={[{ required: true }]}
       >
-        <Input placeholder="Enter landlord’s phone number" />
+        <Input placeholder={`${rent_info.rent_collector}’s phone number`} />
       </Form.Item>
       <BottomNav prev={prev} />
     </Form>
@@ -113,6 +113,7 @@ const Form5 = (props) => {
 
 const mapStateToProps = (state) => ({
   landlord_details: state.application.landlord_details,
+  rent_info: state.application.rent_info,
   banks: state.paystack.banks,
 });
 

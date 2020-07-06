@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import {useSelector} from 'react-redux'
 import { Nav } from "react-bootstrap";
 import "./AppSideBar.scss";
 // import {useSelector} from 'react-redux'
@@ -46,6 +47,9 @@ const AppSidebar = ({ current, progress, goto }) => {
   // const {progress} = useSelector((state)=>({
   // 	progress: state.application.progress
   // }))
+  const {rent_collector} = useSelector((state) => ({
+    ...state.application.rent_info
+  }))
   console.log("current", current);
   sideBar.push(current);
   return (
@@ -201,7 +205,7 @@ const AppSidebar = ({ current, progress, goto }) => {
               onClick={() => goto(4)}
               eventKey="4"
             >
-              Landlord Details
+             {rent_collector} Details
               <span className="nav-badge">
                 {/* <Badge count={5} style={{ backgroundColor: "#21AD26" }} /> */}
                 <Badge

@@ -71,8 +71,8 @@ const Form1 = ({
   const validateMessages = {
     required: "This field is required!",
     types: {
-      email: "Not a validate email!",
-      number: "Not a validate number!",
+      email: "Not a valid email!",
+      number: "Not a valid number!",
     },
     number: {
       range: "Must be between ${min} and ${max}",
@@ -216,7 +216,7 @@ const Form1 = ({
                 />
                 </Form.Item>
                 <p className="p-question mt-3">Choose a monthly plan</p>
-                <StyledSwitch type="button" className="mr-4">
+                {/* <StyledSwitch type="button" className="mr-4">
                 <Col>
                     <strong className="switch-text">1</strong>
                 </Col>
@@ -239,15 +239,34 @@ const Form1 = ({
                 <Col>
                     <p className="switch-text">Months</p>
                 </Col>{" "}
-                </StyledSwitch>
+                </StyledSwitch> */}
+                <Form.Item label="How long have you lived here?" name={[ 'monthly_plan' ]}>
+				<Radio.Group buttonStyle="solid">
+					<Radio.Button value={1}>
+						<p>
+							<strong>1</strong>
+						</p>
+						<p>Month</p>
+					</Radio.Button>
+					<Radio.Button value={3}>
+						<p>3</p>
+						<p>Months</p>{' '}
+					</Radio.Button>
+					<Radio.Button value={6}>
+						<p>6</p>
+						<p>Months</p>{' '}
+					</Radio.Button>
+					
+				</Radio.Group>
+			</Form.Item>
 
-                <BreakDown>
+                {/* <BreakDown>
                     <div className="p-3">
                       <h5 style={{color: '#00204F', fontSize: '17px', fontWeight: 'bold'}}>Payment breakdown</h5>
                       <p style={{color: '#00204F', fontSize: '13px'}}>You can adjust your rent request amount to get other options</p>
                       <a onClick={() => setIsFalse(true)} className="mt-3" style={{color: '#51A4FB', fontSize: '13px'}}>See payment breakdown ></a>
                     </div>
-                </BreakDown>
+                </BreakDown> */}
 
 
                 {/* <div style={{backgroundColor: 'red', height: '100%', width: '100%', position: 'absolute', top: 0}}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Select, Radio, Space } from 'antd';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Col, Row, Container, Card } from 'react-bootstrap';
 import { useDispatch, connect } from 'react-redux';
 import { BottomNav } from '../BottomNav';
 import {InfoCircleOutlined} from '@ant-design/icons'
@@ -18,9 +18,9 @@ const StyledSwitch = styled.button`
 `;
 
 const Box = styled.div`
-	top: 920px;
-	left: 650px;
-	width: 546px;
+	
+	min-width: 400px;
+	max-width: 500px;
 	min-height: 100px;
 
 	background: ${(props) => (props.stat === "I'm still searching" ? '#FFFF' : '#edf3f8 0% 0% no-repeat padding-box')};
@@ -62,8 +62,8 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
-			email: 'Not a validate email!',
-			number: 'Not a validate number!'
+			email: 'Not a valid email!',
+			number: 'Not a valid number!'
 		}
 		// number: {
 		// 	range: `Must be between ${min} and ${max}`
@@ -98,8 +98,8 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 
 	const RC = () => {
 		return (
-			<div>
-				<Form.Item name={[ 'rent_collector' ]} label="Who did you pay to?" rules={[ { required: true } ]}>
+			<div className='d-inline'>
+				<Form.Item name={[ 'rent_collector' ]} label="Who will you pay to?" rules={[ { required: true } ]}>
 					<Radio.Group
 						onChange={(e) => {
 							setRc(e.target.value);
@@ -164,8 +164,9 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 
 					<Form.Item name={[ 'pay_type' ]} label="How did you pay?" rules={[ { required: true } ]}>
 						<Select size="large" style={{ width: '96%' }} placeholder="Select how you paid">
-							<Select.Option value="card">Card</Select.Option>
-							<Select.Option value="bank">Bank Transfer</Select.Option>
+							<Select.Option value="cash">Cash</Select.Option>
+							<Select.Option value="transfer">Bank Transfer</Select.Option>
+							<Select.Option value="cheque">Cheque</Select.Option>
 						</Select>
 					</Form.Item>
 				</div>
@@ -269,8 +270,9 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 			<Form.Item name={[ 'acc_stat_show' ]} label="What's your accomodation status?">
 				<Space size="small">
 					<Select size="large" value={accStat} style={{ width: '105%' }} placeholder={accStat} disabled>
-						<Select.Option value="card">Card</Select.Option>
-						<Select.Option value="bank">Bank Transfer</Select.Option>
+						<Select.Option value="Cash">Cash</Select.Option>
+						<Select.Option value="Bank Transfer">Bank Transfer</Select.Option>
+						<Select.Option value="Cheque">Cheque</Select.Option>
 					</Select>
 					<a>
 						<span className="ml-3">
@@ -281,10 +283,10 @@ const Form4 = ({ next, prev, payment_option, rent_info, sendApplication }) => {
 			</Form.Item>
 
 			{/* {accStat === "I'm still searching" ? <Reject /> : ''} */}
-			<Box stat={accStat}>
-				<Container className="p-4">
+			<Box stat={accStat} className='card'>
+				<Card.Body className="p-4">
 					<AccmStatus />
-				</Container>
+				</Card.Body >
 			</Box>
 
 			{/* <StyledSwitch className="mr-4">
