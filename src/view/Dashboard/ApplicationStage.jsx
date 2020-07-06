@@ -24,8 +24,8 @@ const ApplicationStage = (props) => {
     dispatch({
       type: "CLEAR_APPL",
     });
-    const url = "https://rentcrowdyapi.herokuapp.com";
-    // const url = "https://kwaba.com.ng";
+    // const url = "https://rentcrowdyapi.herokuapp.com";
+    const url = "https://kwaba.com.ng";
     // const url = "http://localhost:8888";
     try {
       const { data, status } = await axios.get(`${url}/api/renter/rnpl/get`, {

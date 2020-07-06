@@ -12,9 +12,7 @@ import { NavLink } from "react-router-dom";
 const UserTopNav = (props) => {
   const { location, history } = props;
   const dispatch = useDispatch();
-  const { firstname } = useSelector((state) => ({
-    firstname: state.user.firstname,
-  }));
+ const user = JSON.parse(sessionStorage.getItem('user'))
   const requestLogout = () => {
     dispatch({
       type: "LOGOUT_USER",
@@ -148,9 +146,9 @@ const UserTopNav = (props) => {
           <Nav.Link className="px-3">
             <BellOutlined className="text-muted align-middle px-2" />
             <span className="d-none d-sm-inline">
-              <span className="font-weight-light">Hi,</span> {firstname}
+              <span className="font-weight-light">Hi,</span> {user.firstname}
               <span className="name-icon">
-                {firstname.charAt(0).toUpperCase()}
+                {user.firstname.charAt(0).toUpperCase()}
               </span>
               <span className="font-weight-light">
                 <button onClick={() => requestLogout()}>Logout</button>

@@ -9,6 +9,7 @@ const url = "https://kwaba.com.ng";
 // const token =sessionStorage.getItem("token")
 
 export const sendApplication = (val, route, history) => async (dispatch) => {
+
 	try {
 		const {
 			data,

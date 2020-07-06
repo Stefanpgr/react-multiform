@@ -215,7 +215,7 @@ const Form1 = ({
                     placeholder="Enter amount"
                 />
                 </Form.Item>
-                <p className="p-question mt-3">Choose a monthly plan</p>
+                {/* <p className="p-question mt-3">Choose a monthly plan</p> */}
                 {/* <StyledSwitch type="button" className="mr-4">
                 <Col>
                     <strong className="switch-text">1</strong>
@@ -240,7 +240,7 @@ const Form1 = ({
                     <p className="switch-text">Months</p>
                 </Col>{" "}
                 </StyledSwitch> */}
-                <Form.Item label="How long have you lived here?" name={[ 'monthly_plan' ]}>
+                <Form.Item label="Choose a monthly plan" name={[ 'monthly_plan' ]}>
 				<Radio.Group buttonStyle="solid">
 					<Radio.Button value={1}>
 						<p>

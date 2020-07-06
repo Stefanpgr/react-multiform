@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./Auth.scss";
 import { Col, Row, Container, Card } from "react-bootstrap";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import TopNav from "../TopNav";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Spin, Alert } from "antd";
 import { requestLogin } from "../../actions/auth";
 import styled from "styled-components";
 
@@ -18,8 +18,12 @@ const Wrapper = styled.div`
 //   labelCol: { span: 12 },
 //   wrapperCol: { span: 16 },
 // };
-const Login = ({ requestLogin, history, application }) => {
+const Login = ({ requestLogin, history, application, user }) => {
+const dispatch = useDispatch()
   const onFinish = (values) => {
+    dispatch({
+      type: 'LOADING_USER'
+    })
     requestLogin(values, history, application);
     console.log("Received values of form: ", values);
   };
@@ -52,6 +56,7 @@ const Login = ({ requestLogin, history, application }) => {
             <Col md="5">
               <Card className="mt-5">
                 <Card.Body>
+                {user.error ? (<Alert type="error" message={user.errorMsg} banner  closable/>) : ''}
                   <Form
                     name="normal_login"
                     // {...layout}
@@ -99,14 +104,17 @@ const Login = ({ requestLogin, history, application }) => {
                     </Form.Item>
 
                     <Form.Item>
+                      <Spin spinning={!user.loading ? false : true}>
                       <Button
                         type="primary"
                         htmlType="submit"
                         className="login-form-button"
                         style={{ width: "100%", height: "2.5rem" }}
+                        // disabled={!user.loading ? false : true}
                       >
                         Log in
                       </Button>
+                      </Spin>
                     </Form.Item>
                   </Form>
                 </Card.Body>
@@ -121,6 +129,7 @@ const Login = ({ requestLogin, history, application }) => {
 
 const mapStateToProps = (state) => ({
   application: state.application,
+  user: state.user
 });
 
 export default connect(mapStateToProps, { requestLogin })(Login);

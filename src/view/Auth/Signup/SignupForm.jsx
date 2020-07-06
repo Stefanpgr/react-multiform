@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
-import { Form, Input, Select, Button, Checkbox, Radio } from "antd";
+import {useSelector} from 'react-redux'
+import { Form, Input, Select, Button, Checkbox, Radio, Alert, Spin } from "antd";
 import styled from "styled-components";
 const StyledRadio = styled.button`
   background: ${(props) => (props.switch === props.stat ? "#e7f7ff" : 0)};
@@ -16,6 +17,7 @@ const StyledRadio = styled.button`
 
 const SignupForm = (props) => {
   const [gendStat, setGend] = useState("");
+  const user = useSelector((state)=> state.user)
   return (
     <Row className="mx-0">
       <Col md="6" className="px-0 d-none d-md-block left-cont"></Col>
@@ -26,6 +28,7 @@ const SignupForm = (props) => {
             <h6>Let's get you started with an account</h6>
           </div>
           <Container className="mt-5">
+          {user.error ? (<Alert type="error" message={user.errorMsg} banner  closable/>) : ''}
             <Form onFinish={props.finish}>
               <Row>
                 <Col md="6" lg="5" className="offset-lg-1 mb-0">
@@ -248,6 +251,7 @@ const SignupForm = (props) => {
                     </Checkbox>
                   </Form.Item>
                   <Form.Item>
+                  <Spin spinning={!user.loading ? false : true}>
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -256,6 +260,7 @@ const SignupForm = (props) => {
                     >
                       Create Account
                     </Button>
+                    </Spin>
                   </Form.Item>
 
                   <p className="text-center text-muted mb-5 font-weight-bold">
