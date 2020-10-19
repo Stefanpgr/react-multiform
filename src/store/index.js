@@ -13,11 +13,15 @@ const persistConfig = {
 // const saga = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const composeEnhancers = compose;
-const persistedReducer = persistReducer(persistConfig, reducer);
+// const persistedReducer = persistReducer(persistConfig, reducer);
 export const store = createStore(
-  persistedReducer,
+  reducer,
   composeEnhancers(applyMiddleware(thunk))
 );
+// export const store = createStore(
+//   persistedReducer,
+//   composeEnhancers(applyMiddleware(thunk))
+// );
 // export const store = createStore(persistedReducer, applyMiddleware(thunk));
 export const persistor = persistStore(store);
 // export default () => {

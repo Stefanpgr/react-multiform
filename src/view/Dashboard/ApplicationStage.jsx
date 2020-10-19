@@ -16,7 +16,7 @@ import UserTopNav from "../UserTopNav";
 import FooterCommon from "../Partials/FooterCommon";
 
 const { Footer, Header } = Layout;
-const ApplicationStage = () => {
+const ApplicationStage = (props) => {
   const [current, setCurrent] = useState(0);
   // const [progress, setProgress]
 
@@ -24,8 +24,8 @@ const ApplicationStage = () => {
     dispatch({
       type: "CLEAR_APPL",
     });
-    const url = "https://rentcrowdyapi.herokuapp.com";
-    // const url = "https://kwaba.com.ng";
+    // const url = "https://rentcrowdyapi.herokuapp.com";
+    const url = "https://kwaba.com.ng";
     // const url = "http://localhost:8888";
     try {
       const { data, status } = await axios.get(`${url}/api/renter/rnpl/get`, {
@@ -116,7 +116,14 @@ const ApplicationStage = () => {
     },
     {
       title: "Financial Information",
-      content: <SetupPay next={next} prev={prev} current={current} />,
+      content: (
+        <SetupPay
+          next={next}
+          prev={prev}
+          current={current}
+          history={props.history}
+        />
+      ),
       sub: "Give us information about your finance",
     },
     {

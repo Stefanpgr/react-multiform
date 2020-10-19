@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Input, Space } from 'antd';
+import { Form, Input, Space, Select } from 'antd';
 import { Redirect } from 'react-router-dom';
 // import CurrencyFormat from 'react-currency-format'
 import { connect, useDispatch } from 'react-redux';
@@ -19,8 +19,8 @@ const Form6 = ({ prev, application, user, sendApplication, history }) => {
 	const validateMessages = {
 		required: 'This field is required!',
 		types: {
-			email: 'Not a validate email!',
-			number: 'Not a validate number!'
+			email: 'Not a valid email!',
+			number: 'Not a valid number!'
 		},
 		number: {
 			range: 'Must be between ${min} and ${max}'
@@ -90,7 +90,25 @@ const Form6 = ({ prev, application, user, sendApplication, history }) => {
 			</Space>
 
 			<Form.Item name={[ 'relationship' ]} label="Relationship" rules={[ { required: true } ]}>
-				<Input placeholder="Enter relationship" />
+				{/* <Input placeholder="Enter relationship" /> */}
+				<Select size="large" style={{ width: "58%" }} placeholder="Enter relationship">
+      <Select.Option value='father'>
+           Father
+            </Select.Option>
+			 <Select.Option value='mother'>
+          Mother
+            </Select.Option>
+            <Select.Option value='cousin'>
+          Cousin
+            </Select.Option>
+			 <Select.Option value='brother'>
+          Brother
+            </Select.Option>
+			 <Select.Option value='sister'>
+          Sister
+            </Select.Option>
+         
+        </Select>
 			</Form.Item>
 			<BottomNav prev={prev} />
 		</Form>

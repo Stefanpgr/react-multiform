@@ -10,9 +10,10 @@ const Dashboard = ({ appl, history }) => {
   useEffect(() => {
     if (!appl.isComplete) {
       history.push("/apply");
-    } else if (!appl.isProcessed) {
-      history.push("/application-process");
     }
+    //  else if (!appl.isProcessed) {
+    //   history.push("/application-process");
+    // }
   }, []);
 
   return (
@@ -148,7 +149,7 @@ const Dashboard = ({ appl, history }) => {
                   Payment History
                 </h5>
                 <hr />
-                <Card
+                {/* <Card
                   style={{
                     height: "69px",
                     boxShadow: " 0px 3px 15px #0000001A",
@@ -158,8 +159,7 @@ const Dashboard = ({ appl, history }) => {
                   className="mb-3"
                 >
                   <Card.Body>
-                    {/* <Row> */}
-                    {/* <Col md="4"> */}
+               
                     <div className="d-flex bd-highlight">
                       <div
                         // style={{ lineHeight: "83%" }}
@@ -172,13 +172,12 @@ const Dashboard = ({ appl, history }) => {
                           </span>
                         </p>
                       </div>
-                      {/* </Col> */}
-                      {/* <Col md="2"> */}
+                     
+                     
                       <div className="tag tag-fail  bd-highlight ml-5">
                         <p className="text-blue">failed</p>
                       </div>
-                      {/* </Col> */}
-                      {/* <Col md="2"> */}
+                    
                       <div className="ml-auto  bd-highlight">
                         <p
                           style={{ fontSize: "12px" }}
@@ -188,10 +187,9 @@ const Dashboard = ({ appl, history }) => {
                         </p>
                       </div>
                     </div>
-                    {/* </Col> */}
-                    {/* </Row> */}
+                
                   </Card.Body>
-                </Card>
+                </Card> */}
               </div>
             </Card>
           </Col>

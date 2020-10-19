@@ -1,0 +1,40 @@
+// .ant-input-group > .ant-input:last-child, .ant-input-group-addon:last-child {
+//     border-top-left-radius: 0;
+//     border-bottom-left-radius: 0;
+//     // height: 2rem;
+//     // border-color: #868786;
+//     font-size: 25px,
+    
+// }
+
+
+.payment-card{
+     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.08), 0 15px 12px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.payment-card:focus-within {
+    border: 1px solid #51a4fb;    
+}
+
+
+.ant-input-group .ant-input {
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: inherit;
+    font-size: 20px;
+}
+
+.optionone {
+    background: #51a4fb;
+    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; 
+    text-transform: 'uppercase'; 
+    font-size: 14; color: #fff;
+    margin: 0 auto;
+    width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}

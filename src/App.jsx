@@ -43,7 +43,7 @@ function App() {
   // const loading = () => <div>loading...</div>;
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      {/* <PersistGate loading={null} persistor={persistor}> */}
         <BrowserRouter>
           <Switch>
             {/* <Route exact path="/test" component={AppSidebar} /> */}
@@ -71,6 +71,7 @@ function App() {
               path="/dashboard/docs"
               component={Documents}
             />
+            <Route exact path="/upload-docs" component={Documents} />
             <ProtectedRoute
               exact
               path="/application-success"
@@ -81,7 +82,7 @@ function App() {
             <Route exact path="*" component={Page404} />
           </Switch>
         </BrowserRouter>
-      </PersistGate>
+      {/* </PersistGate> */}
     </Provider>
   );
 }

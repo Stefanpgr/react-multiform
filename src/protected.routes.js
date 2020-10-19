@@ -21,7 +21,7 @@ export const ProtectedRoute = ({
 		}
 		render = {
 			(props) => {
-				if (store.getState().user.isAuth) {
+				if (sessionStorage.getItem('isAuth')) {
 
 					return <Component {
 						...props

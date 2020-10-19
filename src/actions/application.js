@@ -1,14 +1,20 @@
 import axios from 'axios';
-import { toastr } from 'react-redux-toastr';
+import {
+	toastr
+} from 'react-redux-toastr';
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
-// const url = "https://kwaba.com.ng";
-const url = 'http://localhost:8888';
+const url = "https://kwaba.com.ng";
+// const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
 export const sendApplication = (val, route, history) => async (dispatch) => {
+
 	try {
-		const { data, status } = await axios.post(`${url}/api/renter/rnpl/${route}`, {
+		const {
+			data,
+			status
+		} = await axios.post(`${url}/api/renter/rnpl/${route}`, {
 			email: localStorage.getItem('email'),
 			...val
 		});
@@ -42,7 +48,10 @@ export const sendApplication = (val, route, history) => async (dispatch) => {
 
 export const getApplication = (id) => async (dispatch) => {
 	try {
-		const { data, status } = await axios.get(`${url}/api/renter/rnpl/get`, {
+		const {
+			data,
+			status
+		} = await axios.get(`${url}/api/renter/rnpl/get`, {
 			headers: {
 				'x-auth-token': localStorage.getItem('token')
 			}
