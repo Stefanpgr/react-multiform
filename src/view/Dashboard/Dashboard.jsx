@@ -7,14 +7,14 @@ import { getApplication } from "../../actions/application";
 import UserTopNav from "../UserTopNav";
 import "./Dashboard.scss";
 const Dashboard = ({ appl, history }) => {
-  useEffect(() => {
-    if (!appl.isComplete) {
-      history.push("/apply");
-    }
-    //  else if (!appl.isProcessed) {
-    //   history.push("/application-process");
-    // }
-  }, []);
+  // useEffect(() => {
+  //   if (!appl.isComplete) {
+  //     history.push("/apply");
+  //   }
+  //   //  else if (!appl.isProcessed) {
+  //   //   history.push("/application-process");
+  //   // }
+  // }, []);
 
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>

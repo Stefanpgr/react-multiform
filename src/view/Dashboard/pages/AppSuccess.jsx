@@ -43,7 +43,7 @@ const AppSuccess = () => {
             <h6 style={{ color: "#707070", fontSize: "10px" }}>
               You have successfully completed your application
             </h6>
-            <Link to="/application-process">
+            <Link to="/dashboard">
               <Btn>Ok</Btn>
             </Link>
           </div>

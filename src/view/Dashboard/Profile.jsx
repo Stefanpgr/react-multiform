@@ -55,11 +55,11 @@ const Profile = ({ history }) => {
     appl: state.application,
   }));
 
-  React.useEffect(() => {
-    if (!appl.isComplete) {
-      history.push("/apply");
-    }
-  }, []);
+  // React.useEffect(() => {
+  //   if (!appl.isComplete) {
+  //     history.push("/apply");
+  //   }
+  // }, []);
 
   return (
     <div style={{ backgroundColor: "#F8F8F8", minHeight: "100vh" }}>

@@ -31,6 +31,8 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 import Home from "./view/General/Home";
+import { useEffect } from "react";
+import Axios from "axios";
 library.add(fas, far);
 
 export const history = createBrowserHistory();
@@ -41,6 +43,10 @@ history.listen((location, action) => {
 
 function App() {
   // const loading = () => <div>loading...</div>;
+useEffect(() => {
+  Axios.get('https://kwaba-svr.herokuapp.com').then((res) => console.log())
+},[])
+
   return (
     <Provider store={store}>
       {/* <PersistGate loading={null} persistor={persistor}> */}

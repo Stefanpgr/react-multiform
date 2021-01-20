@@ -1,6 +1,6 @@
 import axios from "axios";
 // const url = "https://kwaba.com.ng";
-const url = "http://localhost:8888";
+const url = "https://kwaba-svr.herokuapp.com";
 
 export const isAuthenticated = async () => {
     try {

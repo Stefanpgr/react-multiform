@@ -7,7 +7,7 @@ import {
 
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
-const url = 'https://kwaba.com.ng';
+const url = 'https://kwaba-svr.herokuapp.com';
 // const url = 'http://localhost:8888';
 
 export const requestSignup = (val, history) => async (dispatch) => {
@@ -20,6 +20,8 @@ export const requestSignup = (val, history) => async (dispatch) => {
 
 		if (data.token) localStorage.setItem('token', data.token);
 		localStorage.setItem('email', data.user.email);
+		sessionStorage.setItem('user', JSON.stringify(data.user))
+		sessionStorage.setItem('isAuth', true)
 		dispatch({
 			type: 'LOGIN_USER',
 			payload: {
@@ -28,7 +30,7 @@ export const requestSignup = (val, history) => async (dispatch) => {
 			}
 		});
 		// toastr.success("Success", "Account Created Successfully");
-		history.push('/success');
+		history.push('/apply');
 	} catch (e) {
 		//console.log(e.response);
 		if (e.response) {
@@ -87,7 +89,7 @@ export const requestLogin = (val, history) => async (dispatch) => {
 			if (!application || !application.isComplete) {
 				history.push('/apply');
 			} else if (!application.isProcessed) {
-				history.push('/application-process');
+				history.push('/dashboard');
 			}
 		} else {
 			throw new Error();

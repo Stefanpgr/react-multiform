@@ -4,7 +4,7 @@ import {
 } from 'react-redux-toastr';
 
 // const url = "https://rentcrowdyapi.herokuapp.com";
-const url = "https://kwaba.com.ng";
+const url = "https://kwaba-svr.herokuapp.com";
 // const url = 'http://localhost:8888';
 // const token =sessionStorage.getItem("token")
 
